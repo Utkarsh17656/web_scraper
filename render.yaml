@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: advanced-web-scraper
+    env: docker
+    plan: free
+    region: ohio
+    branch: main  # Default branch, modify if different
+    dockerContext: .
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 10000
