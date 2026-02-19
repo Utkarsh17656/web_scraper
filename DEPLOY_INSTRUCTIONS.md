@@ -25,7 +25,11 @@ This guide helps you deploy your scraper tool to [Render.com](https://render.com
 ## 3. Configuration Details
 -   **Port**: The app listens on port `10000` by default (Render sets this via `$PORT`).
 -   **Docker**: Uses the official Playwright image for stability.
--   **Performance**: Since Playwright browsers are resource-intensive, consider upgrading from the Free tier if scraping fails due to memory limits, though lightweight tasks should work fine.
+-   **Performance**: Since Playwright browsers are resource-intensive, consider upgrading from the Free tier if scraping fails due to memory limits.
+-   **Geo-blocking**: **Important!** Many Indian government sites (`.gov.in`) block traffic from common cloud provider datacenters (like Render's US regions). If you get "No tables found" on Render but it works locally, this is most likely the reason.
 
-## Note on Memory
-Playwright can consume significant RAM. On Render's free tier (512MB), you might encounter occasional crashes if scraping very heavy sites or using high depth. Limiting `max_depth` and concurrency helps.
+## Note on Memory & Reliability
+Playwright can consume significant RAM. On Render's free tier (512MB), you might encounter occasional crashes if scraping very heavy sites or using high depth.
+1.  **Memory Optimization**: The code now closes browser pages early to stay within limits.
+2.  **Container Settings**: Docker is optimized with `--disable-dev-shm-usage` for more stable execution in restricted environments.
+3.  **Local vs Cloud**: For sites with high anti-bot measures, running the tool locally is often more successful as it uses your personal IP address.

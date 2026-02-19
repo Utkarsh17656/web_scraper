@@ -27,7 +27,11 @@ async def scrape_dynamic_page(url: str, search_keyword: Optional[str] = None, ma
     base_domain = urlparse(url).netloc
     
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
+        # Add arguments for container environments (like Render)
+        browser = await p.chromium.launch(
+            headless=True,
+            args=['--disable-dev-shm-usage', '--no-sandbox']
+        )
         # Create a context with a random User-Agent
         context = await browser.new_context(
             user_agent=random.choice(USER_AGENTS),
@@ -187,9 +191,10 @@ async def scrape_dynamic_page(url: str, search_keyword: Optional[str] = None, ma
                     "text_snippet": text_content[:500] + "...",
                 }
                 
-                # Only add to results if we aren't searching, OR if we are searching and found the keyword
-                # defaulting to always adding page data for context, but marking if keyword was found
                 results.append(page_data)
+                
+                # Close the page EARLY before recursive calls to save memory on Render
+                await page.close()
 
                 # Recursive call for next depth
                 if current_depth < max_depth:
@@ -215,7 +220,12 @@ async def scrape_dynamic_page(url: str, search_keyword: Optional[str] = None, ma
                 print(f"Error crawling {current_url}: {str(e)}")
                 results.append({"url": current_url, "error": str(e)})
             finally:
-                await page.close()
+                # Ensure page is closed if not already closed
+                try:
+                    if not page.is_closed():
+                        await page.close()
+                except:
+                    pass
 
         try:
             await _crawl(url, 1)
