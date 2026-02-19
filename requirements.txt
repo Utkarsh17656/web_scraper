@@ -5,6 +5,10 @@ uvicorn
 jinja2
 python-multipart
 pandas
+lxml
+tryme>=0.0.1
+openpyxl
+html5lib
 annotated-types>=0.6.0
 anyio>=3.7.1
 certifi>=2026.1.4

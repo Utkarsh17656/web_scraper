@@ -254,15 +254,34 @@
         <div id="results">
             <div class="result-card">
                 <div class="result-header">
-                    <h3 style="margin:0; color:white;">Extraction Results</h3>
-                    <span id="statusCode" style="color:#4ade80;">Success</span>
+                    <h3 style="margin:0; color:white;">Extraction Summary</h3>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <button id="exportCsvBtn"
+                            style="padding: 0.5rem 1rem; font-size: 0.8rem; background: var(--accent);">Export to
+                            CSV</button>
+                        <span id="statusCode" style="color:#4ade80;">Success</span>
+                    </div>
                 </div>
-                <pre class="json-pre" id="jsonOutput"></pre>
+                <div id="summaryStats"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                    <!-- Stats will be injected here -->
+                </div>
+
+                <div id="tablesContainer">
+                    <!-- Tables will be injected here -->
+                </div>
+
+                <details>
+                    <summary style="cursor:pointer; color: #94a3b8; margin-top: 1rem;">Raw JSON Data</summary>
+                    <pre class="json-pre" id="jsonOutput" style="margin-top: 0.5rem; max-height: 300px;"></pre>
+                </details>
             </div>
         </div>
     </div>
 
     <script>
+        let lastScrapedData = null;
+
         document.getElementById('scrapeForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const url = document.getElementById('urlInput').value;
@@ -270,6 +289,8 @@
             const loading = document.getElementById('loading');
             const results = document.getElementById('results');
             const jsonOutput = document.getElementById('jsonOutput');
+            const tablesContainer = document.getElementById('tablesContainer');
+            const summaryStats = document.getElementById('summaryStats');
 
             // Get new values
             const searchKeyword = document.getElementById('keywordInput').value;
@@ -280,6 +301,8 @@
             loading.style.display = 'block';
             btn.disabled = true;
             btn.textContent = 'Scraping...';
+            tablesContainer.innerHTML = '';
+            summaryStats.innerHTML = '';
 
             try {
                 const response = await fetch('/api/scrape', {
@@ -293,6 +316,7 @@
                 });
 
                 const data = await response.json();
+                lastScrapedData = data;
 
                 // Format JSON
                 jsonOutput.textContent = JSON.stringify(data, null, 2);
@@ -300,10 +324,59 @@
                 const statusSpan = document.getElementById('statusCode');
                 if (data.error) {
                     statusSpan.textContent = "Error";
-                    statusSpan.style.color = "#ef4444"; // Red
+                    statusSpan.style.color = "#ef4444";
                 } else {
                     statusSpan.textContent = "Success";
-                    statusSpan.style.color = "#4ade80"; // Green
+                    statusSpan.style.color = "#4ade80";
+
+                    // Render Stats
+                    const totalPages = data.total_pages_scraped || 0;
+                    let totalTables = 0;
+                    data.pages?.forEach(p => totalTables += (p.tables_found || 0));
+
+                    summaryStats.innerHTML = `
+                        <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 0.8rem; color: #94a3b8;">Pages Scraped</div>
+                            <div style="font-size: 1.5rem; font-weight: 600;">${totalPages}</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 0.8rem; color: #94a3b8;">Tables Found</div>
+                            <div style="font-size: 1.5rem; font-weight: 600;">${totalTables}</div>
+                        </div>
+                    `;
+
+                    // Render Tables
+                    data.pages?.forEach(page => {
+                        if (page.extracted_tables && page.extracted_tables.length > 0) {
+                            const pageHeader = document.createElement('h4');
+                            pageHeader.textContent = `Source: ${page.url}`;
+                            pageHeader.style.margin = '2rem 0 1rem 0';
+                            pageHeader.style.color = 'var(--primary)';
+                            tablesContainer.appendChild(pageHeader);
+
+                            page.extracted_tables.forEach((table, idx) => {
+                                const tableDiv = document.createElement('div');
+                                tableDiv.className = 'result-card';
+                                tableDiv.style.background = 'rgba(0,0,0,0.2)';
+                                tableDiv.style.overflowX = 'auto';
+
+                                let tableHtml = `<div style="margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600;">Table ${idx + 1} ${table.is_likely_tender ? '<span style="color:#4ade80; font-size: 0.7rem; margin-left: 10px;">[Likely Tender Data]</span>' : ''}</div>`;
+                                tableHtml += '<table style="width:100%; border-collapse: collapse; font-size: 0.85rem;">';
+
+                                if (table.data && table.data.length > 0) {
+                                    const headers = Object.keys(table.data[0]);
+                                    tableHtml += '<thead><tr>' + headers.map(h => `<th style="text-align:left; padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); color: #94a3b8;">${h}</th>`).join('') + '</tr></thead>';
+                                    tableHtml += '<tbody>' + table.data.map(row =>
+                                        '<tr>' + headers.map(h => `<td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">${row[h]}</td>`).join('') + '</tr>'
+                                    ).join('') + '</tbody>';
+                                }
+
+                                tableHtml += '</table>';
+                                tableDiv.innerHTML = tableHtml;
+                                tablesContainer.appendChild(tableDiv);
+                            });
+                        }
+                    });
                 }
 
                 results.style.display = 'block';
@@ -316,6 +389,37 @@
                 btn.disabled = false;
                 btn.textContent = 'Scrape Now';
             }
+        });
+
+        document.getElementById('exportCsvBtn').addEventListener('click', () => {
+            if (!lastScrapedData || !lastScrapedData.pages) return;
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+
+            lastScrapedData.pages.forEach(page => {
+                page.extracted_tables?.forEach(table => {
+                    if (table.data && table.data.length > 0) {
+                        const headers = Object.keys(table.data[0]);
+                        csvContent += `\nSource: ${page.url}\n`;
+                        csvContent += headers.join(",") + "\n";
+                        table.data.forEach(row => {
+                            const values = headers.map(h => {
+                                const val = String(row[h]).replace(/"/g, '""');
+                                return `"${val}"`;
+                            });
+                            csvContent += values.join(",") + "\n";
+                        });
+                    }
+                });
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "scraped_tenders.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         });
     </script>
 </body>

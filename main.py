@@ -53,4 +53,4 @@ async def scrape_api(request: ScrapeRequest):
 
 if __name__ == "__main__":
     # Reload must be False on Windows to support ProactorEventLoopPolicy with Playwright
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=False)
+    uvicorn.run("main:app", host="127.0.0.1", port=8001, reload=False)
