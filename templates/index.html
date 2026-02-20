@@ -260,6 +260,70 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #475569;
         }
+
+        .download-csv-btn {
+            background: rgba(74, 222, 128, 0.1);
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .download-csv-btn:hover {
+            background: rgba(74, 222, 128, 0.2);
+            border-color: #4ade80;
+        }
+
+        .alert-badge {
+            background: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .alert-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .alert-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .alert-table th {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+        }
+
+        .alert-table td {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .delete-btn {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -297,6 +361,48 @@
             </div>
         </div>
 
+        <div class="alert-card">
+            <h3 style="margin-top:0; color:white; display: flex; align-items: center; gap: 10px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    style="color: #4ade80;">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+                Email Alerts (Background Monitoring)
+            </h3>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 1.5rem;">Receive automatic email notifications
+                when new tenders match your criteria.</p>
+
+            <form id="alertForm"
+                style="display: grid; grid-template-columns: 1fr 1fr 2fr 80px; gap: 10px; margin-bottom: 1.5rem;">
+                <input type="email" id="alertEmail" placeholder="Your Email" required
+                    style="padding: 0.8rem; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white;">
+                <input type="text" id="alertKeyword" placeholder="Keyword (Solar)" required
+                    style="padding: 0.8rem; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white;">
+                <input type="url" id="alertUrl" placeholder="Target Website URL" required
+                    style="padding: 0.8rem; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white;">
+                <button type="submit"
+                    style="background: var(--primary); padding: 0.8rem; font-size: 0.8rem;">Watch</button>
+            </form>
+
+            <div id="activeAlerts">
+                <table class="alert-table">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Keyword</th>
+                            <th>URL</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="alertsList">
+                        <!-- Alerts will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <div id="results">
             <div class="result-card">
                 <div class="result-header">
@@ -327,6 +433,84 @@
 
     <script>
         let lastScrapedData = null;
+
+        // Load alerts on startup
+        async function loadAlerts() {
+            try {
+                const response = await fetch('/api/alerts');
+                const alerts = await response.json();
+                const list = document.getElementById('alertsList');
+                list.innerHTML = alerts.map(a => `
+                    <tr>
+                        <td style="color: #e2e8f0;">${a.email}</td>
+                        <td><span class="alert-badge">${a.keyword}</span></td>
+                        <td style="color: #94a3b8; font-size: 0.75rem;">${a.url}</td>
+                        <td><button class="delete-btn" onclick="deleteAlert(${a.id})">Remove</button></td>
+                    </tr>
+                `).join('');
+                if (alerts.length === 0) {
+                    list.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px; color: #64748b;">No active alerts yet.</td></tr>';
+                }
+            } catch (e) {
+                console.error("Failed to load alerts", e);
+            }
+        }
+
+        async function deleteAlert(id) {
+            if (!confirm("Are you sure you want to stop monitoring this tender?")) return;
+            await fetch(`/api/alerts/${id}`, { method: 'DELETE' });
+            loadAlerts();
+        }
+
+        document.getElementById('alertForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.disabled = true;
+
+            const payload = {
+                email: document.getElementById('alertEmail').value,
+                keyword: document.getElementById('alertKeyword').value,
+                url: document.getElementById('alertUrl').value,
+                max_depth: 2
+            };
+
+            const resp = await fetch('/api/alerts', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (resp.ok) {
+                e.target.reset();
+                loadAlerts();
+            }
+            btn.disabled = false;
+        });
+
+        loadAlerts();
+
+        function downloadCSV(data, filename) {
+            if (!data || data.length === 0) return;
+
+            const headers = Object.keys(data[0]).filter(k => k !== '_links');
+            const csvContent = [
+                headers.join(','),
+                ...data.map(row => headers.map(h => {
+                    let cell = row[h] ? String(row[h]).replace(/"/g, '""') : '';
+                    return `"${cell}"`;
+                }).join(','))
+            ].join('\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', filename);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
 
         document.getElementById('scrapeForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -406,7 +590,17 @@
                                 tableDiv.style.background = 'rgba(0,0,0,0.2)';
                                 tableDiv.style.overflowX = 'auto';
 
-                                let tableHtml = `<div style="margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600;">Table ${idx + 1} ${table.is_likely_tender ? '<span style="color:#4ade80; font-size: 0.7rem; margin-left: 10px;">[Likely Tender Data]</span>' : ''}</div>`;
+                                let tableHtml = `
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                                        <div style="font-size: 0.9rem; font-weight: 600;">
+                                            Table ${idx + 1} ${table.is_likely_tender ? '<span style="color:#4ade80; font-size: 0.7rem; margin-left: 10px;">[Likely Tender Data]</span>' : ''}
+                                        </div>
+                                        <button class="download-csv-btn" onclick='downloadCSV(${JSON.stringify(table.data).replace(/'/g, "&apos;")}, "tender_table_${idx + 1}.csv")'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                            Export CSV
+                                        </button>
+                                    </div>
+                                `;
                                 tableHtml += '<table style="width:100%; border-collapse: collapse; font-size: 0.85rem;">';
 
                                 if (table.data && table.data.length > 0) {
@@ -419,25 +613,33 @@
                                     tableHtml += '<tbody>' + table.data.map(row => {
                                         return '<tr>' + headers.map(h => {
                                             const cellText = row[h] || '';
-                                            const cellLink = (row._links && row._links[h]) ? row._links[h] : null;
-
                                             let cellContent = cellText;
 
-                                            // If there's a link, add a download icon or make it a link
+                                            // Handle the new object structure from backend
+                                            const linkData = (row._links && row._links[h]) ? row._links[h] : null;
+                                            const cellLink = (linkData && typeof linkData === 'object') ? linkData.url : linkData;
+                                            const isHighBarrier = (linkData && typeof linkData === 'object') ? linkData.is_high_barrier : false;
+
                                             if (cellLink) {
                                                 const isDoc = h.toLowerCase().includes('download') || cellText.toLowerCase().includes('pdf') || cellText.toLowerCase().includes('doc');
-
-                                                if (isDoc || !cellText.trim()) {
-                                                    cellContent = `
-                                                        <div style="display: flex; align-items: center; gap: 8px;">
-                                                            <span>${cellText}</span>
-                                                            <a href="${cellLink}" target="_blank" title="Download: ${cellLink}" style="color: var(--primary); display: flex; align-items: center; text-decoration: none;">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                                            </a>
-                                                        </div>
-                                                    `;
+                                                // If it's a high-barrier link, we remove the icon and just keep the link to avoid confusion
+                                                if (isHighBarrier) {
+                                                    const tooltipText = `Verification Required: ${cellLink}`;
+                                                    cellContent = `<a href="${cellLink}" target="_blank" title="${tooltipText}" style="color: #fbbf24; text-decoration: underline; text-decoration-style: dotted;">${cellText || 'View Document'}</a>`;
                                                 } else {
-                                                    cellContent = `<a href="${cellLink}" target="_blank" title="Visit: ${cellLink}" style="color: var(--primary); text-decoration: underline;">${cellText}</a>`;
+                                                    const isDoc = h.toLowerCase().includes('download') || cellText.toLowerCase().includes('pdf') || cellText.toLowerCase().includes('doc');
+                                                    if (isDoc || !cellText.trim()) {
+                                                        cellContent = `
+                                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                                <span>${cellText}</span>
+                                                                <a href="${cellLink}" target="_blank" title="Download: ${cellLink}" style="color: var(--primary); display: flex; align-items: center; text-decoration: none;">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                                                </a>
+                                                            </div>
+                                                        `;
+                                                    } else {
+                                                        cellContent = `<a href="${cellLink}" target="_blank" title="Visit: ${cellLink}" style="color: var(--primary); text-decoration: underline;">${cellText}</a>`;
+                                                    }
                                                 }
                                             }
 
@@ -469,32 +671,25 @@
         document.getElementById('exportCsvBtn').addEventListener('click', () => {
             if (!lastScrapedData || !lastScrapedData.pages) return;
 
-            let csvContent = "data:text/csv;charset=utf-8,";
-
+            let allData = [];
             lastScrapedData.pages.forEach(page => {
-                page.extracted_tables?.forEach(table => {
-                    if (table.data && table.data.length > 0) {
-                        const headers = Object.keys(table.data[0]);
-                        csvContent += `\nSource: ${page.url}\n`;
-                        csvContent += headers.join(",") + "\n";
+                if (page.extracted_tables) {
+                    page.extracted_tables.forEach(table => {
                         table.data.forEach(row => {
-                            const values = headers.map(h => {
-                                const val = String(row[h]).replace(/"/g, '""');
-                                return `"${val}"`;
+                            allData.push({
+                                source_url: page.url,
+                                ...row
                             });
-                            csvContent += values.join(",") + "\n";
                         });
-                    }
-                });
+                    });
+                }
             });
 
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "scraped_tenders.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            if (allData.length > 0) {
+                downloadCSV(allData, "all_scraped_tenders.csv");
+            } else {
+                alert("No table data found to export.");
+            }
         });
     </script>
 </body>
