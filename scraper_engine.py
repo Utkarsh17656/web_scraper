@@ -65,6 +65,11 @@ async def scrape_dynamic_page(url: str, search_keyword: Optional[str] = None, ma
                 
                 # Use BeautifulSoup for parsing
                 soup = BeautifulSoup(content, 'html.parser')
+                
+                # Detect <base> tag for correct relative link resolution
+                base_tag = soup.find('base', href=True)
+                base_url_for_links = urljoin(current_url, base_tag['href']) if base_tag else current_url
+                
                 text_content = ' '.join(soup.stripped_strings)
                 
                 # Check for keyword
@@ -151,9 +156,13 @@ async def scrape_dynamic_page(url: str, search_keyword: Optional[str] = None, ma
                                 # Look for links (Download docs, etc)
                                 a_tag = c.find('a', href=True)
                                 if a_tag:
-                                    link_href = a_tag['href']
+                                    link_href = a_tag['href'].strip()
                                     if not link_href.startswith(('javascript:', '#')):
-                                        row_links[header_name] = urljoin(current_url, link_href)
+                                        # Resolve relative to <base> tag or current URL
+                                        full_link = urljoin(base_url_for_links, link_href)
+                                        # Handle URLs with spaces or special chars by cleaning
+                                        clean_link = full_link.replace(" ", "%20")
+                                        row_links[header_name] = clean_link
                             
                             if row_dict:
                                 if row_links:
