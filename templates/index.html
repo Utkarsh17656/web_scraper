@@ -410,11 +410,40 @@
                                 tableHtml += '<table style="width:100%; border-collapse: collapse; font-size: 0.85rem;">';
 
                                 if (table.data && table.data.length > 0) {
-                                    const headers = Object.keys(table.data[0]);
-                                    tableHtml += '<thead><tr>' + headers.map(h => `<th style="text-align:left; padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); color: #94a3b8;">${h}</th>`).join('') + '</tr></thead>';
-                                    tableHtml += '<tbody>' + table.data.map(row =>
-                                        '<tr>' + headers.map(h => `<td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">${row[h]}</td>`).join('') + '</tr>'
-                                    ).join('') + '</tbody>';
+                                    // Identify all headers except the internal '_links'
+                                    const allHeaders = Object.keys(table.data[0]);
+                                    const headers = allHeaders.filter(h => h !== '_links');
+
+                                    tableHtml += '<thead><tr>' + headers.map(h => `<th style="text-align:left; padding: 12px 8px; border-bottom: 2px solid rgba(255,255,255,0.1); color: #94a3b8; font-weight: 600; text-transform: uppercase; font-size: 0.75rem;">${h}</th>`).join('') + '</tr></thead>';
+
+                                    tableHtml += '<tbody>' + table.data.map(row => {
+                                        return '<tr>' + headers.map(h => {
+                                            const cellText = row[h] || '';
+                                            const cellLink = (row._links && row._links[h]) ? row._links[h] : null;
+
+                                            let cellContent = cellText;
+
+                                            // If there's a link, add a download icon or make it a link
+                                            if (cellLink) {
+                                                const isDoc = h.toLowerCase().includes('download') || cellText.toLowerCase().includes('pdf') || cellText.toLowerCase().includes('doc');
+
+                                                if (isDoc || !cellText.trim()) {
+                                                    cellContent = `
+                                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                                            <span>${cellText}</span>
+                                                            <a href="${cellLink}" target="_blank" title="Download Document" style="color: var(--primary); display: flex; align-items: center; text-decoration: none;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                                            </a>
+                                                        </div>
+                                                    `;
+                                                } else {
+                                                    cellContent = `<a href="${cellLink}" target="_blank" style="color: var(--primary); text-decoration: underline;">${cellText}</a>`;
+                                                }
+                                            }
+
+                                            return `<td style="padding: 12px 8px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #e2e8f0;">${cellContent}</td>`;
+                                        }).join('') + '</tr>';
+                                    }).join('') + '</tbody>';
                                 }
 
                                 tableHtml += '</table>';

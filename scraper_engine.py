@@ -116,64 +116,72 @@ async def scrape_dynamic_page(url: str, search_keyword: Optional[str] = None, ma
                     import pandas as pd
                     import io
                     
-                    # Try pandas first (best for structured data)
-                    dfs = []
-                    try:
-                        # try html5lib as flavor for better compatibility with messy gov portals
-                        import pandas as pd
-                        dfs = pd.read_html(io.StringIO(content), flavor='html5lib')
-                        logger.info(f"Pandas found {len(dfs)} potential tables on {current_url}")
-                    except Exception as pd_err:
-                        logger.warning(f"Pandas read_html failed on {current_url}: {pd_err}. Falling back to manual extraction.")
-                        dfs = []
-
-                    # Fallback or supplementary extraction using BeautifulSoup
-                    if not dfs:
-                        soup_tables = soup.find_all('table')
-                        logger.info(f"BS4 found {len(soup_tables)} table tags on {current_url}")
-                        for st in soup_tables:
-                            rows = st.find_all('tr')
-                            if len(rows) >= 1: # Even 1 row might be a header-only table we can use
-                                table_rows = []
-                                for tr in rows:
-                                    cols = tr.find_all(['td', 'th'])
-                                    row_data = [c.get_text(separator=" ", strip=True) for c in cols]
-                                    if any(row_data): # skip empty rows
-                                        table_rows.append(row_data)
-                                if table_rows:
-                                    df = pd.DataFrame(table_rows)
-                                    dfs.append(df)
-
-                    for i, df in enumerate(dfs):
-                        # Lower thresholds significantly
-                        if len(df) >= 1 and len(df.columns) >= 1:
-                            table_text = df.to_string().lower()
-                            # Broader keyword list including common Indian gov procurement terms
-                            keywords = [
-                                'tender', 'bid', 'ref', 'opening', 'date', 'award', 'contract', 
-                                'id', 'no', 'title', 'subject', 'sl.no', 'organisation', 
-                                'published', 'closing', 'corrigendum', 'nit', 'aoc'
-                            ]
-                            is_tender_table = any(k in table_text for k in keywords)
-                            
-                            # Keep it if it has ANY tender keywords OR if it's a reasonably large data structure
-                            if is_tender_table or (len(df) > 2 and len(df.columns) > 1):
-                                df = df.fillna('')
-                                # Ensure headers are unique strings
-                                if not df.empty:
-                                    df.columns = [f"Col_{idx}" if str(c).strip() == "" else str(c) for idx, c in enumerate(df.columns)]
-                                
-                                table_json = df.to_dict(orient='records')
-                                if len(table_json) > 200: table_json = table_json[:200]
-                                    
-                                tables_data.append({
-                                    "table_index": i,
-                                    "row_count": len(df),
-                                    "is_likely_tender": is_tender_table,
-                                    "data": table_json
-                                })
+                    # Primary Extraction: Use BeautifulSoup to capture links within tables
+                    soup_tables = soup.find_all('table')
+                    logger.info(f"BS4 found {len(soup_tables)} table tags on {current_url}")
                     
-                    logger.info(f"Extracted {len(tables_data)} valid tables from {current_url}")
+                    for i, st in enumerate(soup_tables):
+                        rows = st.find_all('tr')
+                        if not rows: continue
+                        
+                        # Try to identify headers
+                        header_elements = rows[0].find_all(['th', 'td'])
+                        headers = [h.get_text(strip=True) for h in header_elements]
+                        headers = [f"Col_{idx}" if not str(h).strip() else str(h) for idx, h in enumerate(headers)]
+                        
+                        table_rows = []
+                        # If the table has only one row and it's full of descriptors, it might not be a table
+                        # but we process it anyway if it's significant
+                        data_rows = rows[1:] if len(rows) > 1 else rows
+                        
+                        for tr in data_rows:
+                            cols = tr.find_all(['td', 'th'])
+                            if not cols: continue
+                            
+                            row_dict = {}
+                            row_links = {}
+                            for idx, c in enumerate(cols):
+                                if idx >= len(headers): break
+                                header_name = headers[idx]
+                                
+                                # Get text
+                                text = c.get_text(separator=" ", strip=True)
+                                row_dict[header_name] = text
+                                
+                                # Look for links (Download docs, etc)
+                                a_tag = c.find('a', href=True)
+                                if a_tag:
+                                    link_href = a_tag['href']
+                                    if not link_href.startswith(('javascript:', '#')):
+                                        row_links[header_name] = urljoin(current_url, link_href)
+                            
+                            if row_dict:
+                                if row_links:
+                                    row_dict["_links"] = row_links
+                                table_rows.append(row_dict)
+                        
+                        if not table_rows: continue
+                        
+                        # Filter/Analyze the table
+                        table_text = str(table_rows).lower()
+                        keywords = [
+                            'tender', 'bid', 'ref', 'opening', 'date', 'award', 'contract', 
+                            'id', 'no', 'title', 'subject', 'sl.no', 'organisation', 
+                            'published', 'closing', 'corrigendum', 'nit', 'aoc', 'download'
+                        ]
+                        is_tender_table = any(k in table_text for k in keywords)
+                        
+                        if is_tender_table or (len(table_rows) > 2 and len(headers) > 1):
+                            if len(table_rows) > 200: table_rows = table_rows[:200]
+                            
+                            tables_data.append({
+                                "table_index": i,
+                                "row_count": len(table_rows),
+                                "is_likely_tender": is_tender_table,
+                                "data": table_rows
+                            })
+                    
+                    logger.info(f"Extracted {len(tables_data)} valid tables from {current_url} with link support")
                 except Exception as table_err:
                     logger.error(f"Table extraction error on {current_url}: {table_err}")
 
