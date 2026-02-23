@@ -1,71 +1,77 @@
 import smtplib
+import os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import os
 import logging
 
 logger = logging.getLogger(__name__)
 
-# Email Configuration (Use Environment Variables for security)
-SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
-SMTP_PORT = int(os.getenv("SMTP_PORT", 587))
+SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
+SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
 SMTP_USER = os.getenv("SMTP_USER", "")
-SMTP_PASS = os.getenv("SMTP_PASS", "") # Use App Password for Gmail
+SMTP_PASS = os.getenv("SMTP_PASS", "")
 
-def send_update_email(target_email, keyword, new_tenders):
+def send_update_email(to_email: str, keyword: str, tenders: list):
     """
-    Sends an email notification with newly found tenders.
+    Sends an email notification with new tenders found.
     """
     if not SMTP_USER or not SMTP_PASS:
-        logger.warning("SMTP credentials not set. Skipping email.")
-        return False
-
-    msg = MIMEMultipart()
-    msg['From'] = SMTP_USER
-    msg['To'] = target_email
-    msg['Subject'] = f"🚀 {len(new_tenders)} New Tenders Found for keyword: '{keyword}'"
-
-    # Create HTML table for the email
-    table_rows = ""
-    for tender in new_tenders:
-        table_rows += f"""
-        <tr>
-            <td style='padding: 10px; border: 1px solid #ddd;'>{tender['title']}</td>
-            <td style='padding: 10px; border: 1px solid #ddd;'><a href='{tender['url']}'>View Link</a></td>
-        </tr>
-        """
-
-    html = f"""
-    <html>
-    <body>
-        <h2>Tender Alerts Service</h2>
-        <p>We found the following new tenders matching your keyword <b>'{keyword}'</b>:</p>
-        <table style='width: 100%; border-collapse: collapse;'>
-            <thead>
-                <tr style='background-color: #f2f2f2;'>
-                    <th style='padding: 10px; border: 1px solid #ddd;'>Tender Title</th>
-                    <th style='padding: 10px; border: 1px solid #ddd;'>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {table_rows}
-            </tbody>
-        </table>
-        <p>Stay ahead of the competition!</p>
-    </body>
-    </html>
-    """
-
-    msg.attach(MIMEText(html, 'html'))
+        logger.warning("SMTP credentials not configured. Skipping email notification.")
+        return
 
     try:
-        server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
-        server.starttls()
-        server.login(SMTP_USER, SMTP_PASS)
-        server.send_message(msg)
-        server.quit()
-        logger.info(f"Email sent successfully to {target_email}")
-        return True
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = f"[TenderAlert] New tenders found for: {keyword}"
+        msg["From"] = SMTP_USER
+        msg["To"] = to_email
+
+        # Build HTML email body
+        tender_rows = ""
+        for tender in tenders:
+            title = tender.get("title", "Unknown Tender")
+            url = tender.get("url", "#")
+            tender_rows += f"""
+            <tr>
+                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
+                    <a href="{url}" style="color: #6366f1; text-decoration: none; font-weight: 600;">{title}</a>
+                </td>
+                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
+                    <a href="{url}" style="color: #64748b; font-size: 0.85em;">{url}</a>
+                </td>
+            </tr>
+            """
+
+        html_body = f"""
+        <html>
+        <body style="font-family: Inter, sans-serif; background: #f8fafc; padding: 20px;">
+            <div style="max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h2 style="color: #1e293b; margin-top: 0;">Tender Alerts Service</h2>
+                <p style="color: #64748b;">We found the following new tenders matching your keyword <strong>'{keyword}'</strong>:</p>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                    <thead>
+                        <tr style="background: #f1f5f9;">
+                            <th style="padding: 12px; text-align: left; color: #64748b; font-size: 0.85em; text-transform: uppercase;">Tender Title</th>
+                            <th style="padding: 12px; text-align: left; color: #64748b; font-size: 0.85em; text-transform: uppercase;">Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {tender_rows}
+                    </tbody>
+                </table>
+                <p style="color: #94a3b8; font-size: 0.85em; margin-top: 30px;">Stay ahead of the competition!</p>
+            </div>
+        </body>
+        </html>
+        """
+
+        msg.attach(MIMEText(html_body, "html"))
+
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+            server.ehlo()
+            server.starttls()
+            server.login(SMTP_USER, SMTP_PASS)
+            server.sendmail(SMTP_USER, to_email, msg.as_string())
+            logger.info(f"Email notification sent to {to_email}")
+
     except Exception as e:
-        logger.error(f"Failed to send email: {str(e)}")
-        return False
+        logger.error(f"Failed to send email to {to_email}: {e}")

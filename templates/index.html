@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Web Scraper</title>
+    <title>DataExtractor Pro | Advanced Web Scraper</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -27,25 +27,19 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         .container {
             width: 100%;
-            max-width: 800px;
+            max-width: 1000px;
+            margin: 0 auto;
             padding: 2rem;
             box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
         }
 
         header {
             text-align: center;
-            margin-top: 3rem;
-            animation: fadeInDown 0.8s ease-out;
+            margin: 3rem 0;
         }
 
         h1 {
@@ -71,17 +65,17 @@
             border-radius: 16px;
             padding: 2rem;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            margin-bottom: 2rem;
         }
 
         .input-group {
             display: flex;
             gap: 1rem;
-            position: relative;
+            margin-bottom: 1rem;
         }
 
-        input[type="url"] {
-            flex: 1;
+        input,
+        select {
             padding: 1rem 1.5rem;
             border-radius: 12px;
             border: 2px solid rgba(255, 255, 255, 0.1);
@@ -90,11 +84,22 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             outline: none;
+            width: 100%;
         }
 
-        input[type="url"]:focus {
+        input:focus {
             border-color: var(--primary);
             box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+        }
+
+        .depth-select {
+            width: auto;
+            min-width: 180px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2rem;
         }
 
         button {
@@ -108,6 +113,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            width: 100%;
         }
 
         button:hover {
@@ -119,37 +125,6 @@
             opacity: 0.7;
             cursor: not-allowed;
             transform: none;
-        }
-
-        #results {
-            display: none;
-            animation: fadeInUp 0.5s ease-out;
-        }
-
-        .result-card {
-            background: rgba(30, 41, 59, 0.5);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-top: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .result-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 0.5rem;
-        }
-
-        .json-pre {
-            background: #0f172a;
-            padding: 1rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.9rem;
-            color: #a5b4fc;
         }
 
         .loading {
@@ -174,118 +149,184 @@
             }
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        #results {
+            display: none;
+            margin-top: 2rem;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .relevance-badge {
+            background: rgba(139, 92, 246, 0.2);
+            color: #c4b5fd;
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            display: inline-block;
+            margin-bottom: 1rem;
         }
 
-        /* Media Queries for Responsiveness */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .container {
-                padding: 1rem;
-            }
-
-            .scraper-card {
-                padding: 1.5rem;
-            }
-
-            .input-group[style*="grid-template-columns"] {
-                grid-template-columns: 1fr !important;
-            }
-
-            .result-header {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: flex-start;
-            }
-
-            #summaryStats {
-                grid-template-columns: 1fr;
-            }
+        .no-results-state {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 3rem;
         }
 
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            button {
-                padding: 0.8rem 1.5rem;
-            }
-
-            input[type="url"],
-            input[type="text"],
-            select {
-                font-size: 0.9rem;
-            }
+        .no-results-state h4 {
+            color: white;
+            margin-top: 0;
+            font-size: 1.2rem;
         }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .no-results-state p {
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 10px auto;
+            line-height: 1.6;
         }
 
-        ::-webkit-scrollbar-track {
-            background: var(--bg);
+        .tender-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
+        .tender-row {
+            display: grid;
+            grid-template-columns: 2fr 1.2fr 1fr 1fr;
+            padding: 0.85rem 1rem;
+            background: #1e293b;
+            transition: background 0.2s;
+            align-items: start;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
+        .tender-row:hover {
+            background: #23304a;
         }
 
-        .download-csv-btn {
-            background: rgba(74, 222, 128, 0.1);
-            color: #4ade80;
-            border: 1px solid rgba(74, 222, 128, 0.2);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            cursor: pointer;
+        .tender-row.matched-tender {
+            border-left: 4px solid #8b5cf6;
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .tender-col {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .tender-col .date-label {
+            color: #64748b;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tender-col .tender-date-value,
+        .tender-col .tender-link-wrap a {
+            font-size: 0.875rem;
+            line-height: 1.35;
+        }
+
+        .tender-info {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 0.25rem;
+        }
+
+        .tender-info .item-num {
+            color: #e2e8f0;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        .tender-link {
+            color: #60a5fa;
+            font-weight: 500;
+            text-decoration: underline;
+        }
+
+        .tender-link:hover {
+            color: #93c5fd;
+        }
+
+        .tender-date {
+            color: #f8fafc;
+            font-size: 0.875rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .date-label {
+            color: #64748b;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tender-date-value {
+            color: #f1f5f9;
+            font-size: 0.875rem;
+            line-height: 1.35;
+        }
+
+        .tender-date.stacked .date-stacked-line {
+            display: block;
+        }
+
+        .export-bar {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .export-csv-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
             transition: all 0.2s;
         }
 
-        .download-csv-btn:hover {
-            background: rgba(74, 222, 128, 0.2);
-            border-color: #4ade80;
+        .export-csv-btn:hover {
+            background: rgba(99, 102, 241, 0.25);
+            color: white;
         }
 
-        .alert-badge {
-            background: rgba(99, 102, 241, 0.2);
-            color: #818cf8;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            text-transform: uppercase;
+        .export-csv-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .download-icon-link {
+            color: #94a3b8;
+            transition: color 0.2s;
+            display: flex;
+            justify-content: center;
+        }
+
+        .download-icon-link:hover {
+            color: #4ade80;
         }
 
         .alert-card {
@@ -324,6 +365,13 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
+        @media (max-width: 768px) {
+            .tender-row {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+        }
     </style>
 </head>
 
@@ -336,360 +384,343 @@
 
         <div class="scraper-card">
             <form id="scrapeForm">
-                <div style="display: flex; gap: 1rem; flex-direction: column;">
-                    <div class="input-group">
-                        <input type="url" id="urlInput" placeholder="https://example.gov.in" required>
-                    </div>
-
-                    <div class="input-group" style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem;">
-                        <input type="text" id="keywordInput" placeholder="Optional: Search Keyword (e.g., 'tender')">
-                        <select id="depthInput"
-                            style="padding: 1rem; border-radius: 12px; border: 2px solid rgba(255,255,255,0.1); background: rgba(15,23,42,0.6); color: white;">
-                            <option value="1">Depth: 1 (Current Page)</option>
-                            <option value="2">Depth: 2 (Follow Links)</option>
-                            <option value="3">Depth: 3 (Deep Search)</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" id="scrapeBtn" style="width: 100%;">Scrape Now</button>
+                <input type="url" id="urlInput" placeholder="https://etenders.gov.in" required
+                    style="margin-bottom:1rem;">
+                <div class="input-group">
+                    <input type="text" id="keywordInput" placeholder="ID / Keyword (e.g., 11/OandM/IE/NH-19/2025-2026)">
+                    <select id="depthInput" class="depth-select">
+                        <option value="1">Depth: 1</option>
+                        <option value="2">Depth: 2</option>
+                        <option value="3" selected>Depth: 3 (Deep Search)</option>
+                    </select>
                 </div>
+                <button type="submit" id="scrapeBtn">Scrape Now</button>
             </form>
 
             <div class="loading" id="loading">
                 <div class="spinner"></div>
-                <p style="margin-top: 1rem; color: #94a3b8;">Analyzing page structure & extracting data...</p>
-            </div>
-        </div>
-
-        <div class="alert-card">
-            <h3 style="margin-top:0; color:white; display: flex; align-items: center; gap: 10px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    style="color: #4ade80;">
-                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                </svg>
-                Email Alerts (Background Monitoring)
-            </h3>
-            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 1.5rem;">Receive automatic email notifications
-                when new tenders match your criteria.</p>
-
-            <form id="alertForm"
-                style="display: grid; grid-template-columns: 1fr 1fr 2fr 80px; gap: 10px; margin-bottom: 1.5rem;">
-                <input type="email" id="alertEmail" placeholder="Your Email" required
-                    style="padding: 0.8rem; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white;">
-                <input type="text" id="alertKeyword" placeholder="Keyword (Solar)" required
-                    style="padding: 0.8rem; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white;">
-                <input type="url" id="alertUrl" placeholder="Target Website URL" required
-                    style="padding: 0.8rem; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white;">
-                <button type="submit"
-                    style="background: var(--primary); padding: 0.8rem; font-size: 0.8rem;">Watch</button>
-            </form>
-
-            <div id="activeAlerts">
-                <table class="alert-table">
-                    <thead>
-                        <tr>
-                            <th>Email</th>
-                            <th>Keyword</th>
-                            <th>URL</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="alertsList">
-                        <!-- Alerts will be loaded here -->
-                    </tbody>
-                </table>
+                <p style="margin-top: 1rem; color: #94a3b8;">Deep crawling and analyzing matching results...</p>
+                <div id="crawlingLog"
+                    style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; font-family: monospace;"></div>
             </div>
         </div>
 
         <div id="results">
-            <div class="result-card">
-                <div class="result-header">
-                    <h3 style="margin:0; color:white;">Extraction Summary</h3>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <button id="exportCsvBtn"
-                            style="padding: 0.5rem 1rem; font-size: 0.8rem; background: var(--accent);">Export to
-                            CSV</button>
-                        <span id="statusCode" style="color:#4ade80;">Success</span>
-                    </div>
-                </div>
-                <div id="summaryStats"
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-                    <!-- Stats will be injected here -->
-                </div>
-
-                <div id="tablesContainer">
-                    <!-- Tables will be injected here -->
-                </div>
-
-                <details>
-                    <summary style="cursor:pointer; color: #94a3b8; margin-top: 1rem;">Raw JSON Data</summary>
-                    <pre class="json-pre" id="jsonOutput" style="margin-top: 0.5rem; max-height: 300px;"></pre>
-                </details>
+            <div class="export-bar" id="exportBar" style="display: none;">
+                <span style="color: #94a3b8; font-size: 0.85rem;">Export results</span>
+                <button type="button" class="export-csv-btn" id="exportCsvBtn" disabled>Export to CSV</button>
             </div>
+            <div id="tablesContainer"></div>
+
+            <details style="margin-top: 2rem;">
+                <summary style="cursor:pointer; color: #94a3b8; font-size: 0.9rem;">View Scrape Summary & Raw Data
+                </summary>
+                <div id="summaryStats"
+                    style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem;"></div>
+                <pre id="rawOutput"
+                    style="background:#0f172a; padding:1rem; border-radius:8px; font-size:0.75rem; color:#4ade80; margin-top:1rem; overflow:auto; max-height:400px;"></pre>
+            </details>
+        </div>
+
+        <div class="alert-card">
+            <h3 style="color:white; margin-top:0;">Email Alerts</h3>
+            <form id="alertForm" style="display: grid; grid-template-columns: 1fr 1fr 2fr 80px; gap: 10px;">
+                <input type="email" id="alertEmail" placeholder="Email" required>
+                <input type="text" id="alertKeyword" placeholder="Keyword" required>
+                <input type="url" id="alertUrl" placeholder="URL" required>
+                <button type="submit" style="padding:0.5rem;">Watch</button>
+            </form>
+            <table class="alert-table">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Keyword</th>
+                        <th>URL</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="alertsList"></tbody>
+            </table>
         </div>
     </div>
 
     <script>
-        let lastScrapedData = null;
-
-        // Load alerts on startup
-        async function loadAlerts() {
-            try {
-                const response = await fetch('/api/alerts');
-                const alerts = await response.json();
-                const list = document.getElementById('alertsList');
-                list.innerHTML = alerts.map(a => `
-                    <tr>
-                        <td style="color: #e2e8f0;">${a.email}</td>
-                        <td><span class="alert-badge">${a.keyword}</span></td>
-                        <td style="color: #94a3b8; font-size: 0.75rem;">${a.url}</td>
-                        <td><button class="delete-btn" onclick="deleteAlert(${a.id})">Remove</button></td>
-                    </tr>
-                `).join('');
-                if (alerts.length === 0) {
-                    list.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px; color: #64748b;">No active alerts yet.</td></tr>';
-                }
-            } catch (e) {
-                console.error("Failed to load alerts", e);
-            }
-        }
-
-        async function deleteAlert(id) {
-            if (!confirm("Are you sure you want to stop monitoring this tender?")) return;
-            await fetch(`/api/alerts/${id}`, { method: 'DELETE' });
-            loadAlerts();
-        }
-
-        document.getElementById('alertForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            btn.disabled = true;
-
-            const payload = {
-                email: document.getElementById('alertEmail').value,
-                keyword: document.getElementById('alertKeyword').value,
-                url: document.getElementById('alertUrl').value,
-                max_depth: 2
-            };
-
-            const resp = await fetch('/api/alerts', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            if (resp.ok) {
-                e.target.reset();
-                loadAlerts();
-            }
-            btn.disabled = false;
-        });
-
-        loadAlerts();
-
-        function downloadCSV(data, filename) {
-            if (!data || data.length === 0) return;
-
-            const headers = Object.keys(data[0]).filter(k => k !== '_links');
-            const csvContent = [
-                headers.join(','),
-                ...data.map(row => headers.map(h => {
-                    let cell = row[h] ? String(row[h]).replace(/"/g, '""') : '';
-                    return `"${cell}"`;
-                }).join(','))
-            ].join('\n');
-
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            link.setAttribute('href', url);
-            link.setAttribute('download', filename);
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
         document.getElementById('scrapeForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const url = document.getElementById('urlInput').value;
+            const urlInput = document.getElementById('urlInput').value;
+            const keyword = document.getElementById('keywordInput').value;
+            const depth = document.getElementById('depthInput').value;
+
             const btn = document.getElementById('scrapeBtn');
             const loading = document.getElementById('loading');
-            const results = document.getElementById('results');
-            const jsonOutput = document.getElementById('jsonOutput');
-            const tablesContainer = document.getElementById('tablesContainer');
-            const summaryStats = document.getElementById('summaryStats');
+            const resultsDiv = document.getElementById('results');
+            const container = document.getElementById('tablesContainer');
+            const stats = document.getElementById('summaryStats');
+            const raw = document.getElementById('rawOutput');
 
-            // Get new values
-            const searchKeyword = document.getElementById('keywordInput').value;
-            const maxDepth = parseInt(document.getElementById('depthInput').value);
-
-            // Reset UI
-            results.style.display = 'none';
             loading.style.display = 'block';
+            resultsDiv.style.display = 'none';
             btn.disabled = true;
-            btn.textContent = 'Scraping...';
-            tablesContainer.innerHTML = '';
-            summaryStats.innerHTML = '';
+            container.innerHTML = '';
+            raw.textContent = '';
+            window.scrapeExportData = [];
 
             try {
                 const response = await fetch('/api/scrape', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        url: url,
-                        search_keyword: searchKeyword ? searchKeyword : null,
-                        max_depth: maxDepth
-                    })
+                    body: JSON.stringify({ url: urlInput, search_keyword: keyword || null, max_depth: parseInt(depth) })
                 });
 
                 const data = await response.json();
-                lastScrapedData = data;
+                raw.textContent = JSON.stringify(data, null, 2);
 
-                // Format JSON
-                jsonOutput.textContent = JSON.stringify(data, null, 2);
-
-                const statusSpan = document.getElementById('statusCode');
-                if (data.error) {
-                    statusSpan.textContent = "Error";
-                    statusSpan.style.color = "#ef4444";
-                } else {
-                    statusSpan.textContent = "Success";
-                    statusSpan.style.color = "#4ade80";
-
-                    // Render Stats
-                    const totalPages = data.total_pages_scraped || 0;
-                    let totalTables = 0;
-                    data.pages?.forEach(p => totalTables += (p.tables_found || 0));
-
-                    summaryStats.innerHTML = `
-                        <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px; text-align: center;">
-                            <div style="font-size: 0.8rem; color: #94a3b8;">Pages Scraped</div>
-                            <div style="font-size: 1.5rem; font-weight: 600;">${totalPages}</div>
-                        </div>
-                        <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px; text-align: center;">
-                            <div style="font-size: 0.8rem; color: #94a3b8;">Tables Found</div>
-                            <div style="font-size: 1.5rem; font-weight: 600;">${totalTables}</div>
-                        </div>
-                    `;
-
-                    // Render Tables
-                    data.pages?.forEach(page => {
-                        if (page.extracted_tables && page.extracted_tables.length > 0) {
-                            const pageHeader = document.createElement('h4');
-                            pageHeader.textContent = `Source: ${page.url}`;
-                            pageHeader.style.margin = '2rem 0 1rem 0';
-                            pageHeader.style.color = 'var(--primary)';
-                            tablesContainer.appendChild(pageHeader);
-
-                            page.extracted_tables.forEach((table, idx) => {
-                                const tableDiv = document.createElement('div');
-                                tableDiv.className = 'result-card';
-                                tableDiv.style.background = 'rgba(0,0,0,0.2)';
-                                tableDiv.style.overflowX = 'auto';
-
-                                let tableHtml = `
-                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
-                                        <div style="font-size: 0.9rem; font-weight: 600;">
-                                            Table ${idx + 1} ${table.is_likely_tender ? '<span style="color:#4ade80; font-size: 0.7rem; margin-left: 10px;">[Likely Tender Data]</span>' : ''}
-                                        </div>
-                                        <button class="download-csv-btn" onclick='downloadCSV(${JSON.stringify(table.data).replace(/'/g, "&apos;")}, "tender_table_${idx + 1}.csv")'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                            Export CSV
-                                        </button>
-                                    </div>
-                                `;
-                                tableHtml += '<table style="width:100%; border-collapse: collapse; font-size: 0.85rem;">';
-
-                                if (table.data && table.data.length > 0) {
-                                    // Identify all headers except the internal '_links'
-                                    const allHeaders = Object.keys(table.data[0]);
-                                    const headers = allHeaders.filter(h => h !== '_links');
-
-                                    tableHtml += '<thead><tr>' + headers.map(h => `<th style="text-align:left; padding: 12px 8px; border-bottom: 2px solid rgba(255,255,255,0.1); color: #94a3b8; font-weight: 600; text-transform: uppercase; font-size: 0.75rem;">${h}</th>`).join('') + '</tr></thead>';
-
-                                    tableHtml += '<tbody>' + table.data.map(row => {
-                                        return '<tr>' + headers.map(h => {
-                                            const cellText = row[h] || '';
-                                            let cellContent = cellText;
-
-                                            // Handle the new object structure from backend
-                                            const linkData = (row._links && row._links[h]) ? row._links[h] : null;
-                                            const cellLink = (linkData && typeof linkData === 'object') ? linkData.url : linkData;
-                                            const isHighBarrier = (linkData && typeof linkData === 'object') ? linkData.is_high_barrier : false;
-
-                                            if (cellLink) {
-                                                const isDoc = h.toLowerCase().includes('download') || cellText.toLowerCase().includes('pdf') || cellText.toLowerCase().includes('doc');
-                                                // If it's a high-barrier link, we remove the icon and just keep the link to avoid confusion
-                                                if (isHighBarrier) {
-                                                    const tooltipText = `Verification Required: ${cellLink}`;
-                                                    cellContent = `<a href="${cellLink}" target="_blank" title="${tooltipText}" style="color: #fbbf24; text-decoration: underline; text-decoration-style: dotted;">${cellText || 'View Document'}</a>`;
-                                                } else {
-                                                    const isDoc = h.toLowerCase().includes('download') || cellText.toLowerCase().includes('pdf') || cellText.toLowerCase().includes('doc');
-                                                    if (isDoc || !cellText.trim()) {
-                                                        cellContent = `
-                                                            <div style="display: flex; align-items: center; gap: 8px;">
-                                                                <span>${cellText}</span>
-                                                                <a href="${cellLink}" target="_blank" title="Download: ${cellLink}" style="color: var(--primary); display: flex; align-items: center; text-decoration: none;">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                                                </a>
-                                                            </div>
-                                                        `;
-                                                    } else {
-                                                        cellContent = `<a href="${cellLink}" target="_blank" title="Visit: ${cellLink}" style="color: var(--primary); text-decoration: underline;">${cellText}</a>`;
-                                                    }
-                                                }
-                                            }
-
-                                            return `<td style="padding: 12px 8px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #e2e8f0;">${cellContent}</td>`;
-                                        }).join('') + '</tr>';
-                                    }).join('') + '</tbody>';
-                                }
-
-                                tableHtml += '</table>';
-                                tableDiv.innerHTML = tableHtml;
-                                tablesContainer.appendChild(tableDiv);
-                            });
-                        }
-                    });
+                function extractDateOnly(str) {
+                    if (str == null || typeof str !== 'string') return '';
+                    const s = str.trim();
+                    if (!s) return '';
+                    const patterns = [
+                        /\d{1,2}-[A-Za-z]{3}-\d{4}\s+\d{1,2}:\d{2}\s*(AM|PM)?/i,
+                        /\d{1,2}\/\d{1,2}\/\d{4}\s+\d{1,2}:\d{2}\s*(AM|PM)?/i,
+                        /\d{1,2}-[A-Za-z]{3}-\d{4}/i,
+                        /\d{1,2}\/\d{1,2}\/\d{4}/,
+                        /\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}(?:\s*(AM|PM))?/i,
+                    ];
+                    for (const p of patterns) {
+                        const m = s.match(p);
+                        if (m) return m[0].trim();
+                    }
+                    return '';
                 }
 
-                results.style.display = 'block';
+                function isValidDateValue(str) {
+                    if (!str || typeof str !== 'string') return false;
+                    const s = str.trim().toLowerCase();
+                    if (/^[-—–]\s*$/.test(s)) return false;
+                    const junk = ['back', 'n/a', 'na', 'nil', 'none', 'null', 'tbd', 'tba', 'na.', '-', '--'];
+                    if (junk.includes(s)) return false;
+                    if (s.length > 60 && !/\d{4}/.test(s)) return false;
+                    if (/^(back|previous|next|view|link|click here)$/i.test(s)) return false;
+                    return true;
+                }
+
+                function normalizeDateDisplay(raw) {
+                    const extracted = extractDateOnly(raw);
+                    if (extracted) return extracted;
+                    if (isValidDateValue(raw) && (raw || '').trim().length <= 35) return (raw || '').trim();
+                    return '';
+                }
+
+                if (data.pages) {
+                    data.pages.forEach(page => {
+                        const section = document.createElement('div');
+                        section.className = 'page-result-section';
+
+                        const badge = document.createElement('div');
+                        badge.className = 'relevance-badge';
+                        badge.textContent = `Source: ${new URL(page.url).hostname}`;
+                        section.appendChild(badge);
+
+                        if (page.extracted_tables && page.extracted_tables.length > 0) {
+                            const list = document.createElement('div');
+                            list.className = 'tender-list';
+                            let globalRowIndex = 0;
+                            const exportRows = [];
+
+                            page.extracted_tables.forEach(table => {
+                                table.data.forEach(row => {
+                                    globalRowIndex += 1;
+                                    const rowDiv = document.createElement('div');
+                                    rowDiv.className = 'tender-row';
+
+                                    const keys = Object.keys(row).filter(k => !k.startsWith('_'));
+
+                                    const titleKey = keys.find(k => /title|subject|description|tender\s*name|name|item\s*desc/i.test(k))
+                                        || keys.find(k => /title.*ref|ref.*title/i.test(k))
+                                        || keys[0];
+                                    const refKey = keys.find(k => /^ref\.?\s*no|reference\s*no|tender\s*id|tender\s*no|ref\s*no|tender\s*ref|bid\s*id|srn/i.test(k))
+                                        || keys.find(k => /ref|reference|tender\s*id|tender\s*no/i.test(k) && !/title|subject|description/i.test(k));
+                                    const dateKeys = keys.filter(k => /date|closing|opening|submission|due|time/i.test(k));
+                                    const closingKey = keys.find(k => /closing|submission|due\s*date|last\s*date|bid\s*submission|submission\s*date/i.test(k))
+                                        || keys.find(k => /date/i.test(k));
+                                    const openingKey = keys.find(k => /opening|bid\s*opening|opening\s*date/i.test(k))
+                                        || dateKeys[1]
+                                        || (dateKeys.filter(k => k !== closingKey)[0]);
+
+                                    const rawTitleCell = (row[titleKey] || '').trim();
+                                    let displayTitle = rawTitleCell;
+                                    let displayRef = '';
+
+                                    if (refKey && (row[refKey] || '').toString().trim()) {
+                                        displayRef = (row[refKey] || '').toString().trim();
+                                    } else if (rawTitleCell && rawTitleCell.includes('/')) {
+                                        const parts = rawTitleCell.split('/').map(p => p.trim()).filter(Boolean);
+                                        if (parts.length >= 3) {
+                                            displayTitle = parts.slice(0, -2).join(' / ').trim();
+                                            displayRef = parts.slice(-2).join(' / ');
+                                        } else if (parts.length === 2) {
+                                            displayTitle = parts[0];
+                                            displayRef = parts[1];
+                                        }
+                                    }
+
+                                    let link = '#';
+                                    if (row._links) {
+                                        const titleLink = row._links[titleKey];
+                                        if (titleLink && titleLink.url) link = titleLink.url;
+                                        else {
+                                            const firstLink = Object.values(row._links).find(v => v && v.url);
+                                            if (firstLink) link = firstLink.url;
+                                        }
+                                    }
+
+                                    const closingRaw = (closingKey && row[closingKey]) ? (row[closingKey] || '').toString().trim() : '';
+                                    const openingRaw = (openingKey && row[openingKey]) ? (row[openingKey] || '').toString().trim() : '';
+                                    const closingVal = normalizeDateDisplay(closingRaw) || '—';
+                                    const openingVal = normalizeDateDisplay(openingRaw) || '—';
+
+                                    exportRows.push({
+                                        title: displayTitle || 'Tender Document',
+                                        ref: displayRef || '—',
+                                        closing: closingVal,
+                                        opening: openingVal,
+                                        link: link
+                                    });
+
+                                    function escapeHtml(s) {
+                                        const div = document.createElement('div');
+                                        div.textContent = s;
+                                        return div.innerHTML;
+                                    }
+
+                                    function stackedDateHtml(val) {
+                                        if (!val || val === '—') return '<span class="date-stacked-line">—</span>';
+                                        const m = val.match(/^(\d{1,2}-[A-Za-z]{3}-)(\d{4})\s+(\d{1,2}:\d{2})\s*(AM|PM)?$/i)
+                                            || val.match(/^(\d{1,2}\/\d{1,2}\/\d{4})\s+(\d{1,2}:\d{2})\s*(AM|PM)?$/i);
+                                        if (m) {
+                                            const lines = m.slice(1).filter(Boolean).map(s => s.trim());
+                                            return lines.map(l => `<span class="date-stacked-line">${escapeHtml(l)}</span>`).join('');
+                                        }
+                                        return `<span class="date-stacked-line">${escapeHtml(val)}</span>`;
+                                    }
+
+                                    const safeTitle = escapeHtml(displayTitle || 'Tender Document');
+                                    const safeRef = escapeHtml(displayRef || '—');
+                                    const safeClosing = escapeHtml(closingVal);
+
+                                    rowDiv.innerHTML = `
+                                        <div class="tender-col">
+                                            <div class="date-label">Tender Title</div>
+                                            <div class="tender-info">
+                                                <span class="item-num">${globalRowIndex}.</span>
+                                                <div class="tender-link-wrap">
+                                                    <a href="${escapeHtml(link)}" target="_blank" class="tender-link" rel="noopener">${safeTitle}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tender-col">
+                                            <div class="date-label">Ref / Tender ID</div>
+                                            <div class="tender-date-value">${safeRef}</div>
+                                        </div>
+                                        <div class="tender-date">
+                                            <div class="date-label">Closing Date</div>
+                                            <div class="tender-date-value">${safeClosing}</div>
+                                        </div>
+                                        <div class="tender-date stacked">
+                                            <div class="date-label">Opening Date</div>
+                                            <div class="tender-date-value">${stackedDateHtml(openingVal)}</div>
+                                        </div>
+                                    `;
+                                    list.appendChild(rowDiv);
+                                });
+                            });
+                            section.appendChild(list);
+                            if (exportRows.length > 0) {
+                                if (!window.scrapeExportData) window.scrapeExportData = [];
+                                window.scrapeExportData = window.scrapeExportData.concat(exportRows);
+                            }
+                        } else {
+                            // SHOW EMPTY STATE FOR FEEDBACK
+                            const emptyState = document.createElement('div');
+                            emptyState.className = 'no-results-state';
+                            emptyState.innerHTML = `
+                                <h4>No Direct Table Matches Found</h4>
+                                <p>${page.title || 'Page loaded successfully.'}</p>
+                                <p style="opacity: 0.7; font-size: 0.8rem;">${page.description || 'Verified ' + (page.content_length || 0) + ' characters of content.'}</p>
+                            `;
+                            section.appendChild(emptyState);
+                        }
+                        container.appendChild(section);
+                    });
+
+                    stats.innerHTML = `
+                        <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:12px; text-align:center;">
+                            <div style="font-size:0.7rem; color:#94a3b8;">Pages Scanned</div>
+                            <div style="font-size:1.2rem; font-weight:700;">${data.total_pages_scraped}</div>
+                        </div>
+                    `;
+                }
+
+                resultsDiv.style.display = 'block';
+                const exportBar = document.getElementById('exportBar');
+                const exportCsvBtn = document.getElementById('exportCsvBtn');
+                if (window.scrapeExportData && window.scrapeExportData.length > 0) {
+                    exportBar.style.display = 'flex';
+                    exportCsvBtn.disabled = false;
+                } else {
+                    exportBar.style.display = 'none';
+                    exportCsvBtn.disabled = true;
+                }
             } catch (err) {
                 console.error(err);
-                jsonOutput.textContent = JSON.stringify({ error: "Failed to fetch data properly." }, null, 2);
-                results.style.display = 'block';
+                alert("Scraping reached a timeout. This often happens on slow government servers. Try setting Depth to 1.");
             } finally {
                 loading.style.display = 'none';
                 btn.disabled = false;
-                btn.textContent = 'Scrape Now';
             }
         });
 
-        document.getElementById('exportCsvBtn').addEventListener('click', () => {
-            if (!lastScrapedData || !lastScrapedData.pages) return;
+        // Email Alert Logic
+        async function loadAlerts() {
+            try {
+                const resp = await fetch('/api/alerts');
+                const alerts = await resp.json();
+                document.getElementById('alertsList').innerHTML = alerts.map(a => `
+                    <tr>
+                        <td>${a.email}</td>
+                        <td><span style="color:#818cf8;">${a.keyword}</span></td>
+                        <td style="font-size:0.7rem; color:#64748b;">${a.url}</td>
+                        <td><button class="delete-btn" onclick="deleteAlert(${a.id})">×</button></td>
+                    </tr>
+                `).join('');
+            } catch (e) { }
+        }
+        async function deleteAlert(id) { await fetch(`/api/alerts/${id}`, { method: 'DELETE' }); loadAlerts(); }
+        document.getElementById('alertForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const payload = { email: document.getElementById('alertEmail').value, keyword: document.getElementById('alertKeyword').value, url: document.getElementById('alertUrl').value };
+            await fetch('/api/alerts', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+            e.target.reset(); loadAlerts();
+        });
+        loadAlerts();
 
-            let allData = [];
-            lastScrapedData.pages.forEach(page => {
-                if (page.extracted_tables) {
-                    page.extracted_tables.forEach(table => {
-                        table.data.forEach(row => {
-                            allData.push({
-                                source_url: page.url,
-                                ...row
-                            });
-                        });
-                    });
-                }
-            });
-
-            if (allData.length > 0) {
-                downloadCSV(allData, "all_scraped_tenders.csv");
-            } else {
-                alert("No table data found to export.");
-            }
+        document.getElementById('exportCsvBtn').addEventListener('click', function () {
+            const data = window.scrapeExportData;
+            if (!data || data.length === 0) return;
+            const escapeCsv = (s) => {
+                const str = (s == null ? '' : String(s));
+                if (/[",\n\r]/.test(str)) return '"' + str.replace(/"/g, '""') + '"';
+                return str;
+            };
+            const headers = ['Tender Title', 'Ref / Tender ID', 'Closing Date', 'Opening Date', 'Link'];
+            const rows = data.map(r => [r.title, r.ref, r.closing, r.opening, r.link].map(escapeCsv).join(','));
+            const csv = '\uFEFF' + headers.map(escapeCsv).join(',') + '\r\n' + rows.join('\r\n');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'tender_results_' + new Date().toISOString().slice(0, 10) + '.csv';
+            a.click();
+            URL.revokeObjectURL(a.href);
         });
     </script>
 </body>

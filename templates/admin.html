@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Tender Monitoring</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+            --success: #4ade80;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .table-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.25rem;
+            color: var(--success);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        .url-cell {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .badge {
+            background: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        .btn-back {
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/" class="btn-back">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                Back to Scraper
+            </a>
+            <h1 style="margin:0; font-size: 1.5rem;">Admin Dashboard</h1>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="statAlerts">-</div>
+                <div class="stat-label">Active Alerts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="statTenders">-</div>
+                <div class="stat-label">Total Tenders Logged</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="statToday">-</div>
+                <div class="stat-label">Tenders Found Today</div>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <h2>Recent Tender History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tender Title</th>
+                        <th>Keyword</th>
+                        <th>Found On</th>
+                        <th>Source URL</th>
+                    </tr>
+                </thead>
+                <tbody id="historyList">
+                    <tr>
+                        <td colspan="4" style="text-align:center;">Loading history...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function loadDashboard() {
+            try {
+                const [alertsResp, historyResp] = await Promise.all([
+                    fetch('/api/alerts'),
+                    fetch('/api/admin/history')
+                ]);
+
+                const alerts = await alertsResp.json();
+                const history = await historyResp.json();
+
+                document.getElementById('statAlerts').textContent = alerts.length;
+                document.getElementById('statTenders').textContent = history.length;
+
+                // Calculate today's tenders
+                const today = new Date().toISOString().split('T')[0];
+                const todayCount = history.filter(t => t.found_at.startsWith(today)).length;
+                document.getElementById('statToday').textContent = todayCount;
+
+                // Render History
+                const list = document.getElementById('historyList');
+                if (history.length === 0) {
+                    list.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 2rem; color: #64748b;">No tenders found yet. Set up an alert to start monitoring.</td></tr>';
+                } else {
+                    list.innerHTML = history.slice(0, 50).map(t => `
+                        <tr>
+                            <td style="font-weight: 600;">${t.tender_title}</td>
+                            <td><span class="badge">${t.keyword}</span></td>
+                            <td style="color: #94a3b8;">${new Date(t.found_at).toLocaleString()}</td>
+                            <td class="url-cell"><a href="${t.found_url}" target="_blank" style="color: inherit;">${t.found_url}</a></td>
+                        </tr>
+                    `).join('');
+                }
+
+            } catch (e) {
+                console.error("Dashboard failed to load", e);
+            }
+        }
+
+        loadDashboard();
+        // Refresh every 30 seconds
+        setInterval(loadDashboard, 30000);
+    </script>
+</body>
+
+</html>

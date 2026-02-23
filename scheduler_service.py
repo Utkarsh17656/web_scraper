@@ -39,7 +39,11 @@ async def run_alert_task(alert_id: int):
             for table in page.get("extracted_tables", []):
                 for row in table.get("data", []):
                     # Find any column that looks like a title
-                    title = next((val for key, val in row.items() if any(k in key.lower() for k in ['title', 'desc', 'subject']) and key != '_links'), "Unknown Tender")
+                    title = next(
+                        (val for key, val in row.items() 
+                         if any(k in key.lower() for k in ['title', 'desc', 'subject']) and key != '_links'), 
+                        "Unknown Tender"
+                    )
                     
                     # Find the first link in the row
                     links = row.get("_links", {})
@@ -49,7 +53,7 @@ async def run_alert_task(alert_id: int):
                     if not link_url:
                         continue
                         
-                    t_hash = generate_tender_hash(title, link_url)
+                    t_hash = generate_tender_hash(str(title), str(link_url))
                     
                     # Check if we already know this tender
                     exists = db.query(ScrapedTender).filter(ScrapedTender.tender_hash == t_hash).first()
@@ -57,8 +61,8 @@ async def run_alert_task(alert_id: int):
                         new_tender = ScrapedTender(
                             alert_id=alert.id,
                             tender_hash=t_hash,
-                            tender_title=title,
-                            found_url=link_url
+                            tender_title=str(title),
+                            found_url=str(link_url)
                         )
                         db.add(new_tender)
                         new_tenders_to_notify.append({"title": title, "url": link_url})
@@ -66,7 +70,7 @@ async def run_alert_task(alert_id: int):
         db.commit()
 
         if new_tenders_to_notify:
-            logger.info(f"Fount {len(new_tenders_to_notify)} new tenders! Sending email to {alert.email}")
+            logger.info(f"Found {len(new_tenders_to_notify)} new tenders! Sending email to {alert.email}")
             send_update_email(alert.email, alert.keyword, new_tenders_to_notify)
             
     except Exception as e:
