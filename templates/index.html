@@ -394,6 +394,9 @@
                         <option value="3" selected>Depth: 3 (Deep Search)</option>
                     </select>
                 </div>
+                <input type="text" id="excludeInput"
+                    placeholder="Exclude terms (comma separated, e.g. maintenance, repair, painting)"
+                    style="margin-bottom: 0.75rem; width: 100%;">
                 <button type="submit" id="scrapeBtn">Scrape Now</button>
             </form>
 
@@ -450,6 +453,11 @@
             const urlInput = document.getElementById('urlInput').value;
             const keyword = document.getElementById('keywordInput').value;
             const depth = document.getElementById('depthInput').value;
+            const excludeRaw = document.getElementById('excludeInput').value || '';
+            const excludeTerms = excludeRaw
+                .split(',')
+                .map(t => t.trim().toLowerCase())
+                .filter(Boolean);
 
             const btn = document.getElementById('scrapeBtn');
             const loading = document.getElementById('loading');
@@ -479,18 +487,22 @@
                     if (str == null || typeof str !== 'string') return '';
                     const s = str.trim();
                     if (!s) return '';
-                    const patterns = [
-                        /\d{1,2}-[A-Za-z]{3}-\d{4}\s+\d{1,2}:\d{2}\s*(AM|PM)?/i,
-                        /\d{1,2}\/\d{1,2}\/\d{4}\s+\d{1,2}:\d{2}\s*(AM|PM)?/i,
-                        /\d{1,2}-[A-Za-z]{3}-\d{4}/i,
-                        /\d{1,2}\/\d{1,2}\/\d{4}/,
-                        /\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}(?:\s*(AM|PM))?/i,
-                    ];
-                    for (const p of patterns) {
-                        const m = s.match(p);
-                        if (m) return m[0].trim();
-                    }
+                    const re = /(\d{1,2}-[A-Za-z]{3}-\d{4}\s+\d{1,2}:\d{2}\s*(?:AM|PM)?|\d{1,2}\/\d{1,2}\/\d{4}\s+\d{1,2}:\d{2}\s*(?:AM|PM)?|\d{1,2}-[A-Za-z]{3}-\d{4}|\d{1,2}\/\d{1,2}\/\d{4}|\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}(?:\s*(?:AM|PM))?)/i;
+                    const m = s.match(re);
+                    if (m) return m[0].trim();
                     return '';
+                }
+
+                function extractAllDates(str) {
+                    const results = [];
+                    if (str == null) return results;
+                    const s = String(str);
+                    const re = /(\d{1,2}-[A-Za-z]{3}-\d{4}\s+\d{1,2}:\d{2}\s*(?:AM|PM)?|\d{1,2}\/\d{1,2}\/\d{4}\s+\d{1,2}:\d{2}\s*(?:AM|PM)?|\d{1,2}-[A-Za-z]{3}-\d{4}|\d{1,2}\/\d{1,2}\/\d{4}|\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}(?:\s*(?:AM|PM))?)/gi;
+                    let m;
+                    while ((m = re.exec(s)) !== null) {
+                        results.push(m[0].trim());
+                    }
+                    return results;
                 }
 
                 function isValidDateValue(str) {
@@ -499,6 +511,10 @@
                     if (/^[-—–]\s*$/.test(s)) return false;
                     const junk = ['back', 'n/a', 'na', 'nil', 'none', 'null', 'tbd', 'tba', 'na.', '-', '--'];
                     if (junk.includes(s)) return false;
+                    // Reject pure serial numbers like "7", "7.1", "1."
+                    if (/^\d+(\.\d+)?\.?$/.test(s)) return false;
+                    // Reject labels that clearly are not dates (no digits at all)
+                    if (!/\d/.test(s)) return false;
                     if (s.length > 60 && !/\d{4}/.test(s)) return false;
                     if (/^(back|previous|next|view|link|click here)$/i.test(s)) return false;
                     return true;
@@ -529,6 +545,18 @@
 
                             page.extracted_tables.forEach(table => {
                                 table.data.forEach(row => {
+                                    // Exclusion filter: skip rows whose text contains any excluded term
+                                    if (excludeTerms.length) {
+                                        const rowKeysForExclude = Object.keys(row).filter(k => !k.startsWith('_'));
+                                        const rowText = rowKeysForExclude
+                                            .map(k => (row[k] || '').toString().toLowerCase())
+                                            .join(' ');
+                                        const shouldExclude = excludeTerms.some(term => term && rowText.includes(term));
+                                        if (shouldExclude) {
+                                            return; // skip this row but keep processing others
+                                        }
+                                    }
+
                                     globalRowIndex += 1;
                                     const rowDiv = document.createElement('div');
                                     rowDiv.className = 'tender-row';
@@ -540,12 +568,21 @@
                                         || keys[0];
                                     const refKey = keys.find(k => /^ref\.?\s*no|reference\s*no|tender\s*id|tender\s*no|ref\s*no|tender\s*ref|bid\s*id|srn/i.test(k))
                                         || keys.find(k => /ref|reference|tender\s*id|tender\s*no/i.test(k) && !/title|subject|description/i.test(k));
+
                                     const dateKeys = keys.filter(k => /date|closing|opening|submission|due|time/i.test(k));
-                                    const closingKey = keys.find(k => /closing|submission|due\s*date|last\s*date|bid\s*submission|submission\s*date/i.test(k))
-                                        || keys.find(k => /date/i.test(k));
-                                    const openingKey = keys.find(k => /opening|bid\s*opening|opening\s*date/i.test(k))
-                                        || dateKeys[1]
-                                        || (dateKeys.filter(k => k !== closingKey)[0]);
+
+                                    // Prefer true closing/end dates over start dates
+                                    const closingKey = keys.find(k => /bid\s*submission.*(end|closing|close|last|due|upto)/i.test(k))
+                                        || keys.find(k => /(tender|bid).*closing/i.test(k))
+                                        || keys.find(k => /(submission|bid).*(end|last)/i.test(k))
+                                        || keys.find(k => /closing|last\s*date|due\s*date/i.test(k))
+                                        || keys.find(k => /date/i.test(k) && !/start|from/i.test(k));
+
+                                    // Prefer explicit opening / bid opening columns
+                                    const openingKey = keys.find(k => /bid\s*opening|technical\s*bid\s*opening|financial\s*bid\s*opening/i.test(k))
+                                        || keys.find(k => /opening\s*date|open\s*date/i.test(k))
+                                        || dateKeys.find(k => /opening/i.test(k))
+                                        || dateKeys.find(k => k !== closingKey);
 
                                     const rawTitleCell = (row[titleKey] || '').trim();
                                     let displayTitle = rawTitleCell;
@@ -576,8 +613,28 @@
 
                                     const closingRaw = (closingKey && row[closingKey]) ? (row[closingKey] || '').toString().trim() : '';
                                     const openingRaw = (openingKey && row[openingKey]) ? (row[openingKey] || '').toString().trim() : '';
-                                    const closingVal = normalizeDateDisplay(closingRaw) || '—';
-                                    const openingVal = normalizeDateDisplay(openingRaw) || '—';
+                                    let closingVal = normalizeDateDisplay(closingRaw) || '—';
+                                    let openingVal = normalizeDateDisplay(openingRaw) || '—';
+
+                                    // SPECIAL CASE: listing row contains all three dates in sequence
+                                    // e-Published Date, Bid Submission End Date, Bid Opening Date
+                                    const rowTextForDates = keys
+                                        .map(k => (row[k] || '').toString())
+                                        .join(' ');
+                                    const allDates = extractAllDates(rowTextForDates);
+                                    if (allDates.length >= 3) {
+                                        // 0: Published, 1: Submission End (Closing), 2: Bid Opening
+                                        closingVal = allDates[1] || closingVal;
+                                        openingVal = allDates[2] || openingVal;
+                                    }
+
+                                    const titlePlain = (displayTitle || '').trim();
+                                    const hasAnyDate = closingVal !== '—' || openingVal !== '—';
+                                    const hasRealLink = link && link !== '#';
+                                    // Drop header/serial rows like "7.1." or rows with no dates and trivial titles
+                                    if (!hasAnyDate && (!hasRealLink || titlePlain.length < 30)) {
+                                        return;
+                                    }
 
                                     exportRows.push({
                                         title: displayTitle || 'Tender Document',
