@@ -72,11 +72,25 @@
             display: flex;
             gap: 1rem;
             margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        /* Make the main input flexible and allow it to shrink properly */
+        .input-group input {
+            flex: 1 1 auto;
+            min-width: 0; /* allow flex children to shrink below their content width */
+        }
+
+        /* Keep the depth selector compact */
+        .input-group .depth-select {
+            flex: 0 0 180px;
+            min-width: 140px;
+            max-width: 280px;
         }
 
         input,
         select {
-            padding: 1rem 1.5rem;
+            padding: 1rem 0.9rem;
             border-radius: 12px;
             border: 2px solid rgba(255, 255, 255, 0.1);
             background: rgba(15, 23, 42, 0.6);
@@ -85,6 +99,18 @@
             transition: all 0.3s ease;
             outline: none;
             width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            .input-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .input-group .depth-select {
+                flex: none;
+                width: 100%;
+                max-width: none;
+            }
         }
 
         input:focus {
@@ -328,41 +354,6 @@
         .download-icon-link:hover {
             color: #4ade80;
         }
-
-        .alert-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-
-        .alert-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-            font-size: 0.85rem;
-        }
-
-        .alert-table th {
-            text-align: left;
-            padding: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: #94a3b8;
-        }
-
-        .alert-table td {
-            padding: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .delete-btn {
-            background: rgba(239, 68, 68, 0.1);
-            color: #ef4444;
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            padding: 4px 8px;
-            border-radius: 4px;
             cursor: pointer;
         }
 
@@ -425,26 +416,7 @@
             </details>
         </div>
 
-        <div class="alert-card">
-            <h3 style="color:white; margin-top:0;">Email Alerts</h3>
-            <form id="alertForm" style="display: grid; grid-template-columns: 1fr 1fr 2fr 80px; gap: 10px;">
-                <input type="email" id="alertEmail" placeholder="Email" required>
-                <input type="text" id="alertKeyword" placeholder="Keyword" required>
-                <input type="url" id="alertUrl" placeholder="URL" required>
-                <button type="submit" style="padding:0.5rem;">Watch</button>
-            </form>
-            <table class="alert-table">
-                <thead>
-                    <tr>
-                        <th>Email</th>
-                        <th>Keyword</th>
-                        <th>URL</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="alertsList"></tbody>
-            </table>
-        </div>
+
     </div>
 
     <script>
@@ -670,8 +642,20 @@
                                             <div class="date-label">Tender Title</div>
                                             <div class="tender-info">
                                                 <span class="item-num">${globalRowIndex}.</span>
-                                                <div class="tender-link-wrap">
+                                                <div class="tender-link-wrap" style="display:flex; align-items:flex-start; gap:8px;">
                                                     <a href="${escapeHtml(link)}" target="_blank" class="tender-link" rel="noopener">${safeTitle}</a>
+                                                    ${hasRealLink ? `
+                                                    <a href="/api/export-tender?url=${encodeURIComponent(link)}" 
+                                                       title="Export Tender Details to CSV" 
+                                                       class="download-icon-link" 
+                                                       style="flex-shrink:0; margin-top:2px;">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                            <polyline points="7 10 12 15 17 10"></polyline>
+                                                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                                                        </svg>
+                                                    </a>
+                                                    ` : ''}
                                                 </div>
                                             </div>
                                         </div>
@@ -737,47 +721,60 @@
             }
         });
 
-        // Email Alert Logic
-        async function loadAlerts() {
-            try {
-                const resp = await fetch('/api/alerts');
-                const alerts = await resp.json();
-                document.getElementById('alertsList').innerHTML = alerts.map(a => `
-                    <tr>
-                        <td>${a.email}</td>
-                        <td><span style="color:#818cf8;">${a.keyword}</span></td>
-                        <td style="font-size:0.7rem; color:#64748b;">${a.url}</td>
-                        <td><button class="delete-btn" onclick="deleteAlert(${a.id})">×</button></td>
-                    </tr>
-                `).join('');
-            } catch (e) { }
-        }
-        async function deleteAlert(id) { await fetch(`/api/alerts/${id}`, { method: 'DELETE' }); loadAlerts(); }
-        document.getElementById('alertForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const payload = { email: document.getElementById('alertEmail').value, keyword: document.getElementById('alertKeyword').value, url: document.getElementById('alertUrl').value };
-            await fetch('/api/alerts', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-            e.target.reset(); loadAlerts();
-        });
-        loadAlerts();
+        // Email alerts functionality removed for performance optimization
 
-        document.getElementById('exportCsvBtn').addEventListener('click', function () {
+        document.getElementById('exportCsvBtn').addEventListener('click', async function () {
             const data = window.scrapeExportData;
             if (!data || data.length === 0) return;
-            const escapeCsv = (s) => {
-                const str = (s == null ? '' : String(s));
-                if (/[",\n\r]/.test(str)) return '"' + str.replace(/"/g, '""') + '"';
-                return str;
-            };
-            const headers = ['Tender Title', 'Ref / Tender ID', 'Closing Date', 'Opening Date', 'Link'];
-            const rows = data.map(r => [r.title, r.ref, r.closing, r.opening, r.link].map(escapeCsv).join(','));
-            const csv = '\uFEFF' + headers.map(escapeCsv).join(',') + '\r\n' + rows.join('\r\n');
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'tender_results_' + new Date().toISOString().slice(0, 10) + '.csv';
-            a.click();
-            URL.revokeObjectURL(a.href);
+            
+            const btn = this;
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = 'Enriching with details...';
+            
+            try {
+                // Try enhanced export with details first
+                const response = await fetch('/api/export-bulk', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ tenders: data })
+                });
+                
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'tender_results_with_details_' + new Date().toISOString().slice(0, 10) + '.csv';
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                } else {
+                    throw new Error('Bulk export failed, falling back to standard export');
+                }
+            } catch (error) {
+                console.warn('Enhanced export failed, using standard export:', error);
+                // Fallback to standard CSV export
+                const escapeCsv = (s) => {
+                    const str = (s == null ? '' : String(s));
+                    if (/[",\n\r]/.test(str)) return '"' + str.replace(/"/g, '""') + '"';
+                    return str;
+                };
+                const headers = ['Tender Title', 'Ref / Tender ID', 'Closing Date', 'Opening Date', 'Link'];
+                const rows = data.map(r => [r.title, r.ref, r.closing, r.opening, r.link].map(escapeCsv).join(','));
+                const csv = '\uFEFF' + headers.map(escapeCsv).join(',') + '\r\n' + rows.join('\r\n');
+                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = 'tender_results_' + new Date().toISOString().slice(0, 10) + '.csv';
+                a.click();
+                URL.revokeObjectURL(a.href);
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
         });
     </script>
 </body>

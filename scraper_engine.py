@@ -413,6 +413,394 @@ async def scrape_dynamic_page(url: str, search_keyword: Optional[str] = None, ma
         finally:
             await browser.close()
 
+async def export_tender_details_csv(url: str) -> str:
+    """
+    Visits a tender details page and extracts all data including dynamically loaded content.
+    Handles etenders.gov.in which uses AJAX to load tender details.
+    Includes session timeout detection and recovery.
+    """
+    import csv
+    import io
+
+    csv_output = io.StringIO()
+    writer = csv.writer(csv_output)
+
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(
+            headless=True,
+            args=['--disable-dev-shm-usage', '--no-sandbox']
+        )
+        context = await browser.new_context(
+            user_agent=random.choice(USER_AGENTS),
+            viewport={'width': 1920, 'height': 1080}
+        )
+        page = await context.new_page()
+
+        try:
+            logger.info(f"Fetching tender details from: {url}")
+            await page.goto(url, wait_until="networkidle", timeout=120000)
+            
+            # Check for session timeout error
+            page_content = await page.content()
+            if "session has timed out" in page_content.lower() or "session expired" in page_content.lower():
+                logger.warning("Session timeout detected!")
+                writer.writerow(["Status", "Session Expired or Invalid"])
+                writer.writerow(["Error", "The session parameter in the URL has expired or is no longer valid."])
+                writer.writerow(["Solution", "Navigate to the search page first, perform a fresh search, then click the tender to get a valid session."])
+                writer.writerow(["URL", url])
+                return csv_output.getvalue()
+            
+            logger.info("Waiting for dynamic content to load...")
+            
+            # Wait for multiple possible selectors where tender data might be
+            content_selectors = [
+                "div[class*='tender']",
+                "div[class*='detail']",
+                "span[class*='label']",
+                "p",
+                "body"
+            ]
+            
+            for selector in content_selectors:
+                try:
+                    await page.wait_for_selector(selector, timeout=10000)
+                    logger.info(f"Found: {selector}")
+                    break
+                except Exception:
+                    continue
+            
+            # Aggressive scrolling to trigger all dynamic loads
+            logger.info("Scrolling page multiple times...")
+            await page.evaluate("""
+                async () => {
+                    for (let i = 0; i < 10; i++) {
+                        window.scrollBy(0, 500);
+                        await new Promise(r => setTimeout(r, 500));
+                    }
+                    window.scrollTo(0, 0);
+                }
+            """)
+            
+            # Wait for all dynamic content
+            await page.evaluate("() => new Promise(r => setTimeout(r, 8000))")
+            
+            # Try to click any expand/details buttons that might exist
+            logger.info("Looking for expandable details...")
+            try:
+                await page.evaluate("""
+                    () => {
+                        const buttons = document.querySelectorAll('[class*="expand"], [class*="more"], [class*="detail"], button, a');
+                        buttons.forEach((btn, idx) => {
+                            if (idx < 5 && btn.textContent.toLowerCase().includes(('view|more|detail|expand|show').split('|'))) {
+                                btn.click();
+                            }
+                        });
+                    }
+                """)
+                await page.evaluate("() => new Promise(r => setTimeout(r, 3000))")
+            except Exception as e:
+                logger.debug(f"Could not expand details: {e}")
+            
+            content = await page.content()
+            soup = BeautifulSoup(content, 'html.parser')
+
+            logger.info(f"Page loaded, extracting content...")
+            all_data = {}
+
+            # ========== STRATEGY 1: Extract from visible tables ==========
+            logger.info("Looking for tables...")
+            tables = soup.find_all('table')
+            
+            if tables:
+                for table_idx, table in enumerate(tables):
+                    rows = table.find_all('tr')
+                    for row in rows:
+                        cells = row.find_all(['td', 'th'])
+                        if len(cells) >= 2:
+                            # Extract each pair of cells
+                            for i in range(0, len(cells) - 1, 2):
+                                field = " ".join(cells[i].get_text(strip=True).split())
+                                value = " ".join(cells[i + 1].get_text(strip=True).split())
+                                if field and value and len(field) > 2:
+                                    if field not in all_data:
+                                        all_data[field] = value
+
+            # ========== STRATEGY 2: Extract from divs with label-value patterns ==========
+            logger.info("Looking for label-value patterns in divs...")
+            
+            # Find all divs and spans with text content
+            for div in soup.find_all(['div', 'span', 'p', 'li']):
+                text = div.get_text(strip=True)
+                
+                # Look for patterns like "Label: Value"
+                if ':' in text and 10 < len(text) < 500:
+                    parts = text.split(':', 1)
+                    if len(parts) == 2:
+                        label = parts[0].strip()
+                        value = parts[1].strip()
+                        
+                        # Filter out too-short labels
+                        if len(label) > 3 and len(value) > 1 and label not in all_data:
+                            # Skip if label is just "Label" or clearly not a field name
+                            if not (label.lower() in ['label', 'value', 'item', 'no', 'id', 'name'] and len(label) < 10):
+                                all_data[label] = value[:1000]
+
+            # ========== STRATEGY 3: Extract heading + next content pattern ==========
+            logger.info("Looking for heading + content patterns...")
+            
+            for heading in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'strong', 'b']):
+                heading_text = heading.get_text(strip=True)
+                
+                if 3 < len(heading_text) < 150:
+                    # Find next sibling that might be the value
+                    next_elem = heading.find_next(['p', 'div', 'span', 'td'])
+                    if next_elem:
+                        value = next_elem.get_text(strip=True)
+                        if len(value) > 2 and heading_text not in all_data:
+                            all_data[heading_text] = value[:1000]
+
+            # ========== STRATEGY 4: Extract from data attributes ==========
+            logger.info("Looking for data in attributes...")
+            
+            for elem in soup.find_all(True):  # All elements
+                # Check for common data attributes
+                for attr in ['data-value', 'data-label', 'title', 'aria-label']:
+                    if elem.has_attr(attr):
+                        value = elem.get(attr, '').strip()
+                        if value and len(value) > 3:
+                            # Use element text as key if available
+                            key = elem.get_text(strip=True)[:50]
+                            if not key:
+                                key = f"Data_{attr}"
+                            if key not in all_data and len(key) > 2:
+                                all_data[key] = value[:1000]
+
+            # ========== STRATEGY 5: Fallback - extract all text in blocks ==========
+            if len(all_data) < 5:
+                logger.warning(f"Only {len(all_data)} data points found, using aggressive fallback...")
+                
+                body = soup.find('body')
+                if body:
+                    all_text = body.get_text()
+                    lines = [l.strip() for l in all_text.split('\n') if l.strip()]
+                    
+                    # Group consecutive lines
+                    for i in range(0, len(lines) - 1, 2):
+                        line1 = lines[i][:100]
+                        line2 = lines[i + 1][:500] if i + 1 < len(lines) else ""
+                        
+                        if line1 and line2 and len(line1) > 5 and len(line2) > 5:
+                            if line1 not in all_data and not any(c.isdigit() for c in line1[:3]):
+                                all_data[line1] = line2
+
+            # ========== Write CSV Output ==========
+            writer.writerow(["Field / Property", "Value"])
+            
+            if all_data:
+                logger.info(f"Extracted {len(all_data)} data fields")
+                for field, value in all_data.items():
+                    # Clean up field name
+                    field = field.replace('\n', ' ').replace('\r', ' ')
+                    value = value.replace('\n', ' | ').replace('\r', ' | ')
+                    
+                    # Ensure length limits for CSV
+                    if len(value) > 10000:
+                        value = value[:10000] + "..."
+                    
+                    writer.writerow([field, value])
+                
+                writer.writerow([""])
+                writer.writerow(["Extraction Status", "Successfully extracted tender details"])
+                writer.writerow(["Source URL", url])
+            else:
+                logger.warning("No data extracted from page")
+                
+                # Check if session might be expired even after extraction attempt
+                page_text = soup.get_text().lower()
+                if "session" in page_text and ("timed out" in page_text or "expired" in page_text):
+                    writer.writerow(["Status", "Session Expired"])
+                    writer.writerow(["Error", "The session has expired. Please navigate through the search page to refresh your session."])
+                    writer.writerow(["URL", url])
+                    writer.writerow(["Suggestion", "Use the Search feature on the main page, find your tender, and click it to get a fresh session."])
+                else:
+                    writer.writerow(["Status", "Page loaded but extraction found minimal data"])
+                    writer.writerow(["URL", url])
+                    
+                    # Get page info for debugging
+                    title = soup.title.string if soup.title else "No title"
+                    writer.writerow(["Page Title", title])
+                    
+                    # Extract raw page length for debugging
+                    writer.writerow(["Page Content Length", len(page_text)])
+                    writer.writerow(["Troubleshooting", "Page may require authentication, session refresh, or use advanced JavaScript rendering"])
+
+            return csv_output.getvalue()
+
+        except Exception as e:
+            logger.error(f"Error extracting tender details: {e}", exc_info=True)
+            writer.writerow(["Field / Property", "Value"])
+            writer.writerow(["Error", str(e)])
+            writer.writerow(["URL", url])
+            writer.writerow(["Suggestion", "The session may have expired. Try accessing the tender URL directly in a browser first."])
+            return csv_output.getvalue()
+        finally:
+            await browser.close()
+
+
+async def export_all_tenders_with_details_csv(tender_data_list: List[Dict[str, Any]]) -> str:
+    """
+    Exports all tenders from search results with enriched details fetched from each tender URL.
+    
+    Args:
+        tender_data_list: List of tender dictionaries with keys: title, ref, closing, opening, link, url
+    
+    Returns:
+        CSV string with tender data enriched with details
+    """
+    import csv
+    import io
+    
+    csv_output = io.StringIO()
+    writer = csv.writer(csv_output)
+    
+    # Define columns: basic info + detailed fields
+    headers = ['#', 'Tender Title', 'Ref / Tender ID', 'Closing Date', 'Opening Date', 'Link', 'Details Summary']
+    writer.writerow(headers)
+    
+    logger.info(f"Starting bulk export with details for {len(tender_data_list)} tenders...")
+    
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(
+            headless=True,
+            args=['--disable-dev-shm-usage', '--no-sandbox']
+        )
+        context = await browser.new_context(
+            user_agent=random.choice(USER_AGENTS),
+            viewport={'width': 1920, 'height': 1080}
+        )
+        
+        for idx, tender in enumerate(tender_data_list, 1):
+            try:
+                tender_url = tender.get('url') or tender.get('link')
+                if not tender_url:
+                    logger.warning(f"Tender {idx} has no URL, skipping details fetch")
+                    writer.writerow([
+                        idx,
+                        tender.get('title', ''),
+                        tender.get('ref', ''),
+                        tender.get('closing', ''),
+                        tender.get('opening', ''),
+                        tender.get('link', ''),
+                        "No URL available"
+                    ])
+                    continue
+                
+                logger.info(f"Fetching details for tender {idx}/{len(tender_data_list)}: {tender_url}")
+                
+                page = await context.new_page()
+                details_summary = ""
+                
+                try:
+                    # Navigate to tender details
+                    await page.goto(tender_url, wait_until="networkidle", timeout=45000)
+                    
+                    # Check for session timeout early
+                    content = await page.content()
+                    if "session has timed out" in content.lower() or "session expired" in content.lower():
+                        logger.warning(f"Session timeout for tender {idx}: {tender_url}")
+                        details_summary = "Session Expired - Refresh needed"
+                    else:
+                        # Wait for content to load
+                        try:
+                            await page.wait_for_selector("table, [class*='detail'], [class*='info']", timeout=5000)
+                        except Exception:
+                            pass
+                        
+                        # Additional wait for JS rendering
+                        await page.evaluate("() => new Promise(r => setTimeout(r, 2000))")
+                        
+                        soup = BeautifulSoup(content, 'html.parser')
+                        
+                        # Extract key details
+                        key_fields = {
+                            'Organisation': '(Organisation|Procuring Entity|Ministry|Department)',
+                            'Tender Type': '(Tender Type|Type of Tender|Category)',
+                            'Estimated Value': '(Estimated Value|Estimated Cost|Budget)',
+                            'Bid Submission': '(Bid Submission|Submit.*[Bb]id)',
+                            'Status': '(Status|Tender Status)',
+                        }
+                        
+                        details_parts = []
+                        
+                        # Extract from tables
+                        tables = soup.find_all('table')[:10]  # Limit to first 10 tables
+                        for table in tables:
+                            rows = table.find_all('tr')
+                            for row in rows:
+                                cols = row.find_all(['th', 'td'])
+                                if len(cols) >= 2:
+                                    key_text = cols[0].get_text(strip=True).lower()
+                                    val_text = " ".join(cols[1].get_text(strip=True).split())[:150]  # Limit length
+                                    
+                                    for field, pattern in key_fields.items():
+                                        import re
+                                        if re.search(pattern, key_text, re.IGNORECASE) and val_text and field not in str(details_parts):
+                                            details_parts.append(f"{field}: {val_text}")
+                                            break
+                        
+                        # Extract from structured text if no tables
+                        if not details_parts:
+                            text_content = soup.get_text()
+                            for line in text_content.split('\n')[:50]:  # Check first 50 lines
+                                line = line.strip()
+                                if ':' in line and len(line) < 300:
+                                    for field, pattern in key_fields.items():
+                                        import re
+                                        if re.search(pattern, line, re.IGNORECASE):
+                                            details_parts.append(line[:200])
+                                            break
+                        
+                        details_summary = " | ".join(details_parts[:3]) if details_parts else "Details extracted"
+                        if not details_summary:
+                            details_summary = "Available online"
+                    
+                except Exception as detail_error:
+                    logger.warning(f"Error fetching details for tender {idx}: {detail_error}")
+                    details_summary = "Details fetch error - see link"
+                finally:
+                    try:
+                        await page.close()
+                    except Exception:
+                        pass
+                
+                # Write row with details
+                writer.writerow([
+                    idx,
+                    tender.get('title', ''),
+                    tender.get('ref', ''),
+                    tender.get('closing', ''),
+                    tender.get('opening', ''),
+                    tender.get('link', ''),
+                    details_summary
+                ])
+                
+            except Exception as e:
+                logger.error(f"Error processing tender {idx}: {e}")
+                writer.writerow([
+                    idx,
+                    tender.get('title', ''),
+                    tender.get('ref', ''),
+                    tender.get('closing', ''),
+                    tender.get('opening', ''),
+                    tender.get('link', ''),
+                    f"Error: {str(e)[:100]}"
+                ])
+        
+        await browser.close()
+    
+    logger.info(f"Bulk export with details completed for {len(tender_data_list)} tenders")
+    return csv_output.getvalue()
+
 
 if __name__ == "__main__":
     url = "https://etenders.gov.in/eprocure/app"

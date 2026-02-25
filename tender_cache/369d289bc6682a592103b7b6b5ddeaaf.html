@@ -1,0 +1,1215 @@
+<html><head>
+	<base target="_self">
+	<title>Government eProcurement System</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"><title>eProcurement System</title><script type="text/javascript">djConfig = {"baseRelativePath":"/eprocure/app?service=asset&path=%2Fgep%2F","preventBackButtonFix":false,"parseWidgets":false} </script><script type="text/javascript" src="/eprocure/app?service=asset&amp;path=%2Fgep%2Fgep.js"></script></head>
+<!-- BEGIN: HEADER -->
+
+
+
+
+
+
+
+<body onload="MM_preloadImages('images/homeb.png','images/contactb.png','images/sitemapb.png')" onunload="" onpageshow="if (event.persisted) noBack();" ondragstart="return false;" id="Body"><iframe style="border: 0px; width: 1px; height: 1px; position: absolute; bottom: 0px; right: 0px; visibility: visible;" name="djhistory" id="djhistory" src="/eprocure/app?service=asset&amp;path=%2Fgep%2Fiframe_history.html"></iframe><script type="text/javascript" src="/eprocure/app?service=asset&amp;path=%2Fgep%2Fgep2.js"></script>
+<script type="text/javascript">
+dojo.registerModulePath("tapestry", "/eprocure/app?service=asset&path=%2Ftapestry%2F");
+</script>
+<script type="text/javascript" src="/eprocure/app?service=asset&amp;path=%2Ftapestry%2Fcore.js"></script>
+<script type="text/javascript">
+dojo.require("tapestry.namespace");
+tapestry.requestEncoding='UTF-8';
+</script>
+<link rel="stylesheet" type="text/css" href="/eprocure/css/nicgep_web_style.css">
+
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<noscript>
+	<meta http-equiv="Refresh" content="2;url=https://etenders.gov.in/eprocure/app?page=ErrorNotice&amp;service=page" id="Any"></meta> 
+</noscript>
+<link href="includes/dialog/dialog_box.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="images/nation.ico">
+<link href="includes/dialog/nicgep_color_theme.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- Javascript -->
+<script language="JavaScript" type="text/JavaScript" src="includes/evaluator.js"></script>
+<script language="javascript" src="includes/MessageDigest.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="includes/dialog/dialog_box.js"></script>
+<!-- End -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+	function MM_swapImgRestore() { //v3.0
+	  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+	}
+	
+	function MM_preloadImages() { //v3.0
+	  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+	    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+	    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+	}
+	
+	function MM_findObj(n, d) { //v4.01
+	  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+	    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+	  if(!x && d.getElementById) x=d.getElementById(n); return x;
+	}
+	
+	function MM_swapImage() { //v3.0
+	  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+	   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+	}
+//-->
+</script>
+
+
+
+
+
+<script type="text/javascript" src="/eprocure/app?service=asset&amp;path=%2Forg%2Fapache%2Ftapestry%2Fform%2FDatePicker.js"></script>
+<script type="text/javascript"><!--
+var calendar_fromDate;
+var calendar_toDate;
+dojo.require("tapestry.event");
+// --></script>
+	
+	<script type="text/javascript">
+
+	if(navigator.appName == 'Microsoft Internet Explorer')
+	{
+	document.onkeydown = fnCheckKeysMIE;
+	}
+	else if(navigator.appName == 'Netscape')
+	{
+	document.onkeydown = fnCheckKeysNMF;
+	}
+	
+	function fnCheckKeysNMF(event)
+	{
+	
+	var e=event? event : window.event;
+	var event_element=e.target? e.target : e.srcElement;
+	
+	if (event.ctrlKey && (event.keyCode==78 || event.keyCode==84 || event.which==78 || event.which==84))
+	{
+	return false;
+	}
+	
+	if (event.altKey && (event.keyCode==37 || event.which==37))
+	{
+	return false;
+	}
+	
+	if (event.keyCode==8 && (event_element.tagName != 'INPUT' && event_element.tagName != 'TEXTAREA'))
+	{
+	return false;
+	}
+	
+	}
+	
+	function fnCheckKeysMIE()
+	{
+	
+	var e=event? event : window.event;
+	var event_element=e.target? e.target : e.srcElement;
+	
+	if (event.ctrlKey && (event.keyCode==78 || event.keyCode==84 || event.which==78 || event.which==84))
+	{
+	return false;
+	}
+	
+	if (event.altKey && (event.keyCode==37 || event.which==37))
+	{
+	return false;
+	}
+	
+	if (event.keyCode==8 && (event_element.tagName != 'INPUT' && event_element.tagName != 'TEXTAREA'))
+	{
+	return false;
+	}
+	
+	}
+
+	window.history.forward();
+	function noBack(){ window.history.forward(); }
+	
+	</script>
+		
+	<div id="content">
+		<table width="1004" height="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+			<tbody><tr>
+				<td valign="top" height="40">
+					<table width="1000" border="0" align="center" cellspacing="0" cellpadding="0">
+    <tbody><tr> 
+    <td>
+		<table width="100%" height="22" border="0" cellpadding="0" cellspacing="0" id="Menu">
+		 <tbody><tr><td width="210" height="22" align="right" class="date topBannerGradient"><a id="link1" name="link1" class="Menu" href="/eprocure/app?page=WebScreenReaderAccess&amp;service=page">Screen Reader Access</a>
+				
+		  </td>
+		</tr></tbody></table>
+		</td>
+		</tr>
+   <tr> 
+    <td width="1005"><img border="0" width="1005" alt="Logo" src="images/topban.png" usemap="#Map" height="83" id="Any_0"></td>
+  </tr>		
+  <tr>
+    <td height="1" class="topBannerLine"></td>
+  </tr>
+
+  <tr> 
+    <td>
+		<table width="100%" height="22" border="0" cellpadding="0" cellspacing="0" id="Menu">
+        <tbody><tr> 
+          <td width="210" height="22" align="center" class="date primaryBg">
+				25-Feb-2026 
+		  </td>
+          <td align="center" class="secondaryBg">
+	           <span id="If">
+					<span id="For">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Search" class="Menu" href="/eprocure/app?page=FrontEndAdvancedSearch&amp;service=page" target="_self">Search</a>
+						</span>
+						<span class="divider1" id="Insert_2">|</span>
+					</span><span id="For_0">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Active Tenders" class="Menu" href="/eprocure/app?page=FrontEndLatestActiveTenders&amp;service=page" target="_self">Active Tenders</a>
+						</span>
+						<span class="divider1" id="Insert_2_0">|</span>
+					</span><span id="For_1">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Tenders by Closing Date" class="Menu" href="/eprocure/app?page=FrontEndListTendersbyDate&amp;service=page" target="_self">Tenders by Closing Date</a>
+						</span>
+						<span class="divider1" id="Insert_2_1">|</span>
+					</span><span id="For_2">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Corrigendum" class="Menu" href="/eprocure/app?page=FrontEndLatestActiveCorrigendums&amp;service=page" target="_self">Corrigendum</a>
+						</span>
+						<span class="divider1" id="Insert_2_2">|</span>
+					</span><span id="For_3">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Results of Tenders" class="Menu" href="/eprocure/app?page=ResultOfTenders&amp;service=page" target="_self">Results of Tenders</a>
+						</span>
+						
+					</span>
+	          </span>
+	          
+          </td>
+          <td width="215" valign="middle" class="primaryBg">
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tbody><tr> 
+                <td width="28%"><div align="center"><a id="homeLink" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image4','','images/homeb.png',1)" page="Home" href="/eprocure/app?service=restart"><img src="images/homea.png" alt="Home" name="Image4" width="47" height="18" border="0"></a></div></td>
+                <td width="40%"><div align="center"><a id="PageLink_6" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image5','','images/contactb.png',1)" href="/eprocure/app?page=FrontEndContactUs&amp;service=page"><img src="images/contacta.png" alt="Contact Us" name="Image5" width="78" height="18" border="0"></a></div></td>
+                <td width="32%"><div align="center"><a id="PageLink_7" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image6','','images/sitemapb.png',1)" href="/eprocure/app?page=SiteMap&amp;service=page"><img src="images/sitemapa.png" alt="Sitemap" name="Image6" width="63" height="18" border="0"></a></div></td>                 
+              </tr>
+            </tbody></table></td>
+        </tr>
+      </tbody></table></td>
+  </tr>
+  <tr>
+	<td>
+		<table width="100%" cellspacing="0" cellpadding="0">
+	<tbody><tr>
+		<td class="notice" width="20" align="right"><img src="images/notice.png" width="15" height="16" alt="Notices"> </td>
+		<td class="notice_strip">
+			<marquee align="left" id="gepNotice" onmouseover="this.stop();" onmouseout="this.start();" scrolldelay="200">
+				
+				<span>
+					Government eProcurement System
+				</span>
+			</marquee>
+		</td>
+	</tr>
+</tbody></table>
+	</td>
+  </tr>
+</tbody></table>
+<map name="Map">
+  <a id="PageLink_8" shape="circle" coords="43,43,37" href="/eprocure/app?page=Home&amp;service=page"></a>
+</map>
+
+				</td>
+			</tr>
+			<tr>
+				<td valign="top">
+					<table width="100%" height="100%" cellspacing="0" cellpadding="0" border="0">
+						<tbody><tr>
+
+							<td width="214" class="navigation"><script language="javascript">
+
+	// Script to view document in popup
+	function popup(mylink, windowname)
+	{
+		if (! window.focus)return true;
+		var href;
+		if (typeof(mylink) == 'string')
+	 		href=mylink;
+		else
+			href=mylink.href;
+			window.open(href, "Popup", 'location=no, scrollbars=yes, toolbar=no, width=700, height=550, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');
+			return false;   
+	}
+
+</script>
+
+<table width="100%" height="100%" cellspacing="0" cellpadding="0" class="left_nav">	
+	
+	<tbody><tr> 
+         <td height="10"></td>
+     </tr>
+     	
+	<tr>
+		<td valign="top">
+			<span id="If_2">
+					</span><span id="If_0_4">
+							<span id="If_3">
+			             		</span></span><span id="If_0_5">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_6">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_7">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_8">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_9">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_10">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_11">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_12">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_13">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_14">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_15">
+							
+			             	 <span>
+				             	 </span></span><span id="If_15">
+					</span><table width="214" border="0" cellspacing="0" cellpadding="0">
+				<tbody><tr id="For_5">
+						</tr><tr> 
+					             	<td height="37" background="images/textbg.png" align="center"><a id="GenericLink" rel="noopener noreferrer" title="MIS Reports" class="link1" href="https://gepnicreports.gov.in/eprocreports/etenders/" target="_blank">MIS Reports</a></td>
+					             </tr>
+			             	 
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_6">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink" title="Tenders by Location" class="link1" href="/eprocure/app?page=FrontEndTendersByLocation&amp;service=page" target="_self">Tenders by Location</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_7">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_0" title="Tenders by Organisation" class="link1" href="/eprocure/app?page=FrontEndTendersByOrganisation&amp;service=page" target="_self">Tenders by Organisation</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_8">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_1" title="Tenders by Classification" class="link1" href="/eprocure/app?page=FrontEndTendersByClassification&amp;service=page" target="_self">Tenders by Classification</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_9">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_2" title="Tenders in Archive" class="link1" href="/eprocure/app?page=FrontEndTendersInArchive&amp;service=page" target="_self">Tenders in Archive</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_10">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_3" title="Tenders Status" class="link1" href="/eprocure/app?page=WebTenderStatusLists&amp;service=page" target="_self">Tenders Status</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_11">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_4" title="Cancelled/Retendered" class="link1" href="/eprocure/app?page=WebCancelledTenderLists&amp;service=page" target="_self">Cancelled/Retendered</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_12">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_5" title="Downloads" class="link1" href="/eprocure/app?page=StandardBiddingDocuments&amp;service=page" target="_self">Downloads</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_13">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_9" title="D" class="link1" href="/eprocure/app?page=FrontEndDebarmentList&amp;service=page" target="_self">Debarment List</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_14">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_10" title="Announcements" class="link1" href="/eprocure/app?page=WebAnnouncements&amp;service=page" target="_self">Announcements</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_15">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_11" title="Awards" class="link1" href="/eprocure/app?page=WebAwards&amp;service=page" target="_self">Awards</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_16">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_12" title="Site compatibility" class="link1" href="/eprocure/app?page=SiteComp&amp;service=page" target="_self">Site compatibility</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_17">
+						
+					</tr><tr id="For_18">
+						
+					</tr><tr id="For_19">
+						
+					</tr><tr id="For_20">
+						
+					</tr>
+					
+					<tr> 
+		                <td height="10"></td>
+		             </tr>
+				
+				
+				<tr> 
+	               		<td height="30" align="center">
+							<table width="160" height="114" border="0" align="center" cellpadding="0" cellspacing="0">
+								<tbody><tr id="For_22"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0" rel="noopener noreferrer" title="link" href="https://gepnic.gov.in" target="_blank"><img border="0" width="160" src="images/Gepnic Logo.png" height="34" id="Any_1"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 <tr id="For_23"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0_0" rel="noopener noreferrer" title="National Portal of India - External Link that open in a new window" href="http://india.gov.in" target="_blank"><img border="0" width="160" src="images/indiagovin.png" height="34" id="Any_2"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 <tr id="For_24"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0_1" rel="noopener noreferrer" title="Government e-Marketing of India - External link that opens in a new window" href="https://gem.gov.in" target="_blank"><img border="0" width="160" src="images/gem.png" height="34" id="Any_3"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 <tr id="For_25"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0_2" rel="noopener noreferrer" title="Central Public Procurement Portal - External Link that opens in a new Window" href="http://eprocure.gov.in/cppp" target="_blank"><img border="0" width="160" src="images/cppp-img.png" height="34" id="Any_4"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 
+							</tbody></table>
+				 		</td>
+	             	</tr>					
+					
+				
+				<tr> 
+					<td height="30" align="center">&nbsp;</td>
+			  	</tr>							
+			  	
+			</tbody></table>
+		</td>
+	</tr>
+	
+</tbody></table></td>
+							<td class="page_content" valign="top">
+							<!-- Page content starts here -->
+								
+
+	
+<form method="post" action="/eprocure/app" id="TenderAdvancedSearch">
+<div style="display:none;" id="TenderAdvancedSearchhidden"><input type="hidden" name="formids" value="tokenSecret,If_17,TenderType,tenderId,If_0_21,If_19,OrganisationName,tenderRefNo,If_21,Department,workItemTitle,If_23,Division,tenderCategory,If_25,SubDivision,ProductCategory,If_27,formContract,If_29,pinCode,PaymentMode,valueCriteria,valueParameter,FromValue,ToValue,dateCriteria,fromDate,toDate,twoStageAllowed,ndaAllowed,prefBidAllowed,chkGteAllowed,chkIteAllowed,chkTfeAllowed,chkEfeAllowed,captchaText,captcha,submit">
+<input type="hidden" name="seedids" value="ZH4sIAAAAAAAAAF1PQW7CMBAMh/5kjz7EgQJXIlEUiVZVQeoxcp2lsQi7ke0i0Tf1a/1DNzGtUC/2jMc7O/P1nd19ZtmkmmxUQH92FiFXvXkfLsunngkpjpiicYRecMAQHNOAejle8a1k34xSReISQc/VrsWuk5cVXeBeldxc0tc996WhZNQ5OmpRq8Mw8cAeioWQOociV+suIOjl1bLWMPuFhcCWT7iVcXF5lrQDrOe3ZJHWPXFMnf6EZRK2eIiPSB/CNihxnP1nB3p6q0ioqXpBkp7XMvuRrJqzIYvNDo23LeQ/IHfT8lIBAAA=">
+<input type="hidden" name="component" value="TenderAdvancedSearch">
+<input type="hidden" name="page" value="FrontEndAdvancedSearch">
+<input type="hidden" name="service" value="direct">
+<input type="hidden" name="session" value="T">
+<input type="hidden" name="submitmode" value="">
+<input type="hidden" name="submitname" value="">
+<input type="hidden" name="tokenSecret" id="tokenSecret" value="SK/oLDMDa1RKAH8lmN6KYlPCJQKpkt58ZXFD593K2tDTkiYHvzDrgUfmgLCN/CPrO">
+<input type="hidden" name="If_17" value="F">
+<input type="hidden" name="If_0_21" value="F">
+<input type="hidden" name="If_19" value="T">
+<input type="hidden" name="If_21" value="T">
+<input type="hidden" name="If_23" value="T">
+<input type="hidden" name="If_25" value="T">
+<input type="hidden" name="If_27" value="F">
+<input type="hidden" name="If_29" value="F">
+</div>
+  	
+	<table width="100%" height="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td valign="top" height="100%">
+				<!-- Page Content -->
+				<!-- Content Area -->
+				<table width="100%" cellspacing="0" cellpadding="0" border="0" height="100%">
+					<tbody><tr>
+						<td class="page_content" height="100%" valign="top">
+							<table width="100%" cellspacing="0" cellpadding="0" border="0">
+								
+								<tbody><tr>
+									<td>
+										<!-- interface_elements -->
+										<table width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
+											<tbody><tr>
+												<td>&nbsp;</td>
+											</tr>
+											<tr>
+												<td valign="left">
+													<table width="100%" cellpadding="0" cellspacing="0">
+														<tbody><tr>
+															<td valign="bottom" class="pageheader" align="left">Advanced Tender Search</td>
+															<td align="right" width="80"><a id="PageLink_13" title="Back" class="customButton_link" value="Back" href="/eprocure/app?page=Home&amp;service=page">Back</a></td>
+														</tr>
+													</tbody></table>
+												</td>
+											</tr>
+											<tr>																									
+												<td>&nbsp;</td>
+											</tr>
+											<tr>
+												<td>&nbsp;</td>
+											</tr>
+											
+											
+											<tr>
+												<td>														
+													<table width="100%" cellspacing="0" cellpadding="0">
+														<tbody><tr>
+															<td>
+																<span id="If_19">
+																			</span><span id="If_21">
+																			</span><span id="If_23">
+																			</span><span id="If_25">
+																			</span><table width="100%" cellspacing="0" cellpadding="0" class="list_table">
+																	
+																	<tbody><tr>
+																		<td class="td_caption" width="15%" align="left">Tender Type <span class="mandatory">*</span></td>
+																		<td class="td_element" width="35%">
+																			<select name="TenderType" id="TenderType" style="width:200px;">
+<option value="0">-Select-</option>
+<option value="1">Open Tender</option>
+<option value="2">Limited Tender</option>
+</select>
+																		</td>
+																		<td class="td_caption" width="15%" align="left">Tender ID </td>
+																		<td class="td_element" width="35%">
+																			<input type="text" name="tenderId" value="" id="tenderId" style="width:200px;" autocomplete="off" maxlength="30">
+																		</td>	
+																	</tr>
+																	
+																																								
+																	
+																	<tr>
+																		<td class="td_caption" width="15%" align="left">Organisation</td>
+																			<td class="td_element" width="35%">
+																				<select name="OrganisationName" id="OrganisationName" style="width:200px;">
+<option value="0">-Select-</option>
+<option value="1">ADVANCED WEAPONS AND EQUIPMENT INDIA LTD-AWEIL</option>
+<option value="2">AI Engineering Services Limited (AIESL)</option>
+<option value="3">Airports Authority of India</option>
+<option value="4">Aravali Power Company Pvt. Ltd - IGSTPP</option>
+<option value="5">Armoured Vehicles Nigam Limited</option>
+<option value="6">Bangalore Metro Rail Corporation Limited</option>
+<option value="7">Bhakra Beas Management Board</option>
+<option value="8">Bharat Sanchar Nigam Limited (Govt of India Enterprise)</option>
+<option value="9">Bokaro Power Supply Company (P) Limited</option>
+<option value="10">Brahmaputra Cracker and Polymer Limited</option>
+<option value="11">Brahmaputra Valley Fertilizer Corporation Limited</option>
+<option value="12">Broadcast Engineering Consultants India Limited</option>
+<option value="13">Cement Corporation of India Limted</option>
+<option value="14">Central Electronics Limited</option>
+<option value="15">Central U. P. Gas Limited</option>
+<option value="16">Central Warehousing Corporation</option>
+<option value="17">Cochin Shipyard Limited</option>
+<option value="18">Council of Scientific and Industrial Research</option>
+<option value="19">Damodar Valley Corporation</option>
+<option value="20">Delhi Metro Rail Corporation Limited</option>
+<option value="21">Delhi Police Housing Corporation Ltd</option>
+<option value="22">Engineering Projects (India) Ltd.</option>
+<option value="23">GAIL (India) Limited</option>
+<option value="24">Gliders India Limited</option>
+<option value="25">Green Gas Limited</option>
+<option value="26">Heavy Engineering Corporation Limited</option>
+<option value="27">Hindustan Copper Limited</option>
+<option value="28">HITES</option>
+<option value="29">HLL Biotech Limited</option>
+<option value="30">HLL Lifecare Limited</option>
+<option value="31">HPCL Biofuels Limited</option>
+<option value="32">IISc Medical School Foundation</option>
+<option value="33">Indian Institute of Technology Madras</option>
+<option value="34">Indian Oil-Adani Gas Private Limited</option>
+<option value="35">IndianOil Petronas Private Limited (IPPL)</option>
+<option value="36">Indian Port Rail Corporation Ltd.</option>
+<option value="37">India Optel Limited</option>
+<option value="38">India Tourism Development Corporation Ltd.</option>
+<option value="39">Indradhanush Gas Grid Limited</option>
+<option value="40">Instrumentation Ltd ( Govt of India Enterprise)</option>
+<option value="41">IRCON International Limited</option>
+<option value="42">IREL (INDIA) Limited</option>
+<option value="43">Jhabua Power Ltd</option>
+<option value="44">Konkan LNG Limited</option>
+<option value="45">Madhya Pradesh Metro Rail Corporation Limited</option>
+<option value="46">Maharashtra Natural Gas Ltd.</option>
+<option value="47">Meja Urja Nigam Pvt Ltd</option>
+<option value="48">Mumbai Metro Rail Corporation Limited</option>
+<option value="49">Municipal Corporation of Delhi</option>
+<option value="50">Munitions India Limited</option>
+<option value="51">National Capital Region Transport Corporation</option>
+<option value="52">National Capital Region Transport Corporation - ADB Tenders</option>
+<option value="53">National Fertilizers Limited</option>
+<option value="54">National High Speed Rail Corporation Limited</option>
+<option value="55">National Highways Authority of India</option>
+<option value="56">National Projects Construction Corporation Limited</option>
+<option value="57">NewSpace India Limited</option>
+<option value="58">North Eastern Electric Power Corporation Limited</option>
+<option value="59">North Eastern Region Community Resource Management Society (NERCRMS)</option>
+<option value="60">Nuclear Power Corporation Of India Limited</option>
+<option value="61">Oil and Natural Gas Corporation Limited</option>
+<option value="62">Purba Bharati Gas Private Limited</option>
+<option value="63">Rail Infrastructure Development Company (Karnataka) Limited - K-RIDE</option>
+<option value="64">Ratle Hydroelectric Power Corporation Limited</option>
+<option value="65">Ratnagiri Gas and Power Pvt. Ltd.</option>
+<option value="66">RITES Ltd.</option>
+<option value="67">SECURITY PRINTING AND MINTING CORPORATION OF INDIA-SPMCIL</option>
+<option value="68">Telecommunications Consultants India Limited</option>
+<option value="69">Uranium Corporation of India Limited</option>
+<option value="70">Uttar Pradesh Metro Rail Corporation Limited</option>
+<option value="71">Vadhvan Port Project Limited</option>
+<option value="72">Visakhapatnam Port Trust</option>
+<option value="73">V.O.Chidambaranar Port Trust</option>
+<option value="74">WAPCOS Limited</option>
+<option value="75">Yantra India Limited</option>
+</select>
+																			</td>
+																		
+																		<td class="td_caption" align="left" width="15%">Tender Reference Number</td>
+																		<td class="td_element" width="35%">
+																			<input type="text" name="tenderRefNo" value="" id="tenderRefNo" style="width:200px;" maxlength="100" autocomplete="off">
+																		</td>																																							
+																	</tr>
+																	
+																	<tr>
+																		<td class="td_caption" width="15%" align="left">Department</td>
+																			<td class="td_element" width="35%">
+																				<select name="Department" id="Department" style="width:200px;">
+<option value="0">-Select-</option>
+</select>
+																			</td>
+																		
+																		<td class="td_caption" width="15%" align="left">Work/Item Title</td>
+																		<td class="td_element" width="35%">
+																			<input type="text" name="workItemTitle" value="" id="workItemTitle" style="width:200px;" maxlength="250" autocomplete="off">
+																		</td>																				
+																	</tr>															
+																	
+																	<tr>
+																		<td class="td_caption" width="15%" align="left">Division</td>
+																			<td class="td_element" width="35%">
+																				<select name="Division" id="Division" style="width:200px;">
+<option value="0">-Select-</option>
+</select>
+																			</td>
+																			
+																		<td class="td_caption" width="15%" align="left">Tender Category</td>
+																		<td class="td_element" width="35%">
+										 									  <select name="tenderCategory" id="tenderCategory" style="width:200px;">
+<option value="0">-Select-</option>
+<option value="1">Goods</option>
+<option value="2">Services</option>
+<option value="3">Works</option>
+</select>
+																		</td>
+																	</tr>																			
+																	
+																	<tr>
+																		<td class="td_caption" width="15%" align="left">Sub Division</td>
+																			<td class="td_element" width="35%">
+																				<select name="SubDivision" id="SubDivision" style="width:200px;">
+<option value="0">-Select-</option>
+</select>
+																			</td>
+																		
+																		<td class="td_caption" width="15%" align="left">Product Category</td>
+																		<td class="td_element" width="35%">
+																			<select name="ProductCategory" id="ProductCategory" style="width:200px;">
+<option value="0">-Select-</option>
+<option value="1">Advertisement Services</option>
+<option value="2">Agricultural or Forestry</option>
+<option value="3">Air Compressor</option>
+<option value="4">Air-Conditioner</option>
+<option value="5">Allotment of Space</option>
+<option value="6">AMC/ Maintenance Contracts</option>
+<option value="7">Batteries and cells and accessories</option>
+<option value="8">Chemicals/Minerals</option>
+<option value="9">Civil Works</option>
+<option value="10">Civil Works - Bridges</option>
+<option value="11">Civil Works - Buildings</option>
+<option value="12">Civil Works - Canal</option>
+<option value="13">Civil Works - Highways</option>
+<option value="14">Civil Works - Others</option>
+<option value="15">Civil Works - Roads</option>
+<option value="16">Civil Works - Water Works</option>
+<option value="17">Coal Works</option>
+<option value="18">Computer- H/W</option>
+<option value="19">Computer- S/W</option>
+<option value="20">Construction Works</option>
+<option value="21">Consultancy</option>
+<option value="22">Consumables (Hospital / Lab)</option>
+<option value="23">Crane Services</option>
+<option value="24">Drugs and Pharmaceutical Products</option>
+<option value="25">Electrical Goods/Equipment</option>
+<option value="26">Electrical Works</option>
+<option value="27">Electronic Components And Devices</option>
+<option value="28">Electronics Equipment</option>
+<option value="29">Equipments (Hospital / Lab)</option>
+<option value="30">Explosive</option>
+<option value="31">Facility Management Services</option>
+<option value="32">Financial and Insurance Services</option>
+<option value="33">Food Products</option>
+<option value="34">Furniture/ Fixture</option>
+<option value="35">Hiring of Vehicles</option>
+<option value="36">Hotel/ Catering</option>
+<option value="37">Information Technology</option>
+<option value="38">Info. Tech. Services</option>
+<option value="39">Job Works</option>
+<option value="40">Laboratory and scientific equipment</option>
+<option value="41">Land/Building</option>
+<option value="42">Machineries/ Mechanical Engg Items</option>
+<option value="43">Machinery and Machining Tools</option>
+<option value="44">Manpower Supply</option>
+<option value="45">Marine Works</option>
+<option value="46">Mechanical Tools and Equipment</option>
+<option value="47">Medical Equipments/Waste</option>
+<option value="48">Medicines</option>
+<option value="49">Metal Fabrication</option>
+<option value="50">Metals - Ferrous</option>
+<option value="51">Mining</option>
+<option value="52">Miscellaneous Goods</option>
+<option value="53">Miscellaneous Services</option>
+<option value="54">Miscellaneous Works</option>
+<option value="55">Network /Communication Equipments</option>
+<option value="56">Non Consumables (Hospital / Lab)</option>
+<option value="57">OFC Laying Works</option>
+<option value="58">Offshore Seismic Survey</option>
+<option value="59">Oil/Gas</option>
+<option value="60">Paint / Enamel Works</option>
+<option value="61">Pipe Laying Works</option>
+<option value="62">Pipes and Pipe related activities</option>
+<option value="63">Plant Protection Input/Equipment Works</option>
+<option value="64">Power/Energy Projects/Products</option>
+<option value="65">Repair and Maintenance Services</option>
+<option value="66">Security System</option>
+<option value="67">Shipping Services</option>
+<option value="68">Shipping/ Transportation/ Vehicle</option>
+<option value="69">Solid Waste Management</option>
+<option value="70">Street Lighting</option>
+<option value="71">Supply, Erection and Commissioning</option>
+<option value="72">Support/Maintenance Service</option>
+<option value="73">Survey and Investigation services</option>
+<option value="74">Transportation Services</option>
+</select>
+																		</td>
+																	</tr>																		
+																	
+																	<tr>
+																		
+																		<td class="td_caption" width="15%" align="left">Form of Contract</td>
+																		<td class="td_element" width="35%">
+										 									  <select name="formContract" id="formContract" style="width:200px;">
+<option value="0">-Select-</option>
+<option value="1">Buy</option>
+<option value="2">Empanelment</option>
+<option value="3">EOI</option>
+<option value="4">EPC Contract</option>
+<option value="5">Fixed-rate</option>
+<option value="6">Item Rate</option>
+<option value="7">Lump-sum</option>
+<option value="8">Percentage</option>
+<option value="9">PPP-BoT-HAM</option>
+<option value="10">PPP-DBFOT</option>
+<option value="11">QCBS</option>
+<option value="12">Sale</option>
+<option value="13">Supply</option>
+<option value="14">Tender cum Auction</option>
+<option value="15">Turn-key</option>
+<option value="16">Works</option>
+</select>
+																		</td>
+																	</tr>
+																	
+																	<tr>
+																				
+																		<td class="td_caption" width="15%" align="left">Pincode</td>
+																		<td class="td_element" width="35%"><input type="text" name="pinCode" value="" id="pinCode" style="width:200px;" maxlength="6" autocomplete="off"></td>		
+																	</tr>
+																	
+																	<tr>
+																		<td class="td_caption" width="15%" align="left">Payment Mode</td>
+																		<td class="td_element" width="35%">
+																			<select name="PaymentMode" id="PaymentMode" style="width:200px;">
+<option value="0">-Select-</option>
+<option value="1">Offline</option>
+<option value="2">Online</option>
+<option value="3">Both(Online/Offline)</option>
+<option value="4">Not Applicable</option>
+</select>
+																		</td>
+																	</tr>	
+																	
+																	<tr>
+																		<td class="td_caption" width="15%" align="left">Value Criteria</td>
+																		<td class="td_element" width="35%">
+							 									 			<select name="valueCriteria" id="valueCriteria" style="width:200px;">
+<option value="0">-Select-</option>
+<option value="1">EMD</option>
+<option value="2">Tender Fee</option>
+<option value="3">Processing Fee</option>
+<option value="4">ECV</option>
+</select>
+																		</td>
+																		<td class="td_element" width="15%" align="left">
+							 									 			<select name="valueParameter" id="valueParameter" onchange="doEnableDisable()" style="width:140px;">
+<option value="0">-Select-</option>
+<option value="1">Equal</option>
+<option value="2">LessThan</option>
+<option value="3">GreaterThan</option>
+<option value="4">Between</option>
+</select>
+																		</td>
+																		<td class="td_element" width="35%">
+																			<input type="text" name="FromValue" value="" id="FromValue" style="width:95px;" autocomplete="off" maxlength="15">&nbsp;
+																			<input type="text" name="ToValue" value="" id="ToValue" style="width:95px;" autocomplete="off" maxlength="15">
+																		</td>
+																	</tr>
+																	
+																	<tr>
+																		<td class="td_caption" width="15%" align="left">Date Criteria</td>
+																		<td class="td_element" width="35%">
+							 									 			<select name="dateCriteria" id="dateCriteria" style="width:200px;">
+<option value="0">-Select-</option>
+<option value="1">Published Date</option>
+<option value="2">Document Download Start Date</option>
+<option value="3">Document Download End Date</option>
+<option value="4">Bid Submission Start Date</option>
+<option value="5">Bid Submission End Date</option>
+</select>
+																		</td>
+																		<td class="td_caption" width="15%" align="left">From&nbsp;<input type="text" name="fromDate" value="" title="dd/MM/yyyy" id="fromDate" readonly="readonly" style="width:75px;">&nbsp;<a href="javascript:calendar_fromDate.toggle(tapestry.byId(&quot;fromDate&quot;));"><img src="/eprocure/app?service=asset&amp;path=%2Forg%2Fapache%2Ftapestry%2Fform%2FDatePickerIcon.png" alt="Click on icon to choose a date/time value." border="0" class="datePickerImg"></a></td>
+																		<td class="td_caption" width="35%" align="left">To&nbsp;<input type="text" name="toDate" value="" title="dd/MM/yyyy" id="toDate" readonly="readonly" style="width:150px;">&nbsp;<a href="javascript:calendar_toDate.toggle(tapestry.byId(&quot;toDate&quot;));"><img src="/eprocure/app?service=asset&amp;path=%2Forg%2Fapache%2Ftapestry%2Fform%2FDatePickerIcon.png" alt="Click on icon to choose a date/time value." border="0" class="datePickerImg"></a></td>
+																	</tr>
+																	
+																	<tr>
+																		<td class="td_caption" width="15%" align="left">Selection Criteria</td>
+																		<td class="td_element" width="35%" valign="top">
+																			<input type="checkbox" name="twoStageAllowed" id="twoStageAllowed" class="sans_style"><label for="twoStageAllowed">Two Stage Bidding</label><br>
+							 									 			<input type="checkbox" name="ndaAllowed" id="ndaAllowed" class="sans_style"><label for="ndaAllowed">NDA Tenders</label><br>
+							 									 			<input type="checkbox" name="prefBidAllowed" id="prefBidAllowed" class="sans_style"><label for="prefBidAllowed">Preferential Bidding</label>
+							 									 		</td>
+																		<td class="td_element" width="15%" valign="top">
+																			<input type="checkbox" name="chkGteAllowed" id="chkGteAllowed" class="sans_style"><label for="chkGteAllowed">GTE</label><br>
+							 									 			<input type="checkbox" name="chkIteAllowed" id="chkIteAllowed" class="sans_style"><label for="chkIteAllowed">ITE / TPS</label>
+							 									 		</td>
+							 									 		<td class="td_element" width="35%" valign="top">
+							 									 			<input type="checkbox" name="chkTfeAllowed" id="chkTfeAllowed" class="sans_style"><label for="chkTfeAllowed">Tender Fee Exemption</label><br>
+							 									 			<input type="checkbox" name="chkEfeAllowed" id="chkEfeAllowed" class="sans_style"><label for="chkEfeAllowed">EMD Exemption</label>
+							 									 		</td>
+																	</tr>
+																	
+																	<tr>
+																		<td colspan="6">
+																			 <table width="100%" cellspacing="0" cellpadding="0" class="list_table">
+																			   <tbody><tr>
+
+																						<td align="middle">Enter Captcha</td>
+																						<td><input type="text" name="captchaText" value="" id="captchaText" size="5" autocomplete="off" maxlength="6" style="width:200px;"></td>
+
+																					   <td>
+																							<img name="captchaImage" id="captchaImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM4AAAAuCAYAAABgWyZGAAADLElEQVR42u2d223DMAxFvUV/OmJX
+6URdpbswKIK2CJDYEsXHvRQF+CuBI1H3iA9LznF069aNrYncrx4n24Auro3netxgLahtxvk3jgYn
+CRyxh7DSglIRnCoL1PxvWBkJ1OgNDv8cYoJzxIFD5dYV4qEPWzLAAfZ0kOBQiKzBaXDQjF4RnA7V
+4sBx1U+oOAuuGpUqRkNjaXDIwYmeQI/7Ry4aA78Fuwh4hGp0C/hKZ2XhQoPHs9/VPLuVnTI0YyL8
+CKF5GgIdnBRBkICTueCmTYimfN3gNDgDc/egHzd7oSSGmrgcKVyTzcCJGJfl/NODg7haIoODmvwy
+ej3T/o5Msmc4gxo2eOZq7ODIDuBcfTkywUI29MpWIfZqoGe4SBtZvPpyRjWrweEEJ0svcOBklIGF
+DBzP51CM4By7gzPjWj3BqZI8ouQZyOBQzq1mMLuFaQ1OeiHEfWuQCTgZk8JSgdEuMAcJOBYLIhs4
+qj5ZGUfT37MnuA2OWkwiJOCw5K7S4Jgb+nQV3BWcgwScmbweCRzvUO1RWB/vn2IkUIbnEw2ObeSw
+Lzh6eODBsRTpyT1EioBjsuctGJzhnc1u7QcevfcZcvHS4CwVn9A8sQYca6GHHgm4BMhpAhCfn0SH
+atb3CoTmaYSRDU50uHY6hhV4qoIT1SdgTzNW+tbe0OK8TDo4C/BE7BSvAs5gROH2rCbkhOeIAD0N
+kDLhRvBkVdPQwJnZOOwNjpsdLDYueosgDJ5JgBjBMYTrqdBnj6mgFQLchMp0ClS0AJHF8ajgZC+M
+KW+wEbBBB+2ju4vBAJ6jPjhq24O8E28tNEQ+Q+FwLujKWP+fD8LD4G0i5hNho7CzdubidAMjmxYL
+Fgc+15fBvAfd21iDY5XbRefK7uAYu1SzakmaF7yAZ3dwLO9TApxuL+FhfOeyeHoc72HB2bvBUcFD
++bJyYs00OMU8T1VwtELd509zG5yL9v31JsqiQRFwZmAYr1o2OBuC89r7/ApDhBscL7HDgzNsuwZH
+Cc150YByVd36PzdJwcEU2wg4BHnPxuCI1clVVDFzgwOe9zQ4dcHhDdUcvA/q9p1tQ7UbfwfaCd7z
+MI4AAAAASUVORK5CYII=" class="image_style">
+																					   &nbsp; &nbsp;
+																						<button type="button" name="captcha" id="captcha" style="border:0px; background-color:transparent;"><img src="images/refresh_new.png" border="0"> Refresh</button>
+																					   
+																					   </td>
+																				</tr>																			
+																			</tbody></table>
+																		</td>		
+																	</tr>
+																	<tr>
+																		<td colspan="6" class="notes">Provide Captcha and click on Search button to list all active tenders.</td>
+																	</tr>
+																</tbody></table>
+															</td>
+														</tr>
+													</tbody></table>
+												</td>
+											</tr>	
+											<tr><td>&nbsp;</td></tr>	
+											<tr>
+												<td class="td_element" align="right"> 
+													<a id="clear" title="Clear" class="customButton_link" value="Clear" href="/eprocure/app?component=clear&amp;page=FrontEndAdvancedSearch&amp;service=direct&amp;session=T">Clear</a>&nbsp;&nbsp;
+													<input type="submit" name="submit" id="submit" border="0" onclick="return doCheck();" title="Search" class="customButton" value="Search">
+												</td>
+											</tr>
+									  </tbody></table>
+									  <!-- END: interface_elements -->
+									</td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>								
+				</tbody></table>
+				<!-- End : Content Area -->
+				<script language="javascript">
+					doEnableDisable();
+				</script>
+			</td>
+		</tr>
+	</tbody></table>
+</form>
+
+							<!-- Page content ends here -->	
+							</td>				
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>
+			<tr>
+				<td valign="bottom" height="40">
+					<table width="100%" cellspacing="0" cellpadding="0">
+	 <tbody><tr style="background-color:#E8E8E8;"> 
+	 <td height="25" class="text2" align="center"><b>Visitor No:9843712</b></td>
+		
+	  </tr>
+	 <tr style="background-color:#E8E8E8;"> 
+	
+		<td height="25" class="text2" align="center">Contents owned and maintained by concerned Departments in coordination with Finance Department and Information Technology Department, Government of India		  
+		 </td>
+	  </tr>
+	  <tr valign="top" class="secondaryBg"> 
+		<td>
+			<table width="100%" height="22" border="0" cellpadding="1" cellspacing="1">
+
+				
+				<tbody><tr class="footer">
+					<td width="40%" valign="top" align="left">Designed, Developed and Hosted by<br>  <a href="http://www.nic.in" target="_blank" rel="noopener noreferrer" class="footerlink">National Informatics Centre</a></td>
+					<td width="40%" align="left">
+						 Version : 1.09.23 23-Oct-2025<br>
+						(c) 2017 Tenders NIC, All rights reserved.<br>Site best viewed with a screen resolution 1920 x 1080.</td>					
+					<td width="20%" valign="top" align="right"><a id="PageLink_14" class="footerlink" href="/eprocure/app?page=Disclaimer&amp;service=page">Portal policies</a></td>
+				</tr>
+			</tbody></table>
+		</td>
+	  </tr>
+</tbody></table>
+				</td>
+			</tr>
+			<tr>
+			    <td>
+			        <form method="post" action="/eprocure/app" id="WebBorder_0">
+<div style="display:none;" id="WebBorder_0hidden"><input type="hidden" name="formids" value="domainUrl">
+<input type="hidden" name="seedids" value="ZH4sIAAAAAAAAAF1Sy27jMAwMUOxfLHrS0YfYRR/XPJrCQJsGtdE9BopEx0Js0ZDpZLPftL+2/7CUlTROL/YMh6LIof7+G/34Mxrd3N78jFpwe6NAjKNGbv1PYd2gBUs9tiSNBce4hbY1aD1q+PMLNlN0mqU4Si1XIZHEUVZCVbE6sUdxH01RH0Nqjs1U2lCoMnYXs5oW4m4cLdCJ5JHJeiySJHquWhDx06nkOhYPZ5gwLLGGVz7OVVbcrYfrhyF5DNctkcJMX8JTEF6hoDewHbMX4HaM+lZOxPdDhZu6iz7A8pynYfKeTPReWgU6A+lUyWHCHdgMlAP6SsqPje+BepJqhu9uK61pJbGRS1lf1A8olshsDo10VAf3D+h2KUGdG6p86tzszWkF4dRMEmzR+baybjOQVw51p2igF+jqGW/TSeVLN8bOUAeHjv66t8D2supg5gyxAfLMV9Jxr9Qvb+Gw/vRBPyWekeaLBqcKTppzqPflDA6YEZs8qSo8gDfDankhjYNiavQloMrdC8EVT7/xvLjmz1dcNqRKmcNvurC0Pr3xQD2qeIP+TXeb2lB4JAvEftj/EGEUBycDAAA=">
+<input type="hidden" name="component" value="$WebBorder.WebBorder">
+<input type="hidden" name="page" value="FrontEndAdvancedSearch">
+<input type="hidden" name="service" value="direct">
+<input type="hidden" name="session" value="T">
+<input type="hidden" name="submitmode" value="">
+<input type="hidden" name="submitname" value="">
+<input type="hidden" name="domainUrl" id="domainUrl" value="Shttps://etenders.gov.in/eprocure/app">
+</div>
+				       
+				   </form>
+			    </td>
+			</tr>
+		</tbody></table>
+	</div>
+<script type="text/javascript"><!--
+tapestry.addOnLoad(function(e) {
+dojo.require("tapestry.form");tapestry.form.registerForm("TenderAdvancedSearch");
+calendar_fromDate = new Calendar();
+
+	
+calendar_fromDate.initialize(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  "dd/MM/yyyy", 0, false, 1, "Clear");
+calendar_fromDate.onchange = function() {
+  var field = tapestry.byId("TenderAdvancedSearch").fromDate;
+  var value = calendar_fromDate.formatDate();
+	if (field.value != value) {
+    field.value = value;
+    if (field.onchange) { field.onchange();}
+  }
+}
+calendar_toDate = new Calendar();
+
+	
+calendar_toDate.initialize(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  "dd/MM/yyyy", 0, false, 1, "Clear");
+calendar_toDate.onchange = function() {
+  var field = tapestry.byId("TenderAdvancedSearch").toDate;
+  var value = calendar_toDate.formatDate();
+	if (field.value != value) {
+    field.value = value;
+    if (field.onchange) { field.onchange();}
+  }
+}
+
+tapestry.cleanConnect("OrganisationName", "onchange", "formEvent2043789357");
+                tapestry.formEvent2043789357=function(e){
+                    var content={beventname:"onchange", bcomponentidpath:"FrontEndAdvancedSearch/OrganisationName", bcomponentid:"OrganisationName"};
+                    tapestry.event.buildEventProperties(e, content, arguments);
+                    if (!content["beventtarget.id"]){
+                    	content["beventtarget.id"]="OrganisationName";
+                    }
+                    
+                   var validateState=tapestry.form.forms["TenderAdvancedSearch"].validateForm;
+                   var validateForm=false;
+                   tapestry.form.setFormValidating("TenderAdvancedSearch", validateForm);
+                   
+                    
+                    tapestry.form.submitAsync("TenderAdvancedSearch", content);
+                    
+                    
+                    
+                    tapestry.form.setFormValidating("TenderAdvancedSearch", validateState);
+                    
+                };
+                tapestry.connect("OrganisationName", "onchange", "formEvent2043789357");
+tapestry.cleanConnect("Department", "onchange", "formEvent1726968178");
+                tapestry.formEvent1726968178=function(e){
+                    var content={beventname:"onchange", bcomponentidpath:"FrontEndAdvancedSearch/Department", bcomponentid:"Department"};
+                    tapestry.event.buildEventProperties(e, content, arguments);
+                    if (!content["beventtarget.id"]){
+                    	content["beventtarget.id"]="Department";
+                    }
+                    
+                   var validateState=tapestry.form.forms["TenderAdvancedSearch"].validateForm;
+                   var validateForm=false;
+                   tapestry.form.setFormValidating("TenderAdvancedSearch", validateForm);
+                   
+                    
+                    tapestry.form.submitAsync("TenderAdvancedSearch", content);
+                    
+                    
+                    
+                    tapestry.form.setFormValidating("TenderAdvancedSearch", validateState);
+                    
+                };
+                tapestry.connect("Department", "onchange", "formEvent1726968178");
+tapestry.cleanConnect("Division", "onchange", "formEvent1389807549");
+                tapestry.formEvent1389807549=function(e){
+                    var content={beventname:"onchange", bcomponentidpath:"FrontEndAdvancedSearch/Division", bcomponentid:"Division"};
+                    tapestry.event.buildEventProperties(e, content, arguments);
+                    if (!content["beventtarget.id"]){
+                    	content["beventtarget.id"]="Division";
+                    }
+                    
+                   var validateState=tapestry.form.forms["TenderAdvancedSearch"].validateForm;
+                   var validateForm=false;
+                   tapestry.form.setFormValidating("TenderAdvancedSearch", validateForm);
+                   
+                    
+                    tapestry.form.submitAsync("TenderAdvancedSearch", content);
+                    
+                    
+                    
+                    tapestry.form.setFormValidating("TenderAdvancedSearch", validateState);
+                    
+                };
+                tapestry.connect("Division", "onchange", "formEvent1389807549");
+tapestry.cleanConnect("SubDivision", "onchange", "formEvent341858789");
+                tapestry.formEvent341858789=function(e){
+                    var content={beventname:"onchange", bcomponentidpath:"FrontEndAdvancedSearch/SubDivision", bcomponentid:"SubDivision"};
+                    tapestry.event.buildEventProperties(e, content, arguments);
+                    if (!content["beventtarget.id"]){
+                    	content["beventtarget.id"]="SubDivision";
+                    }
+                    
+                   var validateState=tapestry.form.forms["TenderAdvancedSearch"].validateForm;
+                   var validateForm=false;
+                   tapestry.form.setFormValidating("TenderAdvancedSearch", validateForm);
+                   
+                    
+                    tapestry.form.submitAsync("TenderAdvancedSearch", content);
+                    
+                    
+                    
+                    tapestry.form.setFormValidating("TenderAdvancedSearch", validateState);
+                    
+                };
+                tapestry.connect("SubDivision", "onchange", "formEvent341858789");
+tapestry.cleanConnect("captcha", "onclick", "formEvent140493356");
+                tapestry.formEvent140493356=function(e){
+                    var content={beventname:"onclick", bcomponentidpath:"FrontEndAdvancedSearch/captcha", bcomponentid:"captcha"};
+                    tapestry.event.buildEventProperties(e, content, arguments);
+                    if (!content["beventtarget.id"]){
+                    	content["beventtarget.id"]="captcha";
+                    }
+                    
+                   var validateState=tapestry.form.forms["TenderAdvancedSearch"].validateForm;
+                   var validateForm=false;
+                   tapestry.form.setFormValidating("TenderAdvancedSearch", validateForm);
+                   
+                    
+                    tapestry.form.submitAsync("TenderAdvancedSearch", content);
+                    
+                    
+                    
+                    tapestry.form.setFormValidating("TenderAdvancedSearch", validateState);
+                    
+                };
+                tapestry.connect("captcha", "onclick", "formEvent140493356");
+tapestry.form.registerForm("WebBorder_0");
+
+tapestry.form.focusField('TenderType');});
+// --></script>
+
+
+<script type="text/javascript" src="includes/CsrfdeleteBlock.js"></script>	
+	
+<script language="javascript">
+	
+	function doEnableDisable(){
+
+		var f = document.getElementById("TenderAdvancedSearch");
+		
+		if(f.valueParameter.options[f.valueParameter.selectedIndex].value == "4"){
+			f.ToValue.style.backgroundColor = "#FFFFFF";
+			f.ToValue.disabled = false;
+		}
+		else{
+			f.ToValue.value = "";
+			f.ToValue.style.backgroundColor = "#F0F0F0";
+			f.ToValue.disabled = true;
+		}
+		
+	}
+	function doCheck(){
+
+		var f = document.getElementById("TenderAdvancedSearch");
+		if(f.captchaText.value==0){
+		   	alert("Please enter Captcha.");
+		   	f.captchaText.focus();
+			return false;
+	   }
+	   
+	   if(f.captchaText.value.length!=6) {
+			alert("Invalid Captcha! Please Enter Correct Captcha");
+			f.captchaText.value = "";
+			f.captchaText.focus();
+			return false; 
+	   }
+	   
+	}
+			
+</script>
+<div class="calendar" style="position: absolute; display: none; border: 1px solid windowtext; text-align: center; background: window; z-index: 400;"><div class="calendarHeader" style="background: activecaption; padding: 3px; border-bottom: 1px solid windowtext;"><table><tbody><tr><td><button class="prevMonthButton">&lt;&lt;</button></td><td class="labelContainer"><select><option value="0">January</option><option value="1">February</option><option value="2">March</option><option value="3">April</option><option value="4">May</option><option value="5">June</option><option value="6">July</option><option value="7">August</option><option value="8">September</option><option value="9">October</option><option value="10">November</option><option value="11">December</option></select></td><td class="labelContainer"><select><option value="1920">1920</option><option value="1921">1921</option><option value="1922">1922</option><option value="1923">1923</option><option value="1924">1924</option><option value="1925">1925</option><option value="1926">1926</option><option value="1927">1927</option><option value="1928">1928</option><option value="1929">1929</option><option value="1930">1930</option><option value="1931">1931</option><option value="1932">1932</option><option value="1933">1933</option><option value="1934">1934</option><option value="1935">1935</option><option value="1936">1936</option><option value="1937">1937</option><option value="1938">1938</option><option value="1939">1939</option><option value="1940">1940</option><option value="1941">1941</option><option value="1942">1942</option><option value="1943">1943</option><option value="1944">1944</option><option value="1945">1945</option><option value="1946">1946</option><option value="1947">1947</option><option value="1948">1948</option><option value="1949">1949</option><option value="1950">1950</option><option value="1951">1951</option><option value="1952">1952</option><option value="1953">1953</option><option value="1954">1954</option><option value="1955">1955</option><option value="1956">1956</option><option value="1957">1957</option><option value="1958">1958</option><option value="1959">1959</option><option value="1960">1960</option><option value="1961">1961</option><option value="1962">1962</option><option value="1963">1963</option><option value="1964">1964</option><option value="1965">1965</option><option value="1966">1966</option><option value="1967">1967</option><option value="1968">1968</option><option value="1969">1969</option><option value="1970">1970</option><option value="1971">1971</option><option value="1972">1972</option><option value="1973">1973</option><option value="1974">1974</option><option value="1975">1975</option><option value="1976">1976</option><option value="1977">1977</option><option value="1978">1978</option><option value="1979">1979</option><option value="1980">1980</option><option value="1981">1981</option><option value="1982">1982</option><option value="1983">1983</option><option value="1984">1984</option><option value="1985">1985</option><option value="1986">1986</option><option value="1987">1987</option><option value="1988">1988</option><option value="1989">1989</option><option value="1990">1990</option><option value="1991">1991</option><option value="1992">1992</option><option value="1993">1993</option><option value="1994">1994</option><option value="1995">1995</option><option value="1996">1996</option><option value="1997">1997</option><option value="1998">1998</option><option value="1999">1999</option><option value="2000">2000</option><option value="2001">2001</option><option value="2002">2002</option><option value="2003">2003</option><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option><option value="2031">2031</option><option value="2032">2032</option><option value="2033">2033</option><option value="2034">2034</option><option value="2035">2035</option><option value="2036">2036</option><option value="2037">2037</option><option value="2038">2038</option><option value="2039">2039</option><option value="2040">2040</option><option value="2041">2041</option><option value="2042">2042</option><option value="2043">2043</option><option value="2044">2044</option><option value="2045">2045</option><option value="2046">2046</option><option value="2047">2047</option><option value="2048">2048</option><option value="2049">2049</option></select></td><td><button class="nextMonthButton">&gt;&gt;</button></td></tr></tbody></table></div><div class="calendarBody"><table class="grid" cellpadding="3" cellspacing="0" style="font-style: ; font-variant: normal; font-weight: normal; font-stretch: ; font-size: ; line-height: ; font-family: ; font-optical-sizing: ; font-size-adjust: ; font-kerning: ; font-feature-settings: ; font-variation-settings: ; font-language-override: ; color: windowtext; cursor: default;"><thead><tr><th class="weekDayHead" style="font-weight: bold; border-bottom: 1px solid windowtext;">Sun</th><th class="weekDayHead" style="font-weight: bold; border-bottom: 1px solid windowtext;">Mon</th><th class="weekDayHead" style="font-weight: bold; border-bottom: 1px solid windowtext;">Tue</th><th class="weekDayHead" style="font-weight: bold; border-bottom: 1px solid windowtext;">Wed</th><th class="weekDayHead" style="font-weight: bold; border-bottom: 1px solid windowtext;">Thu</th><th class="weekDayHead" style="font-weight: bold; border-bottom: 1px solid windowtext;">Fri</th><th class="weekDayHead" style="font-weight: bold; border-bottom: 1px solid windowtext;">Sat</th></tr></thead><tbody><tr><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">1</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">2</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">3</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">4</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">5</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">6</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">7</td></tr><tr><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">8</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">9</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">10</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">11</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">12</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">13</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">14</td></tr><tr><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">15</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">16</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">17</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">18</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">19</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">20</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">21</td></tr><tr><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">22</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">23</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">24</td><td align="center" class="today" style="cursor: pointer; font-weight: bold; border: none;">25</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">26</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">27</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">28</td></tr><tr><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td></tr><tr><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td></tr></tbody></table></div><div class="calendarFooter"><table class="footerTable" cellspacing="0"><tbody><tr><td><button>25 February, 2026</button></td><td><button>Clear</button></td></tr></tbody></table></div></div><div class="calendar" style="position: absolute; display: none; border: 1px solid windowtext; text-align: center; background: window; z-index: 400;"><div class="calendarHeader" style="background: activecaption; padding: 3px; border-bottom: 1px solid windowtext;"><table><tbody><tr><td><button class="prevMonthButton">&lt;&lt;</button></td><td class="labelContainer"><select><option value="0">January</option><option value="1">February</option><option value="2">March</option><option value="3">April</option><option value="4">May</option><option value="5">June</option><option value="6">July</option><option value="7">August</option><option value="8">September</option><option value="9">October</option><option value="10">November</option><option value="11">December</option></select></td><td class="labelContainer"><select><option value="1920">1920</option><option value="1921">1921</option><option value="1922">1922</option><option value="1923">1923</option><option value="1924">1924</option><option value="1925">1925</option><option value="1926">1926</option><option value="1927">1927</option><option value="1928">1928</option><option value="1929">1929</option><option value="1930">1930</option><option value="1931">1931</option><option value="1932">1932</option><option value="1933">1933</option><option value="1934">1934</option><option value="1935">1935</option><option value="1936">1936</option><option value="1937">1937</option><option value="1938">1938</option><option value="1939">1939</option><option value="1940">1940</option><option value="1941">1941</option><option value="1942">1942</option><option value="1943">1943</option><option value="1944">1944</option><option value="1945">1945</option><option value="1946">1946</option><option value="1947">1947</option><option value="1948">1948</option><option value="1949">1949</option><option value="1950">1950</option><option value="1951">1951</option><option value="1952">1952</option><option value="1953">1953</option><option value="1954">1954</option><option value="1955">1955</option><option value="1956">1956</option><option value="1957">1957</option><option value="1958">1958</option><option value="1959">1959</option><option value="1960">1960</option><option value="1961">1961</option><option value="1962">1962</option><option value="1963">1963</option><option value="1964">1964</option><option value="1965">1965</option><option value="1966">1966</option><option value="1967">1967</option><option value="1968">1968</option><option value="1969">1969</option><option value="1970">1970</option><option value="1971">1971</option><option value="1972">1972</option><option value="1973">1973</option><option value="1974">1974</option><option value="1975">1975</option><option value="1976">1976</option><option value="1977">1977</option><option value="1978">1978</option><option value="1979">1979</option><option value="1980">1980</option><option value="1981">1981</option><option value="1982">1982</option><option value="1983">1983</option><option value="1984">1984</option><option value="1985">1985</option><option value="1986">1986</option><option value="1987">1987</option><option value="1988">1988</option><option value="1989">1989</option><option value="1990">1990</option><option value="1991">1991</option><option value="1992">1992</option><option value="1993">1993</option><option value="1994">1994</option><option value="1995">1995</option><option value="1996">1996</option><option value="1997">1997</option><option value="1998">1998</option><option value="1999">1999</option><option value="2000">2000</option><option value="2001">2001</option><option value="2002">2002</option><option value="2003">2003</option><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option><option value="2031">2031</option><option value="2032">2032</option><option value="2033">2033</option><option value="2034">2034</option><option value="2035">2035</option><option value="2036">2036</option><option value="2037">2037</option><option value="2038">2038</option><option value="2039">2039</option><option value="2040">2040</option><option value="2041">2041</option><option value="2042">2042</option><option value="2043">2043</option><option value="2044">2044</option><option value="2045">2045</option><option value="2046">2046</option><option value="2047">2047</option><option value="2048">2048</option><option value="2049">2049</option></select></td><td><button class="nextMonthButton">&gt;&gt;</button></td></tr></tbody></table></div><div class="calendarBody"><table class="grid" cellpadding="3" cellspacing="0" style="font-style: ; font-variant: normal; font-weight: normal; font-stretch: ; font-size: ; line-height: ; font-family: ; font-optical-sizing: ; font-size-adjust: ; font-kerning: ; font-feature-settings: ; font-variation-settings: ; font-language-override: ; color: windowtext; cursor: default;"><thead><tr><th class="weekDayHead" style="font-weight: bold; border-bottom: 1px solid windowtext;">Sun</th><th class="weekDayHead" style="font-weight: bold; border-bottom: 1px solid windowtext;">Mon</th><th class="weekDayHead" style="font-weight: bold; border-bottom: 1px solid windowtext;">Tue</th><th class="weekDayHead" style="font-weight: bold; border-bottom: 1px solid windowtext;">Wed</th><th class="weekDayHead" style="font-weight: bold; border-bottom: 1px solid windowtext;">Thu</th><th class="weekDayHead" style="font-weight: bold; border-bottom: 1px solid windowtext;">Fri</th><th class="weekDayHead" style="font-weight: bold; border-bottom: 1px solid windowtext;">Sat</th></tr></thead><tbody><tr><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">1</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">2</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">3</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">4</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">5</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">6</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">7</td></tr><tr><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">8</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">9</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">10</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">11</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">12</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">13</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">14</td></tr><tr><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">15</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">16</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">17</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">18</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">19</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">20</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">21</td></tr><tr><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">22</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">23</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">24</td><td align="center" class="today" style="cursor: pointer; font-weight: bold; border: none;">25</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">26</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">27</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">28</td></tr><tr><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td></tr><tr><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td><td align="center" class="" style="cursor: pointer; font-weight: normal; border: none;">&nbsp;</td></tr></tbody></table></div><div class="calendarFooter"><table class="footerTable" cellspacing="0"><tbody><tr><td><button>25 February, 2026</button></td><td><button>Clear</button></td></tr></tbody></table></div></div></body></html>

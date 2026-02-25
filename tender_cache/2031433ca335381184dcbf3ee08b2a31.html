@@ -1,0 +1,1745 @@
+<html><head>
+	<base target="_self">
+	<title>Government eProcurement System</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"><title>eProcurement System</title><script type="text/javascript">djConfig = {"baseRelativePath":"/eprocure/app?service=asset&path=%2Fgep%2F","preventBackButtonFix":false,"parseWidgets":false} </script><script type="text/javascript" src="/eprocure/app?service=asset&amp;path=%2Fgep%2Fgep.js"></script></head>
+<!-- BEGIN: HEADER -->
+
+
+
+
+
+
+
+<body onload="MM_preloadImages('images/homeb.png','images/contactb.png','images/sitemapb.png')" onunload="" onpageshow="if (event.persisted) noBack();" id="Body"><iframe style="border: 0px; width: 1px; height: 1px; position: absolute; bottom: 0px; right: 0px; visibility: visible;" name="djhistory" id="djhistory" src="/eprocure/app?service=asset&amp;path=%2Fgep%2Fiframe_history.html"></iframe><script type="text/javascript" src="/eprocure/app?service=asset&amp;path=%2Fgep%2Fgep2.js"></script>
+<script type="text/javascript">
+dojo.registerModulePath("tapestry", "/eprocure/app?service=asset&path=%2Ftapestry%2F");
+</script>
+<script type="text/javascript" src="/eprocure/app?service=asset&amp;path=%2Ftapestry%2Fcore.js"></script>
+<script type="text/javascript">
+dojo.require("tapestry.namespace");
+tapestry.requestEncoding='UTF-8';
+</script>
+<link rel="stylesheet" type="text/css" href="/eprocure/css/nicgep_web_style.css">
+
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="shortcut icon" href="images/nation.ico">
+<link href="includes/dialog/nicgep_color_theme.css" rel="stylesheet" type="text/css">
+<link href="includes/dialog/dialog_box.css" rel="stylesheet" type="text/css">
+
+<!-- Javascript -->
+<script language="JavaScript" type="text/JavaScript" src="includes/evaluator.js"></script>
+<script language="javascript" src="includes/MessageDigest.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="includes/dialog/dialog_box.js"></script>
+<!-- End -->
+<noscript>
+	<meta http-equiv="Refresh" content="2;url=https://etenders.gov.in/eprocure/app?page=ErrorNotice&amp;service=page" id="Any"></meta> 
+</noscript>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+	function MM_swapImgRestore() { //v3.0
+	  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+	}
+	
+	function MM_preloadImages() { //v3.0
+	  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+	    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+	    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+	}
+	
+	function MM_findObj(n, d) { //v4.01
+	  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+	    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+	  if(!x && d.getElementById) x=d.getElementById(n); return x;
+	}
+	
+	function MM_swapImage() { //v3.0
+	  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+	   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+	}
+//-->
+</script>
+
+
+
+
+
+	
+	<script type="text/javascript">
+
+	if(navigator.appName == 'Microsoft Internet Explorer')
+	{
+	document.onkeydown = fnCheckKeysMIE;
+	}
+	else if(navigator.appName == 'Netscape')
+	{
+	document.onkeydown = fnCheckKeysNMF;
+	}
+	
+	function fnCheckKeysNMF(event)
+	{
+	
+	var e=event? event : window.event;
+	var event_element=e.target? e.target : e.srcElement;
+	
+	if (event.ctrlKey && (event.keyCode==78 || event.keyCode==84 || event.which==78 || event.which==84))
+	{
+	return false;
+	}
+	
+	if (event.altKey && (event.keyCode==37 || event.which==37))
+	{
+	return false;
+	}
+	
+	if (event.keyCode==8 && (event_element.tagName != 'INPUT' && event_element.tagName != 'TEXTAREA'))
+	{
+	return false;
+	}
+	
+	}
+	
+	function fnCheckKeysMIE()
+	{
+	
+	var e=event? event : window.event;
+	var event_element=e.target? e.target : e.srcElement;
+	
+	if (event.ctrlKey && (event.keyCode==78 || event.keyCode==84 || event.which==78 || event.which==84))
+	{
+	return false;
+	}
+	
+	if (event.altKey && (event.keyCode==37 || event.which==37))
+	{
+	return false;
+	}
+	
+	if (event.keyCode==8 && (event_element.tagName != 'INPUT' && event_element.tagName != 'TEXTAREA'))
+	{
+	return false;
+	}
+	
+	}
+
+	window.history.forward();
+	function noBack(){ window.history.forward(); }
+	
+	</script>
+	
+	<table width="1004" height="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+		<tbody><tr>
+			<td valign="top" height="40">
+				<table width="1000" border="0" align="center" cellspacing="0" cellpadding="0">
+    <tbody><tr> 
+    <td>
+		<table width="100%" height="22" border="0" cellpadding="0" cellspacing="0" id="Menu">
+		 <tbody><tr><td width="210" height="22" align="right" class="date topBannerGradient"><a id="link1" name="link1" class="Menu" href="/eprocure/app?page=WebScreenReaderAccess&amp;service=page">Screen Reader Access</a>
+				
+		  </td>
+		</tr></tbody></table>
+		</td>
+		</tr>
+   <tr> 
+    <td width="1005"><img border="0" width="1005" alt="Logo" src="images/topban.png" usemap="#Map" height="83" id="Any_0"></td>
+  </tr>		
+  <tr>
+    <td height="1" class="topBannerLine"></td>
+  </tr>
+
+  <tr> 
+    <td>
+		<table width="100%" height="22" border="0" cellpadding="0" cellspacing="0" id="Menu">
+        <tbody><tr> 
+          <td width="210" height="22" align="center" class="date primaryBg">
+				25-Feb-2026 
+		  </td>
+          <td align="center" class="secondaryBg">
+	           <span id="If">
+					<span id="For">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Search" class="Menu" href="/eprocure/app?page=FrontEndAdvancedSearch&amp;service=page" target="_self">Search</a>
+						</span>
+						<span class="divider1" id="Insert_2">|</span>
+					</span><span id="For_0">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Active Tenders" class="Menu" href="/eprocure/app?page=FrontEndLatestActiveTenders&amp;service=page" target="_self">Active Tenders</a>
+						</span>
+						<span class="divider1" id="Insert_2_0">|</span>
+					</span><span id="For_1">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Tenders by Closing Date" class="Menu" href="/eprocure/app?page=FrontEndListTendersbyDate&amp;service=page" target="_self">Tenders by Closing Date</a>
+						</span>
+						<span class="divider1" id="Insert_2_1">|</span>
+					</span><span id="For_2">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Corrigendum" class="Menu" href="/eprocure/app?page=FrontEndLatestActiveCorrigendums&amp;service=page" target="_self">Corrigendum</a>
+						</span>
+						<span class="divider1" id="Insert_2_2">|</span>
+					</span><span id="For_3">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Results of Tenders" class="Menu" href="/eprocure/app?page=ResultOfTenders&amp;service=page" target="_self">Results of Tenders</a>
+						</span>
+						
+					</span>
+	          </span>
+	          
+          </td>
+          <td width="215" valign="middle" class="primaryBg">
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tbody><tr> 
+                <td width="28%"><div align="center"><a id="homeLink" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image4','','images/homeb.png',1)" page="Home" href="/eprocure/app?service=restart"><img src="images/homea.png" alt="Home" name="Image4" width="47" height="18" border="0"></a></div></td>
+                <td width="40%"><div align="center"><a id="PageLink_6" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image5','','images/contactb.png',1)" href="/eprocure/app?page=FrontEndContactUs&amp;service=page"><img src="images/contacta.png" alt="Contact Us" name="Image5" width="78" height="18" border="0"></a></div></td>
+                <td width="32%"><div align="center"><a id="PageLink_7" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image6','','images/sitemapb.png',1)" href="/eprocure/app?page=SiteMap&amp;service=page"><img src="images/sitemapa.png" alt="Sitemap" name="Image6" width="63" height="18" border="0"></a></div></td>                 
+              </tr>
+            </tbody></table></td>
+        </tr>
+      </tbody></table></td>
+  </tr>
+  <tr>
+	<td>
+		<table width="100%" cellspacing="0" cellpadding="0">
+	<tbody><tr>
+		<td class="notice" width="20" align="right"><img src="images/notice.png" width="15" height="16" alt="Notices"> </td>
+		<td class="notice_strip">
+			<marquee align="left" id="gepNotice" onmouseover="this.stop();" onmouseout="this.start();" scrolldelay="200">
+				
+				<span>
+					Government eProcurement System
+				</span>
+			</marquee>
+		</td>
+	</tr>
+</tbody></table>
+	</td>
+  </tr>
+</tbody></table>
+<map name="Map">
+  <a id="PageLink_8" shape="circle" coords="43,43,37" href="/eprocure/app?page=Home&amp;service=page"></a>
+</map>
+
+			</td>
+		</tr>
+		<tr>
+			<td valign="top">
+				<table width="100%" height="100%" cellspacing="0" cellpadding="0" border="0">
+					<tbody><tr>
+
+						<td width="214" class="navigation"><script language="javascript">
+
+	// Script to view document in popup
+	function popup(mylink, windowname)
+	{
+		if (! window.focus)return true;
+		var href;
+		if (typeof(mylink) == 'string')
+	 		href=mylink;
+		else
+			href=mylink.href;
+			window.open(href, "Popup", 'location=no, scrollbars=yes, toolbar=no, width=700, height=550, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');
+			return false;   
+	}
+
+</script>
+
+<table width="100%" height="100%" cellspacing="0" cellpadding="0" class="left_nav">	
+	
+	<tbody><tr> 
+         <td height="10"></td>
+     </tr>
+     	
+	<tr>
+		<td valign="top">
+			<span id="If_2">
+					</span><span id="If_0_4">
+							<span id="If_3">
+			             		</span></span><span id="If_0_5">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_6">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_7">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_8">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_9">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_10">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_11">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_12">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_13">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_14">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_15">
+							
+			             	 <span>
+				             	 </span></span><span id="If_15">
+					</span><table width="214" border="0" cellspacing="0" cellpadding="0">
+				<tbody><tr id="For_5">
+						</tr><tr> 
+					             	<td height="37" background="images/textbg.png" align="center"><a id="GenericLink" rel="noopener noreferrer" title="MIS Reports" class="link1" href="https://gepnicreports.gov.in/eprocreports/etenders/" target="_blank">MIS Reports</a></td>
+					             </tr>
+			             	 
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_6">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink" title="Tenders by Location" class="link1" href="/eprocure/app?page=FrontEndTendersByLocation&amp;service=page" target="_self">Tenders by Location</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_7">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_0" title="Tenders by Organisation" class="link1" href="/eprocure/app?page=FrontEndTendersByOrganisation&amp;service=page" target="_self">Tenders by Organisation</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_8">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_1" title="Tenders by Classification" class="link1" href="/eprocure/app?page=FrontEndTendersByClassification&amp;service=page" target="_self">Tenders by Classification</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_9">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_2" title="Tenders in Archive" class="link1" href="/eprocure/app?page=FrontEndTendersInArchive&amp;service=page" target="_self">Tenders in Archive</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_10">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_3" title="Tenders Status" class="link1" href="/eprocure/app?page=WebTenderStatusLists&amp;service=page" target="_self">Tenders Status</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_11">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_4" title="Cancelled/Retendered" class="link1" href="/eprocure/app?page=WebCancelledTenderLists&amp;service=page" target="_self">Cancelled/Retendered</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_12">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_5" title="Downloads" class="link1" href="/eprocure/app?page=StandardBiddingDocuments&amp;service=page" target="_self">Downloads</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_13">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_9" title="D" class="link1" href="/eprocure/app?page=FrontEndDebarmentList&amp;service=page" target="_self">Debarment List</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_14">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_10" title="Announcements" class="link1" href="/eprocure/app?page=WebAnnouncements&amp;service=page" target="_self">Announcements</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_15">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_11" title="Awards" class="link1" href="/eprocure/app?page=WebAwards&amp;service=page" target="_self">Awards</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_16">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_12" title="Site compatibility" class="link1" href="/eprocure/app?page=SiteComp&amp;service=page" target="_self">Site compatibility</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_17">
+						
+					</tr><tr id="For_18">
+						
+					</tr><tr id="For_19">
+						
+					</tr><tr id="For_20">
+						
+					</tr>
+					
+					<tr> 
+		                <td height="10"></td>
+		             </tr>
+				
+				
+				<tr> 
+	               		<td height="30" align="center">
+							<table width="160" height="114" border="0" align="center" cellpadding="0" cellspacing="0">
+								<tbody><tr id="For_22"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0" rel="noopener noreferrer" title="link" href="https://gepnic.gov.in" target="_blank"><img border="0" width="160" src="images/Gepnic Logo.png" height="34" id="Any_1"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 <tr id="For_23"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0_0" rel="noopener noreferrer" title="National Portal of India - External Link that open in a new window" href="http://india.gov.in" target="_blank"><img border="0" width="160" src="images/indiagovin.png" height="34" id="Any_2"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 <tr id="For_24"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0_1" rel="noopener noreferrer" title="Government e-Marketing of India - External link that opens in a new window" href="https://gem.gov.in" target="_blank"><img border="0" width="160" src="images/gem.png" height="34" id="Any_3"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 <tr id="For_25"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0_2" rel="noopener noreferrer" title="Central Public Procurement Portal - External Link that opens in a new Window" href="http://eprocure.gov.in/cppp" target="_blank"><img border="0" width="160" src="images/cppp-img.png" height="34" id="Any_4"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 
+							</tbody></table>
+				 		</td>
+	             	</tr>					
+					
+				
+				<tr> 
+					<td height="30" align="center">&nbsp;</td>
+			  	</tr>							
+			  	
+			</tbody></table>
+		</td>
+	</tr>
+	
+</tbody></table></td>
+						<td class="page_content" valign="top">
+						<!-- Page content starts here -->
+							
+<script language="javascript">
+	var delayTime=500;
+	var marqueeSpeed=1;
+	var pauseTime=1 ;
+	var copySpeed=marqueeSpeed;
+	var pauseSpeed=(pauseTime==0)? copySpeed: 0;
+	var actualHeight='';
+
+	function ScrollMarquee()
+	{
+		if (parseInt(crossMarquee.style.top)>(actualHeight*(-1)+8)) 
+			crossMarquee.style.top=parseInt(crossMarquee.style.top)-copySpeed+"px" ;
+		else 
+			crossMarquee.style.top=parseInt(marqueeheight)+8+"px";
+	}
+
+	function InitializeMarquee()
+	{
+		crossMarquee=document.getElementById("vmarquee");
+		crossMarquee.style.top=0;
+		marqueeheight=document.getElementById("marqueecontainer").offsetHeight;
+		actualHeight=crossMarquee.offsetHeight;
+		if (window.opera || navigator.userAgent.indexOf("Netscape/7")!=-1)
+		{ 
+			crossMarquee.style.height=marqueeheight+"px";
+			crossMarquee.style.overflow="scroll";
+			return;
+		}
+		setTimeout('lefttime=setInterval("ScrollMarquee()",30)', delayTime);
+	}
+
+	if (window.addEventListener)
+		window.addEventListener("load", InitializeMarquee, false);
+	else if (window.attachEvent)
+		window.attachEvent("onload", InitializeMarquee);
+	else if (document.getElementById)
+		window.onload=InitializeMarquee;
+
+
+	// Corrigendum
+	var delayTime1=500;
+	var marqueeSpeed1=1;
+	var pauseTime1=1 ;
+	var copySpeed1=marqueeSpeed1;
+	var pauseSpeed1=(pauseTime1==0)? copySpeed1: 0;
+	var actualHeight1='';
+
+	function ScrollMarquee1()
+	{
+		if (parseInt(crossMarquee1.style.top)>(actualHeight1*(-1)+8)) 
+		crossMarquee1.style.top=parseInt(crossMarquee1.style.top)-copySpeed1+"px" ;
+		else 
+		crossMarquee1.style.top=parseInt(marqueeheight1)+8+"px";
+	}
+
+	function InitializeMarquee1()
+	{
+		crossMarquee1=document.getElementById("vmarquee1");
+		crossMarquee1.style.top=0;
+		marqueeheight1=document.getElementById("marqueecontainer1").offsetHeight;
+		actualHeight1=crossMarquee1.offsetHeight ;
+		if (window.opera || navigator.userAgent.indexOf("Netscape/7")!=-1)
+		{ 
+			crossMarquee1.style.height=marqueeheight1+"px";
+			crossMarquee1.style.overflow="scroll";
+			return;
+		}
+		setTimeout('lefttime=setInterval("ScrollMarquee1()",30)', delayTime1);
+	}
+
+	if (window.addEventListener)
+	window.addEventListener("load", InitializeMarquee1, false);
+	else if (window.attachEvent)
+	window.attachEvent("onload", InitializeMarquee1);
+	else if (document.getElementById)
+	window.onload=InitializeMarquee1;
+	
+	// Corrigendum
+	var delayTime2=500;
+	var marqueeSpeed2=1;
+	var pauseTime2=1 ;
+	var copySpeed2=marqueeSpeed2;
+	var pauseSpeed2=(pauseTime2==0)? copySpeed2: 0;
+	var actualHeight2='';
+
+	function ScrollMarquee2()
+	{
+		if (parseInt(crossMarquee2.style.top)>(actualHeight2*(-1)+8)) 
+		crossMarquee2.style.top=parseInt(crossMarquee2.style.top)-copySpeed2+"px" ;
+		else 
+		crossMarquee2.style.top=parseInt(marqueeheight2)+8+"px";
+	}
+	
+	
+	function InitializeMarquee2()
+	{
+		crossMarquee2=document.getElementById("vmarquee2");
+		crossMarquee2.style.top=0;
+		marqueeheight2=document.getElementById("marqueecontainer2").offsetHeight;
+		actualHeight2=crossMarquee2.offsetHeight ;
+		if (window.opera || navigator.userAgent.indexOf("Netscape/7")!=-1)
+		{ 
+			crossMarquee2.style.height=marqueeheight2+"px";
+			crossMarquee2.style.overflow="scroll";
+			return;
+		}
+		setTimeout('lefttime=setInterval("ScrollMarquee2()",30)', delayTime2);
+	}
+
+	if (window.addEventListener)
+	window.addEventListener("load", InitializeMarquee2, false);
+	else if (window.attachEvent)
+	window.attachEvent("onload", InitializeMarquee2);
+	else if (document.getElementById)
+	window.onload=InitializeMarquee2;
+	
+	// Corrigendum
+	var delayTime3=500;
+	var marqueeSpeed3=1;
+	var pauseTime3=1 ;
+	var copySpeed3=marqueeSpeed3;
+	var pauseSpeed3=(pauseTime3==0)? copySpeed3: 0;
+	var actualHeight3='';
+
+	function ScrollMarquee3()
+	{
+		if (parseInt(crossMarquee3.style.top)>(actualHeight3*(-1)+8)) 
+		crossMarquee3.style.top=parseInt(crossMarquee3.style.top)-copySpeed3+"px" ;
+		else 
+		crossMarquee3.style.top=parseInt(marqueeheight3)+8+"px";
+	}
+	
+	
+	function InitializeMarquee3()
+	{
+		crossMarquee3=document.getElementById("vmarquee3");
+		crossMarquee3.style.top=0;
+		marqueeheight3=document.getElementById("marqueecontainer3").offsetHeight;
+		actualHeight3=crossMarquee3.offsetHeight ;
+		if (window.opera || navigator.userAgent.indexOf("Netscape/7")!=-1)
+		{ 
+			crossMarquee3.style.height=marqueeheight3+"px";
+			crossMarquee3.style.overflow="scroll";
+			return;
+		}
+		setTimeout('lefttime=setInterval("ScrollMarquee3()",30)', delayTime3);
+	}
+
+	if (window.addEventListener)
+	window.addEventListener("load", InitializeMarquee3, false);
+	else if (window.attachEvent)
+	window.attachEvent("onload", InitializeMarquee3);
+	else if (document.getElementById)
+	window.onload=InitializeMarquee3;
+		
+	function hideProgress(){
+		// Hide the progress bar
+		hideDialog();
+	}
+	
+	function showProgress(){
+		showDialog('Important Message', 
+				"Our application has been updated to support modern web standards. For the best experience, please use the latest version of Chrome, Firefox or Edge. Support for Internet Explorer and legacy browser modes has been discontinued. If you're using an outdated browser, please switch to a supported browser to continue using all features of this application. For more information, kindly visit the site compatibility page", 
+				'alertclose');
+	}
+	//showProgress();
+	
+	document.addEventListener('click', function(event) {
+	  const popup = document.getElementById('dialog');	  
+	  // Check if the click was outside the popup
+	  if (!popup.contains(event.target)) {
+	    //popup.style.display = 'none'; // or any method to close the popup
+	    hideProgress();
+	  }
+	});
+	
+	
+	
+</script> 
+
+<script type="text/javascript" src="includes/CsrfdeleteBlock.js"></script>
+<script type="text/javascript" src="js/autocomplete/jquery.js"></script>
+
+ <script src="js/jquery.min.js"></script> 
+   <script src="js/nicci.js"></script>
+    <script language="JavaScript" type="text/javascript"> 
+       $(document).ready(function() {
+            loadnicci('ContentNicci', 'vDOWF0A7F0DUpjzp');
+        });
+    </script>
+	
+	<div id="ContentNicci">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<link href="https://niccicms.raj.nic.in/nicci//vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="https://niccicms.raj.nic.in/nicci/nicci/js/jquery.min.js"></script>
+<script>
+    if (window.jQuery) {
+        jQuery.fn.jquery = ""; // hide real version
+    }
+</script>
+<link href="https://niccicms.raj.nic.in/nicci/nicci/css/jquery-ui.css" rel="stylesheet">
+   <script src="https://niccicms.raj.nic.in/nicci//Scripts/jquery.signalR-2.4.3.min.js"></script>
+ <script src="https://niccicms.raj.nic.in/nicci/signalr/hubs"></script>
+
+<script type="text/javascript">
+    var _userSessionKey = $('#ctl01_hdnUserSession').val();
+    var _rootPath = 'https://niccicms.raj.nic.in/nicci/';
+    var _helplineMsg = "Please contact  Central Public Procurement Portal Helpline Number : 0120 4001002 or 0120 4001005 or 0120 4200462 Or Email : support-eproc[at]nic[dot]in";
+    var _hhelplineMsg = "कृपया Central Public Procurement Portal पोर्टल हेल्पलाइन नंबर 0120 4001002 or 0120 4001005 or 0120 4200462 या हेल्पलाइन ईमेल support-eproc[at]nic[dot]in पर संपर्क करे";
+    var _portalName = "Central Public Procurement Portal";
+    var _financialYear = '2025-2026';
+    var _regx = '';
+    var _regx_api = '';
+    var _regx_with_pfix = '';
+    var _formatText = '';
+    var _searchType = '0';
+    var _greetMsg = 'Namaskaar';
+    var _greetMsgH = 'नमस्कार';
+    var _isBiLang = 'False';
+    var _ishelpdesk = 'False';
+    var _isTagSuggestionOn = 'False';
+    var _searchSuggestion = '';
+    var _searchSuggestionH = '';
+    var _otherLang = '';
+    var _transApiUrl = 'https://niccicms.raj.nic.in/niccipy/';
+    var _jsonAttachLanguages = '';
+    var _isUseDB = true;
+    var _localTranslationList = '[{"langCode":"hi","langName":"Hindi"},{"langCode":"pa","langName":"Punjabi"},{"langCode":"ta","langName":"Tamil"},{"langCode":"ml","langName":"Malayalam"}]';
+    var _uniqueclientID = '9606f156-e063-4d6e-8218-016b22204f3f';
+</script>
+<script src="https://niccicms.raj.nic.in/nicci/nicci/js/restrict_v1.js"></script>
+
+
+
+<script src="https://niccicms.raj.nic.in/nicci/nicci/js/cb1t_v1.js"></script>
+<script src="https://niccicms.raj.nic.in/nicci/nicci/js/livesupport.js"></script>
+<link href="https://niccicms.raj.nic.in/nicci/nicci/css/loader.css" rel="stylesheet">
+<link href="https://niccicms.raj.nic.in/nicci/nicci/css/chatbot.min.css" rel="stylesheet">
+<link href="https://niccicms.raj.nic.in/nicci/nicci/css/niccieffects.css" rel="stylesheet">
+
+
+<style type="text/css">
+    .nicci-rating-star-block .nicci-star.nicci-outline {
+        background: url("https://niccicms.raj.nic.in/nicci/nicci/images/star-empty-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    }
+
+    .nicci-rating-star-block .nicci-star.nicci-filled {
+        background: url("https://niccicms.raj.nic.in/nicci/nicci/images/star-fill-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    }
+
+    #niccidiv .post-bot {
+        background: #eeb049 !important;
+        color: white !important;
+    }
+
+    #niccidiv #start-chat {
+        background: #ff9800 !important;
+    }
+
+    /* #niccidiv .post-bot:after {
+        border-left-color: #eeb049 !important;
+    }*/
+    #niccidiv #message-board .post-bot {
+        background: #eeb049 !important;
+    }
+
+    .blink_status {
+        animation: blinker 1.5s linear infinite;
+    }
+
+    #Niccislideshow {
+        background: white !important;
+    }
+
+    @keyframes blinker {
+        50% {
+            opacity: 0;
+        }
+    }
+
+    #niccidiv #message-board .niccitgd li.niccitag {
+        border: 1px solid #eeb049;
+    }
+
+        #niccidiv #message-board .niccitgd li.niccitag:hover {
+            background: #eeb049;
+            color: white;
+        }
+
+    #niccidiv .niccciblink {
+        animation: blink 2.1s steps(5, start) infinite;
+        -webkit-animation: blink 2.1s steps(5, start) infinite;
+    }
+
+    
+
+    @keyframes blink {
+        to {
+            visibility: hidden;
+        }
+    }
+
+    @-webkit-keyframes blink {
+        to {
+            visibility: hidden;
+        }
+    }
+
+    #Niccisearchcontent::after {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        left: calc(40px);
+        background: #eeb049 !important;
+        width: 20px;
+        height: 20px;
+        /* The points are: (left top: x y, right top: x y, center bottom: x y) */
+        clip-path: polygon(0% 100%, 100% 100%, 50% 50%);
+    }
+
+    .Niccisearchcontentcls {
+        border-radius: 10px 10px;
+        display: none;
+        background: #eeb049 !important;
+        padding: 5px;
+        font-size: 12px;
+        color: white;
+        border-bottom: 1px solid white;
+        border-top: 1px solid white;
+        position: absolute !important;
+        top: 80px;
+        margin: 5px;
+        z-index: 9999 !important;
+    }
+
+    /*#Niccisearchslide[title]:hover:after {
+        content: 'Advanced Search';
+        position: absolute;
+        z-index: 99999999999;
+        top: 20px;
+        left: 0;
+        background: gray;
+        padding: 2px 3px;
+        color: white;
+        border-radius: 5px;
+    }    */
+    #btnConnect {position: absolute;
+    float: right;
+    right: -130px;
+    top: 21px;
+    border-radius: 2px;
+    background: #4073bf;
+    color: white;
+    text-decoration: blink;}
+</style>
+<script>
+    $("#Niccislideshow > div:gt(0)").hide();
+    var bannerCount = 0;
+    function slidePrev() { clearInterval(abcd); $("#Niccislideshow > div:first").fadeIn(500).prev().fadeOut(500).end().appendTo("#Niccislideshow"); }
+    var abcd = setInterval(function () { slideNext(0); }, 4000);
+    $('#Niccislideshow').each(function () {
+        bannerCount = ($('div', this).length);
+        if (bannerCount == 1) {
+            clearInterval(abcd);
+            $(".zoom").on({
+                'mouseout': function () { clearInterval(abcd); console.log("mouseout"); }
+            });
+            $(this).css('margin-bottom', '15px');
+        }
+    });
+    function slideNext(flag) { if (flag == 1) { clearInterval(abcd); } $("#Niccislideshow > div:first").fadeOut(500).next().fadeIn(500).end().appendTo("#Niccislideshow"); }
+
+    function saveChat() {
+        var filename = 'Nicci_Convstn.txt';
+        var mimeType = 'text';
+        var islang_Hindi = false;
+        if ($('#ctl01_chkLang').length > 0)
+            islang_Hindi = $('#ctl01_chkLang').prop('checked');
+        var elHtmlobj = $('#message-board').clone(true);
+        var headerContent = '<head><title>NICCIChat_' + Date.now().toString() + '</title></head><div style="display:flex;justify-content: flex-end;"><div style="width:33%;text-align:right;"><img alt="" src="' + _rootPath + 'images/mili.png" style="width: 50px; border-radius: 25px; "></div><div style="width:34%;text-align:center;"><h3>NIC Chat Inteligence (NICCI)</h3></div><div style="text-align:right;width:33%;"><h5>Date: ' + formatAMPM() + '</h5></div></div>';
+        $(elHtmlobj).find(".post-bot").each(function (index) {
+            $(this).parent().css('justify-content', '');
+            ($(this).html("<b> " + (islang_Hindi ? "निक्की: " : "NICCI: ") + " </b>" + $(this).html()));
+        });
+        $(elHtmlobj).find("img").each(function (index) { $(this).remove(); });
+        $(elHtmlobj).find(".post-user").each(function (index) { ($(this).html("<b> " + (islang_Hindi ? "यूजर: " : "USER: ") + " </b>" + $(this).html())); });
+        $(elHtmlobj).find(".timestamp").each(function (index) { $(this).html('\r\n'); });
+        $(elHtmlobj).find(".tags").each(function (index) { $(this).html(islang_Hindi ? "<b> निक्की: </b> सुझाव उपलब्ध हुये \r\n" : "<b> NICCI: </b> Suggestion List Provided.\r\n"); });
+        elHtml = $(elHtmlobj).html();
+
+        var footerContent = '<div style="display:flex;justify-content: flex-end;bottom:0px !important;    position: fixed;width:100%;"><div style="text-align:center;width:25%;"></div><div style="text-align:center;width:50%;"><h3>Software Courtesy National Informatics Centre (NIC), Rajasthan</h3></div><div style="text-align:right;width:25%;"></div></div>';
+
+        var divContents = headerContent + elHtml + footerContent;
+        var printWindow = window.open('', '', 'height=800,width=600');
+        printWindow.document.title = "";
+        printWindow.document.write(divContents);
+        printWindow.document.close();
+        printWindow.print();
+        printWindow.window.close();
+    }
+    function formatAMPM() {
+        var d = new Date(),
+            minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
+            hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours(),
+            ampm = d.getHours() >= 12 ? 'PM' : 'AM',
+            months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        return days[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + ' ' + d.getFullYear() + ' ' + hours + ':' + minutes + ' ' + ampm;
+    }
+
+
+    bindDropdown = function (jsonData) {
+        var data = JSON.parse(jsonData);
+        
+
+    }
+</script>
+
+<form method="post" action="../chatbotService.asmx" id="frm_nicci">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="kbKBvttFh8AJP/GVzFhN9uTgLP8GG6n5EtqdCqd+aypgmeyCciqQtZIPmVaFTG/nfXSOCFRCFwZnpZVqmCBawd6ep1dLLTnmrwXjoIUJjXNk7k6DtKiK/BZhlAheXC2MhaEaLuYcWPTwZZM9YMml7dAG+7PKvrAppECARnTfWRRSIm9Hxam2ENd/I5aaHmrqAL/PRs2xRBm2rFNNyDBBlKIF7rOOxNzLrCgxL8uaO4kyfvofEKn2f2vwJq5IeB9/TBFo+GG5o/nGPEz47Bnh4yYL1YcFke4r8fd2sldi2hU3gQemqZKCwdNJXLXH7A/PqDNsAN+FXuKAvukSupeyX/X0xdgEDHM2txyeXeGEtc4HAEyZMfkYM1RedCq2UZB07RueZ+/sXR8aH9+0KxqUPZ7preQa0lPPBJckkUKeh5WLYjNdIjFL//Bx+rI223BqHMSCrrARay85ar8lf/E3tq3yUlo8NcWhMt9uRLgLvdtlbZAKC2XLbcbtfk+FPe+dTq8aV4PJsN542swHZv0eHjHop9yZEnz8QvfwE5zva96i4CdFQXnGULOuM4L09y3e2rVpW4p0AK0chaZz64v3PDakHjtXEV0n7O2Jlkrn86lW+bzkB/uSuqbM+GO8IqfnFgn6s4Y1mSoVnGRtGinPy57S/7eDOFuTp94RSkRlhTUdEGT2UJswiDBq0Rn68aD/0DRhrlwDPsP7ypYV4V25tn5QG0mkP/GCmEmzrtgE6EvgU1bOULNDaOxWNDkbof2PD8cWEiJTdZLjjU6HyONvTUgiBBEmzLBhLAxr3jVuDTNA6Fo91TIKfEXamiIEadPgnjcH1XAnwde1H4OM/f0wkVWNGJSJ0jCsrdZwxaarLJ4nZ3AS9D3e05HdwG3237S2IOYJOj4LKhe6aF+631qEPsDNW7Zgfaxb48NVcT+P4Pg0uE013aU3jdKcJraeG8cXav/1Np+EpRokZfSKq3fDoCvjqa2KEsJwyUpGJNHJMeUgFV4yxcki6BvSKuqvXYmgVLbgA0WXkVSy0CROh8C8OT0N/obQkSw67vDBh9CHi3B4UWVC2ZUsCyKgC4HU7lTUgbDJEd2xPX7XDd/hY0qHKSWPBTxDnhgdWz9kVz738Rctrqrisc1GsvHLMzO6dVRA0lucL8iADikgmhYbDaLYzKGnVKLCUESVX9S2ICQ2PD0qmw76CPKdjrQAntetB1kgVaeRz6cif9k8skz5vaY1WQp3mScokZTL0sEwDbZrniu2sDE0aGbHVdMkb2b1M37NKzuBZyDCnnrs11aaVbNfI3OjiEkJgOQf3H9KuzB5mJh+PgsF79VC/pfBXzHSJnAEnQ5MxLbYGMhQWbV+oL5U0deEDA27d0WbmaEG+OmVBe6pzIvgUgd+XMWQlXkzDohbKUAOW6hmJ/DR8TvMcVbWdihEzTErNseD7dpdusehpqH5G3/ep0Vcsp+bOwp/t4IRviQz0LlJDoO/9H2+SeZydOyrZUkBFyCmixbRdPQNA0oc9/+9FLHem6ocmZ74cvJRX3JEChF6Z4ltl873VZm2t6YwPOAb+/hr6A6GroZDtdnpGn9pqtzEPoqr6b6yhnAZMgowDInYKYND15DdEjm0FMsDG02tlEh0Wh+HNYt8BMnRUQuaglSyrHX7BTmOzvoiX4fPtXC8PrqHJIa3/mc145Vvl2ZqmObAxYkYDh1tolrf16v/ZtnizuDozQXi8fZup8Va1aEDx1xjNBozQ+57fQ==">
+</div>
+
+    <input type="hidden" name="ctl01$hdnOrigin" id="ctl01_hdnOrigin" value="https://etenders.gov.in/">
+    <input type="hidden" name="ctl01$hdnToken" id="ctl01_hdnToken" value="vDOWF0A7F0DUpjzp">
+    <input type="hidden" name="ctl01$hdnExpertChat" id="ctl01_hdnExpertChat" value="0">
+    <input type="hidden" name="ctl01$hdnUserSession" id="ctl01_hdnUserSession">
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="C21772F6">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="LmVzlgwOaBMtD36Y28Zaek4FWn6m++JBR51+9tVmXM0uerMHam0gmyv0+N/+At7Ge0RvPspP6o6C8iAJBgBhY3x4/0h0ow3J4vYZhLcU5OBbwwQeDoQuVzubN5e+ufuBJOvM13ra2jm78DME/TYOycMoPrz0zfCyT/dbcVcKUncODRVHdpn2M/gvOOzH2qz3">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+bindDropdown('[{"langCode":"en","langName":"English","isUseDB":true,"islocTransEnable":false},{"langCode":"hi","langName":"Hindi","isUseDB":false,"islocTransEnable":true},{"langCode":"pa","langName":"Punjabi","isUseDB":false,"islocTransEnable":true},{"langCode":"ta","langName":"Tamil","isUseDB":false,"islocTransEnable":true},{"langCode":"ml","langName":"Malayalam","isUseDB":false,"islocTransEnable":true}]')//]]>
+</script>
+</form>
+<div id="niccidiv">
+    <div class="icondiv" onclick="showPopup(this);" id="ndhp" style="display: none;">
+        <div class="box">
+            <div class="text animated bounce">Need Help? Ask Nicci</div>
+        </div>
+        <img src="https://niccicms.raj.nic.in/nicci/nicci/images/mili.png" style="width: 53px; right: 2px; bottom: 5px; float: right;">
+    </div>
+    <div id="phone-wrapper" class="popupdiv" style="display: none;">
+        <div class="nicci_mvbtn">
+            <audio id="chatAudio">
+                <source src="https://niccicms.raj.nic.in/nicci/nicci/audio/notify.ogg" type="audio/ogg"><source src="https://niccicms.raj.nic.in/nicci/nicci/audio/notify.mp3" type="audio/mpeg"><source src="https://niccicms.raj.nic.in/nicci/nicci/audio/notify.wav" type="audio/wav"></audio>
+            <div id="ctl01_closebtn" class="nicci_mvbtn1" onclick="hidePopup(),minchat();" style="text-align:center;width:100px;position:absolute;z-index:100;color:white;top:34px;border-radius:20px 20px 0px 0px;background-color:#eeb049 !important;right:128px;cursor:pointer;">
+                <i class="fa fa-angle-down" aria-hidden="true"></i>
+            </div>
+            <div id="app" class="expndchat" style="border-radius: 20px 20px 0px 0px;">
+                <div id="ctl01_landDiv" class="container_s page_s tooltip1 outerLangDiv">
+                    <div class="langrow">
+                        <div id="expand" style="float: left;" onclick="maxchat()">
+                            
+                            <i class="fa toggleicon" title="Restore Chatbot" style="display: none; color: #e1dada; font-size: 18px; cursor: pointer; margin: 1px 0px 0px 6px !important;" aria-hidden="true">❐</i>
+                            <i class="fa mtoggleicon" title="Maximize Chatbot" style="color: #e1dada; font-size: 19px; cursor: pointer; margin: 0px 0px 0px 6px !important;" aria-hidden="true">▢</i>
+                            
+                        </div>
+
+                        <button type="button" id="btnConnect"> <img src="https://niccicms.raj.nic.in/nicci/nicci/images/chatsupport.png" style="width: 13px;"> Help Desk</button>
+                        <div style="float: left;">
+                            <i class="fa fa-arrows dragme" style="color: #e1dada; cursor: move; font-size: 14px; margin: 2px 2px 0px 6px !important; display: block !important;" title="Move Chatbot" aria-hidden="true"></i>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div id="ctl01_landing" class="bg-dark001 text-light" style="text-align:center;width:100%;color:#f0f0f0;z-index:1;height:100%;position:absolute;background-color:#eeb049 !important;display:grid;box-sizing:border-box;padding:15px;grid-template-rows:1fr 1fr 1fr;">
+                    <br>
+                    <img src="https://niccicms.raj.nic.in/nicci/assests/Dept/NEI.png" id="ctl01_imgSGlogo" class="" style="width: 60px; margin-left: auto; margin-right: auto; display: block; margin-top: auto;">
+                    <div class="nicciinfo">NIC Chat Interface (NICCI)</div>
+                    <div>
+                        <br>
+                        <img src="https://niccicms.raj.nic.in/nicci/assests/Image_637466742585760234.png" id="ctl01_imgDeptHeader" class="mt-3" style="max-height: 65px !important; margin: auto;"><br>
+                        <img src="https://niccicms.raj.nic.in/nicci/nicci/images/mili1.png" style="width: 100px; margin: auto;">
+                    </div>
+                    <div></div>
+                    <form id="form-start">
+                        <div id="Nicci_errorMsg01" style="background-color: #ca0404; color: white; font-size: 13px; padding: 3px 0px 3px 10px; display: none;">
+                            <i class="fa fa-info-circle" aria-hidden="true" style="color: white;"></i>&nbsp; Please enter correct Name !!
+                        </div>
+                        <input type="text" name="username" autocomplete="off" id="username" value="" placeholder="Your name" required="" onkeypress="return IsUserNameValid(event,'username','Nicci_errorMsg01');" ondrop="return false;" onpaste="return false;" maxlength="40">
+                        <button type="submit" id="start-chat" style="background: rgb(255, 152, 0);">Start</button>
+                    </form>
+                </div>
+                <div id="ctl01_header" class="bg-dark" style="border-radius:20px 20px 0px 0px;padding:6px;display:grid;grid-template-columns:0px auto 50px;align-items:center;background-color:#eeb049 !important;">
+                    <div>
+                        <img src="https://niccicms.raj.nic.in/nicci/nicci/images/nicci.gif" id="ctl01_imgHeadLogo" style="height: 45px !important; margin: -22px 1px 0px 3px; position: absolute !important;">
+                    </div>
+                    <div class="text-light align-center">
+                        <h2 style="font-size: 16px !important; color: white !important; margin-left: 47px !important; text-align: left !important;">
+                            <span id="ctl01_lblHeadTitle" style="letter-spacing: 2px !important; font-weight: 600 !important;">NICCI
+                            <sup><i class="fa fa-circle blink_status" aria-hidden="true" style="color: #5bff5b !important; font-size: 9px !important;"></i>
+                            </sup></span>
+                            <br>
+                            <span style="font-size: 11px !important; letter-spacing: 2px !important;">Your Digital Assistant</span>
+                        </h2>
+                    </div>
+                    <div id="nicci_nav">
+                        <button id="nav-icon_nicci" class="text-light btn-transparent btn-icon fa fa-bars" aria-hidden="true"></button>
+                        <nav id="nav-container1" style="display: none;">
+                            <ul class="nav1">
+                                <li id="clear-history" class="nav-link"><i class="fa fa-trash" aria-hidden="true"></i>Clear Chat</li>
+                                <li id="minimize" class="nav-link" onclick="hidePopup(),minchat();"><i class="fa fa-minus-square-o" aria-hidden="true"></i>Minimize</li>
+                                <li id="savechat" class="nav-link" onclick="saveChat()"><i class="fa fa-download" aria-hidden="true"></i>Save Chat</li>
+                                <li id="sign-out" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i>Exit Chat</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <div id="divicn">
+                    <div id="ctl01_divicnchild" class="text-light align-right" style="-webkit-box-shadow:0 8px 6px -6px black;text-align:right;background:#1f457d;-moz-box-shadow:0 8px 6px -6px black;box-shadow:0px 1px 5px 0px #2d2a2a;background-color:#eeb049 !important;line-height:0px !important;padding:3px 10px 3px 0px;font-size:15px !important;">
+                        <span id="spannicci_sound" onclick="mutevoice2(this);"><i data-toggle="tooltip" title="click to mute sound" class="fa fa-volume-up" aria-hidden="true" style="font-size: 20px; cursor: pointer;"></i></span>&nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-trash" id="clear-history1" aria-hidden="true" onclick="min_chat();" title="Clear chat history"></i>&nbsp;&nbsp;&nbsp;
+                    <i id="minimize1" class="fa fa-minus-square-o" onclick="hidePopup(),minchat();" aria-hidden="true" title="Minimize chat"></i>&nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-sign-out" id="sign-out1" aria-hidden="true" onclick="exitchat();" title="Exit chat"></i>
+                    </div>
+                    <div id="Niccisearchcontent" class="Niccisearchcontentcls">
+                        
+                    </div>
+
+
+                    <div id="Nicci_voiceMsg" style="font-size: 12px; color: white; background: #8b0000d1; padding: 2px 2px; text-align: center; display: none;">
+                        <i class="fa fa-info-circle" aria-hidden="true" style="color: white;"></i>&nbsp; Sorry your browser does not support Hindi voice !!
+                    </div>
+                    <div id="Nicci_voiceMsg1" style="font-size: 12px; color: white; background: #8b0000d1; padding: 2px 2px; text-align: center; display: none; z-index: 9999999999 !important;">
+                        <i class="fa fa-info-circle" aria-hidden="true" style="color: white;"></i>&nbsp; Conversion failed, Please try again !!
+                    </div>
+                    
+                    <div id="Nicci_feedback" class="nicci-rating-star-block" style="font-size: 12px; color: white; height: 86%; width: 100%; z-index: 9; position: absolute; background: rgba(8, 8, 8, 0.82); text-align: center; display: none;">
+                        <div style="position: relative; float: left; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                            <span id="nicciFBClose" onclick="$('#Nicci_feedback').slideUp(700,'swing');" title="Close"><i class="fa fa-times-circle" aria-hidden="true" style="cursor: pointer; font-size: 25px; position: absolute; top: -90px !important; right: 10px !important;"></i></span>
+                            <div class="NiccifbMsg" style="font-size: 15px;">Rate Us</div>
+                            <br>
+                            <a class="nicci-star nicci-outline" href="#" rating="1" title="Very Poor">Rate 1</a>
+                            <a class="nicci-star nicci-outline" href="#" rating="2" title="Poor">Rate 2</a>
+                            <a class="nicci-star nicci-outline" href="#" rating="3" title="Good">Rate 3</a>
+                            <a class="nicci-star nicci-outline" href="#" rating="4" title="Very Good">Rate 4</a>
+                            <a class="nicci-star nicci-outline" href="#" rating="5" title="Excellent">Rate 5</a>
+                            <br>
+                            <br>
+                            <textarea id="nicciFeebackbox" placeholder="Tell us more" cols="60" rows="3" style="" maxlength="180" onkeypress="return IsAlphaNumeric(event,'nicciFeebackbox','Nicci_fberrorMsg');" ondrop="return false;" onpaste="return false;"></textarea>
+                            <span id="nicciremainingC">Maximum characters: 180</span>
+                            <br>
+                            <br>
+                            <input type="button" class="nicciFbButtons" id="nicciFBBtn" value="Send" onclick="sendfeedbk();">&nbsp;&nbsp;&nbsp;
+                        <input type="button" class="nicciFbButtons" id="nicciSkipBtn" value="Later" onclick="skipfeedbk();">
+                            <br>
+                        </div>
+                        <div id="Nicci_fberrorMsg" style="background-color: rgb(202, 4, 4); color: white; position: absolute; width: 100%; font-size: 13px; padding: 3px 0px; display: none;">
+                            <i class="fa fa-info-circle" aria-hidden="true" style="color: white;"></i>&nbsp; Special characters are not allowed
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div id="message-board">
+                    
+                    
+                </div>
+                <div class="col-md-12" id="loadingimg" style="display: none;">
+                    <div class="col-md-8"></div>
+                    <div class="typing-loader"></div>
+                </div>
+                <div id="suggestions" style="max-height: 222px !important; overflow-y: scroll;">
+                    <ul id="suggestionlist" style="margin-left: 0px; padding-left: 5px;"></ul>
+                </div>
+                <div id="Nicci_errorMsg" style="background-color: #ca0404; color: white; font-size: 13px; padding: 3px 0px 3px 10px; display: none;">
+                    <i class="fa fa-info-circle" aria-hidden="true" style="color: white;"></i>&nbsp; Special characters are not allowed
+                </div>
+                <div id="ctl01_form" class="bg-light1 col-md-12" style="padding:6px;grid-template-rows:auto 1fr;display:grid;grid-template-columns:272px 0px 37px;align-items:center;background-color:#eeb049 !important;">
+
+                    <div id="message" data-placeholder="Start a conversation" rows="1" style="text-align: left !important;" onkeydown="getsuggestion(event,this);" contenteditable="true" onkeypress="return IsAlphaNumeric(event,'message','Nicci_errorMsg');" ondrop="return false;" onpaste="return true;">
+                    </div>
+                    <div style="position: absolute; right: 50px; bottom: 8px;">
+                        <i id="start-record-btn" title="Click to voice input" onclick="return startListen();" class="fa fa-microphone" aria-hidden="true" style="color: #4b535a; right: 0px !important; float: right; cursor: pointer; font-size: 25px;"></i>
+                    </div>
+                    <div style="margin-left: 7px;">
+                        <button id="send" type="" class="btn-transparent btn-icon fa fa-paper-plane" aria-hidden="true" style="color: white"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://niccicms.raj.nic.in/nicci/nicci/js/voint_v1.js"></script>
+<script>
+    var _bgcolor = '#eeb049';
+    $('#niccidiv .post-bot').css('background', _bgcolor);
+    var _btncolor = '#ff9800';
+    $('#niccidiv #start-chat').css('background', _btncolor);
+    var _cbRespBackColor = '#eeb049';
+    $('#niccidiv #message-board .post-bot').css('background', _cbRespBackColor);
+    function deviceCheck() {
+        if (navigator.userAgent.match(/Android/i)
+            || navigator.userAgent.match(/webOS/i)
+            || navigator.userAgent.match(/iPhone/i)
+            || navigator.userAgent.match(/iPad/i)
+            || navigator.userAgent.match(/iPod/i)
+            || navigator.userAgent.match(/BlackBerry/i)
+            || navigator.userAgent.match(/Windows Phone/i)) {
+            var x = document.querySelectorAll(".toggleicon");
+            x[0].style.setProperty("display", "none", "important");
+            var x = document.querySelectorAll(".mtoggleicon");
+            x[0].style.setProperty("display", "none", "important");
+            var x = document.querySelectorAll(".dragme");
+            x[0].style.setProperty("display", "none", "important");
+        }
+    }
+    deviceCheck();
+    //loadJsonData();
+</script>
+
+<script src="https://niccicms.raj.nic.in/nicci/nicci/js/utilities.js" type="text/javascript"></script>
+</div>
+ 	<!--  
+		Page content
+	 -->
+	<span id="If_16">
+			</span><table width="100%" cellspacing="0" border="0" cellpadding="0">	
+		<tbody><tr>
+			<td height="40">
+				<table width="100%" cellspacing="2" cellpadding="0">
+					<tbody><tr>
+						<td class="pageheader">Welcome to eProcurement System</td>
+					</tr>
+					<tr>
+						<td class="page_desc">The eProcurement System enables the Tenderers to download the Tender Schedule free of cost and then submit the bids online through this portal.</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+		<tr>
+			<td class="td_space">&nbsp;</td>
+		</tr>
+		<tr>
+				<td height="25%">
+					<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tbody><tr>
+							<td align="center">
+								<a id="hleproc_dash" target="_blank" rel="noopener noreferrer" href="https://eprocure.gov.in/eprocdashboard/" title="CPPP Dashboard">
+									<img id="eproc_dash" border="0" alt="app-dashboard" src="images/app-dashboard.png">
+								</a>
+								<a id="hleproc_playstore" target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=gov.nic.eproc&amp;hl=en" title="Mobile App">
+									<img id="eproc_playstore" border="0" alt="playstore" src="images/playstore.png">
+								</a>
+								<a id="hleproc_playstore" target="_blank" rel="noopener noreferrer" href="https://itunes.apple.com/in/app/gepnic/id1330902501?mt=8" title="Mobile App">
+									<img id="eproc_playstore" border="0" alt="playstore" src="images/appstore.png">
+								</a>
+							</td>
+				
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>
+		
+		<tr> 
+			<td height="25">
+				<span id="If_0_20">
+					</span><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+				
+				<tbody><tr> 
+						<td width="31%"><img height="27" src="images/latestenders_title.png" alt="Latest Tenders" width="159">
+						</td><td width="69%" height="10">&nbsp;</td>
+					</tr>
+					<tr> 
+						<td valign="top" colspan="2">
+							<table width="100%" cellspacing="0" cellpadding="0" border="0" class="list_table">
+								<tbody><tr> 
+									<td>
+										<span id="If_18">
+											   			</span><table cellspacing="0" cellpadding="0" width="100%" border="0">
+											<tbody><tr class="list_header"> 
+												<td align="left" width="30%">Tender Title</td>
+												<td align="left" width="20%">Reference No</td>
+												<td align="left" width="25%">Closing Date</td>
+												<td align="left" width="25%">Bid Opening Date</td>
+											</tr>
+											<tr>
+												<td colspan="4" width="100%">
+													<div id="marqueecontainer" onmouseover="copySpeed=pauseSpeed" onmouseout="copySpeed=marqueeSpeed" style="width:560px;"> 
+														<div id="vmarquee" style="left: 4px; position: absolute; top: -4px; width: 560px;"> 
+															<span id="If_17">
+																
+
+<table border="0" width="100%" id="activeTenders" cellspacing="0" cellpadding="0">
+	
+																	
+
+
+	<tbody><tr class="even" id="informal">
+		 
+																		<td width="30%"><a id="DirectLink" class="link2" href="/eprocure/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=Sb98hUIVhBZ0vkuGpItAbVw%3D%3D">1. EE (EMS)/SZ,CNZ,WZ/25-26/806-003</a></td>
+																		<td width="20%">EE (EMS)/SZ,CNZ,WZ/25-26/806-003	</td>
+																		<td width="25%">06-Mar-2026 03:00 PM</td>
+																		<td width="25%">06-Mar-2026 03:05 PM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_0">
+		 
+																		<td width="30%"><a id="DirectLink_0" class="link2" href="/eprocure/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SMX9hF32sE4Q5alUUBCHUDA%3D%3D">2. Request for empanelment (RFE) is invited from chartered accountant firms for empanelment of professional consultant for income tax and related services.</a></td>
+																		<td width="20%">LKITC-01</td>
+																		<td width="25%">25-Mar-2026 03:00 PM</td>
+																		<td width="25%">26-Mar-2026 03:00 PM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_1">
+		 
+																		<td width="30%"><a id="DirectLink_1" class="link2" href="/eprocure/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=StNkTG0ChiIv9VnBNYdFERg%3D%3D">3. Sale of ICC Copper Anode Slime</a></td>
+																		<td width="20%">CO/MKTG/ICC/SLIME/2025-26/01</td>
+																		<td width="25%">10-Mar-2026 03:00 PM</td>
+																		<td width="25%">11-Mar-2026 03:00 PM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_2">
+		 
+																		<td width="30%"><a id="DirectLink_2" class="link2" href="/eprocure/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SYpETCUVeWpbE0Q4IxQBWng%3D%3D">4. Request for proposal for appointment of Insurance Intermediary or Broker for Employee Benefit</a></td>
+																		<td width="20%">HR/Insurance/Intermediary/2026</td>
+																		<td width="25%">17-Mar-2026 03:00 PM</td>
+																		<td width="25%">18-Mar-2026 03:30 PM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_3">
+		 
+																		<td width="30%"><a id="DirectLink_3" class="link2" href="/eprocure/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SkG2cAli3AB%2FyMsdmYeag7w%3D%3D">5. Engagement of user fee collection agency on the basis of CB through etender for Kothiya Fee Plaza in the state of Jharkhand and upkeep/maintenance of adjacent Toilet blocks including recouping the consumable items.</a></td>
+																		<td width="20%">NHAI/13013/547/CO/25-26/CB/ Kothiya</td>
+																		<td width="25%">10-Mar-2026 11:00 AM</td>
+																		<td width="25%">11-Mar-2026 11:30 AM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_4">
+		 
+																		<td width="30%"><a id="DirectLink_4" class="link2" href="/eprocure/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SrgA8WPSrJNaH4XuT7uMHFQ%3D%3D">6. EE (EMS)/SZ,CNZ,WZ/25-26/806-002</a></td>
+																		<td width="20%">EE (EMS)/SZ,CNZ,WZ/25-26/806-002</td>
+																		<td width="25%">06-Mar-2026 03:00 PM</td>
+																		<td width="25%">06-Mar-2026 03:05 PM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_5">
+		 
+																		<td width="30%"><a id="DirectLink_5" class="link2" href="/eprocure/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=Ssd7ORGGrmbLXY9W9%2BkI6AA%3D%3D">7. Engagement of user fee agency on the basis of CB through eTender Hirapur Fee Plaza in the state of Maharashtra and upkeep/maintenance of adjacent Toilet blocks including recouping the consumable items.</a></td>
+																		<td width="20%">NHAI/13013/547/CO/25-26/CB/ Hirapur</td>
+																		<td width="25%">10-Mar-2026 11:00 AM</td>
+																		<td width="25%">11-Mar-2026 11:30 AM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_6">
+		 
+																		<td width="30%"><a id="DirectLink_6" class="link2" href="/eprocure/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SUjKovHqOtLR13qOAlsj77A%3D%3D">8. Engagement of user fee agency through EQ for Borvihir FP at 4 n 6 laning of Bodhre to Dhule sec from km. 390.000 to km. 457.231 in Maharashtra</a></td>
+																		<td width="20%">NHAI/13013/547/CO/25-26/ EQ/Borvihir FP</td>
+																		<td width="25%">03-Mar-2026 11:00 AM</td>
+																		<td width="25%">05-Mar-2026 11:30 AM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_7">
+		 
+																		<td width="30%"><a id="DirectLink_7" class="link2" href="/eprocure/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=S390D4GVFo0Zo4KRgpt%2FQNw%3D%3D">9. EE (EMS)/SZ,CNZ,WZ/25-26/806-001</a></td>
+																		<td width="20%">EE (EMS)/SZ,CNZ,WZ/25-26/806-001</td>
+																		<td width="25%">06-Mar-2026 03:00 PM</td>
+																		<td width="25%">06-Mar-2026 03:05 PM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_8">
+		 
+																		<td width="30%"><a id="DirectLink_8" class="link2" href="/eprocure/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SEAYZAz7XjS3nMdSNNazv8A%3D%3D">10. Engagement of user fee collection agency on the basis of CB through etender at Dilawarpur FP at km 654.000 for the section from Kalyan to Nirmal Section of National Highway Number 222 in Telangana</a></td>
+																		<td width="20%">NHAI/13013/547/CO/25-26/CB /Dilawarpur FP</td>
+																		<td width="25%">10-Mar-2026 11:00 AM</td>
+																		<td width="25%">11-Mar-2026 11:30 AM</td>
+																	
+	</tr>
+
+
+
+																
+</tbody></table>
+
+
+															
+															</span>
+															
+															
+														</div>
+													</div>
+												</td>
+											</tr>
+																		
+
+											
+												<tr class="list_header">
+											   		<td class="link2" colspan="3"><span class="Clickhere" style="display: block;">  Latest Tenders updates every 15 mins.</span></td>
+											   		<td>&nbsp;&nbsp;&nbsp;<a id="PageLink_13" title="More Tenders" class="Clickhere" href="/eprocure/app?page=FrontEndLatestActiveTenders&amp;service=page" style="display: block;">More...</a></td>
+											   		
+											   		
+											 	</tr>
+											
+											
+										</tbody></table>
+								
+									</td>
+								</tr>
+								
+							</tbody></table>
+						</td>
+						
+					</tr>
+					<tr> 
+						<td valign="top" colspan="2" height="27">&nbsp;</td>
+					</tr>
+					<tr> 
+						<td valign="top" colspan="2" height="27"><img height="27" src="images/latestcorrigendums_title.png" alt="Latest Corrigendums" width="209"></td>
+					</tr>
+					<tr> 
+						<td valign="top" colspan="2"> 
+							<table width="100%" cellspacing="0" cellpadding="0" border="0" class="list_table">
+								<tbody><tr> 
+									<td>
+										<span id="If_20">
+											   			</span><table cellspacing="0" cellpadding="0" width="100%" border="0">
+											<tbody><tr class="list_header"> 
+												<td align="left" width="30%">Corrigendum Title</td>
+												<td align="left" width="20%">Reference No</td>
+												<td align="left" width="25%">Closing Date</td>
+												<td align="left" width="25%">Bid Opening Date</td>
+											</tr>
+											<tr>
+												<td colspan="4" width="100%">
+													<div id="marqueecontainer1" onmouseover="copySpeed1=pauseSpeed1" onmouseout="copySpeed1=marqueeSpeed1" style="width:560px;"> 
+														<div id="vmarquee1" style="left: 4px; position: absolute; top: -4px; width: 560px;"> 
+															<span id="If_19">
+																
+
+<table border="0" width="100%" id="activeCorrigendums" cellspacing="0" cellpadding="0">
+	
+																	
+
+
+	<tbody><tr class="even" id="informal_9">
+		 
+																		<td width="30%"><a id="DirectLink_9" class="link2" href="/eprocure/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SfrDpgcsXqtZQgt7UOhbtWQ%3D%3D">1. Reply_to_Bidders_Queries_02</a></td>
+																		<td width="20%">MNGL/CP/2025-26/135</td>
+																		<td width="25%">27-Feb-2026 03:00 PM</td>
+																		<td width="25%">02-Mar-2026 10:00 AM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_10">
+		 
+																		<td width="30%"><a id="DirectLink_10" class="link2" href="/eprocure/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SHsBFATY5NeBSJrxYAT0%2FFQ%3D%3D">2. Corrigendum 10</a></td>
+																		<td width="20%">NIT No- 304/RO-PATNA/NHAI/2025-26</td>
+																		<td width="25%">02-Mar-2026 12:00 PM</td>
+																		<td width="25%">03-Mar-2026 12:30 PM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_11">
+		 
+																		<td width="30%"><a id="DirectLink_11" class="link2" href="/eprocure/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SgqzUa5kQ9UqybXQZTA4rlg%3D%3D">3. Corrigendum 9</a></td>
+																		<td width="20%">NIT No- 300/RO-PATNA/NHAI/2025-26</td>
+																		<td width="25%">02-Mar-2026 12:00 PM</td>
+																		<td width="25%">03-Mar-2026 12:30 PM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_12">
+		 
+																		<td width="30%"><a id="DirectLink_12" class="link2" href="/eprocure/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=Sio1i77o58r4VrMOoMWCJ8g%3D%3D">4. Date extension Corrigendum dated 25.02.2026</a></td>
+																		<td width="20%">zw4pc26001</td>
+																		<td width="25%">09-Mar-2026 03:00 PM</td>
+																		<td width="25%">10-Mar-2026 03:30 PM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_13">
+		 
+																		<td width="30%"><a id="DirectLink_13" class="link2" href="/eprocure/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SVsdFAQGTmZ5ZTyT%2F4Yh5Og%3D%3D">5. PREBID MEETING</a></td>
+																		<td width="20%">HLL/CMO/HCD/AIIMS/AP/25-26</td>
+																		<td width="25%">27-Feb-2026 03:00 PM</td>
+																		<td width="25%">02-Mar-2026 03:00 PM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_14">
+		 
+																		<td width="30%"><a id="DirectLink_14" class="link2" href="/eprocure/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=S%2BZ4XnQcoeAsjGKT1jZYmVw%3D%3D">6. Corrigendum 2</a></td>
+																		<td width="20%">6725/4/EOI/1761/EO</td>
+																		<td width="25%">13-Mar-2026 02:00 PM</td>
+																		<td width="25%">13-Mar-2026 02:30 PM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_15">
+		 
+																		<td width="30%"><a id="DirectLink_15" class="link2" href="/eprocure/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SVsYo7%2Fb7D0xzyomRdJrtjA%3D%3D">7. Bid Auto Extn Corrigendum</a></td>
+																		<td width="20%">AAI/IXM/CSO/010(D)/2025/01</td>
+																		<td width="25%">04-Mar-2026 10:00 AM</td>
+																		<td width="25%">05-Mar-2026 10:00 AM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_16">
+		 
+																		<td width="30%"><a id="DirectLink_16" class="link2" href="/eprocure/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=Stt37k0SUv3HNltYBVcRQ7Q%3D%3D">8. Corrigendum 6</a></td>
+																		<td width="20%">TCIL/DCCS/NIT/318/2025</td>
+																		<td width="25%">27-Feb-2026 11:00 AM</td>
+																		<td width="25%">27-Feb-2026 12:00 PM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_17">
+		 
+																		<td width="30%"><a id="DirectLink_17" class="link2" href="/eprocure/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SBE6VY1B%2Fq8FKq8dCDscihg%3D%3D">9. Corrigendum01</a></td>
+																		<td width="20%">IRCON/B1100009/MSME/EC/M and P/PH-1/GR-F/3D Printers/ET41</td>
+																		<td width="25%">05-Mar-2026 03:00 PM</td>
+																		<td width="25%">06-Mar-2026 03:00 PM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_18">
+		 
+																		<td width="30%"><a id="DirectLink_18" class="link2" href="/eprocure/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=S0aQLs68AT1V4QsFF5p89SQ%3D%3D">10. Corrigendum01</a></td>
+																		<td width="20%">IRCON/B1100009/MSME/EC/M and P/PH-1/GR-G/Electrical/ ET42</td>
+																		<td width="25%">05-Mar-2026 03:00 PM</td>
+																		<td width="25%">06-Mar-2026 03:00 PM</td>
+																	
+	</tr>
+
+
+
+																	
+																
+</tbody></table>
+
+
+															</span>
+															
+														</div>
+													</div>
+												</td>
+											</tr>
+										
+											  
+											   
+												<tr class="list_header">
+											   		<td class="link2" colspan="3">&nbsp; <span class="Clickhere" style="display: block;">  Latest Corrigendum updates every 15 mins.</span></td>
+											   		<td>&nbsp;&nbsp;&nbsp;<a id="PageLink_14" title="More Corrigendums" class="Clickhere" href="/eprocure/app?page=FrontEndLatestActiveCorrigendums&amp;service=page" style="display: block;">More...</a></td>
+											   		
+											   		
+											 	</tr>
+
+											 	
+											 	
+										</tbody></table>
+									</td>
+								</tr>
+								
+							</tbody></table>
+						</td>
+					</tr>
+					
+					
+					
+					
+				</tbody></table>
+				
+			</td>
+		</tr>
+		<tr>
+			<td class="td_space">&nbsp;</td>
+		</tr>
+		<tr> 
+			<td align="center" colspan="2" valign="bottom">
+				<table width="100%" cellspacing="0" cellpadding="0" border="0" class="list_table">
+					<tbody><tr class="list_header">
+						<td>Certifying Agency</td>
+					</tr>
+					<tr> 
+						<td align="center">
+							<table cellspacing="2" cellpadding="2" border="0">
+								<tbody><tr>
+									<td>
+										<a id="DirectLink_19" href="/eprocure/app?component=%24DirectLink_3&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SSecurity_Audit_Report.pdf">	
+											<img src="images/security_cert.png" width="47" height="48" alt="STQC Logo" title="Security Audit Certificate">
+										</a>
+									</td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+	</tbody></table>
+	<!-- End of Page Content -->
+
+						<!-- Page content ends here -->	
+						</td>
+						<td width="215" class="navigation" valign="top">
+							<span id="If_22">
+									</span><table cellspacing="0" cellpadding="0">								
+								<tbody><tr>
+									<td width="215">	<form method="post" action="/eprocure/app" id="WebRightMenu_0" autocomplete="off">
+<div style="display:none;" id="WebRightMenu_0hidden"><input type="hidden" name="formids" value="">
+<input type="hidden" name="seedids" value="ZH4sIAAAAAAAAAF2PTU7DMBCF2wU38dKL2FDaLgm/lQpCoVKXkUkmiUViW7bbqpyJcyAuwx0YxwECm/i9edE3894+Jyevk8n0Y/pOHdi9LIAk1Ig6PIXujFagfK+VF1KBRe3AOalVUAY/W3i+0x2k2pZ9vFJI8mS5oE8NtC1OLtSRzGiqy2P8faNNKlSEtVK9MExXFeGc3mhL+BxNnhDO6HXrIIwjMmeEnX1rHnSDe9cIQM4j3hxkfj4287jwQfvY7CdYxGANlb8HtUN3C3iQLP7hCJuNEzzrlGagsGlfh1NReLmHTT9yhP3xmT44ZEk/SGwkVaVtJ1rClvRghTFQBnklLRS+X8iTgXGprZU1gnbdL3g0HOjYIpN1E2uwL2AZuB3RAQAA">
+<input type="hidden" name="component" value="$WebHomeBorder.$WebRightMenu.WebRightMenu">
+<input type="hidden" name="page" value="Home">
+<input type="hidden" name="service" value="direct">
+<input type="hidden" name="session" value="T">
+<input type="hidden" name="submitmode" value="">
+<input type="hidden" name="submitname" value="">
+</div>
+		<table width="214" border="0" align="center" cellpadding="0" cellspacing="0">			
+			<tbody><tr> 
+				<td>
+					<table width="210" height="100" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tbody><tr> 
+							<td valign="top">
+								<table width="210" border="0" align="center" cellpadding="5" cellspacing="5">
+		     						<tbody><tr> 
+										<td align="left">
+											<a id="login" style="display: block;" title="Login" value="Login" href="/eprocure/app?component=%24WebHomeBorder.%24WebRightMenu.login&amp;page=Home&amp;service=direct&amp;session=T"><img src="images/home_login_button_2.png" align="absmiddle" border="0"></a>											
+											<noscript>
+												<a href="" title="Login" ><img src="images/home_login_button_2.png" align="absmiddle" border="0"> </a>     								
+											</noscript>
+											<noscript> 
+		                                       <p align="justify" style="color:red;">Your browser JavaScript has been disabled. Kindly enable script for further process.</p>
+		     								</noscript>	
+										</td>
+									</tr>									
+									<tr> 
+										<td align="left">
+											<a id="DirectLink_20" style="display: block;" class="Clickhere" href="/eprocure/app?component=%24WebHomeBorder.%24WebRightMenu.%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T"> &nbsp; Online Bidder Enrollment</a>
+											<noscript> <span  class="Clickhere"  title="Online Bidder Enrollment" style="color: #a03901;">&nbsp; Online Bidder Enrollment</span></noscript>	
+										</td>
+									</tr>							
+									<tr> 
+										<td align="left">
+											<a id="DirectLink_21" onclick="return openPopUp(this, 'location=no, scrollbars=yes, toolbar=no, width=1004, height=750, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');" style="display: block;" title="Generate / Forgot Password" class="Clickhere" href="/eprocure/app?component=%24WebHomeBorder.%24WebRightMenu.%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T">&nbsp; Generate / Forgot Password?</a>
+											<noscript><span  class="Clickhere"  title="Generate / Forgot Password" style="color: #a03901;">&nbsp; Generate / Forgot Password?</span></noscript>
+										</td>
+									</tr>									
+									<tr> 
+										<td align="left">										
+											<a id="DirectLink_22" title="Find My Nodal Officer" class="Clickhere" href="/eprocure/app?component=%24WebHomeBorder.%24WebRightMenu.%24DirectLink_1&amp;page=Home&amp;service=direct&amp;session=T" style="display: block;">&nbsp; Find My Nodal Officer</a>
+										</td>
+									</tr>												  		 		  
+								</tbody></table>
+							</td>
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>  
+		</tbody></table>
+	</form>
+	<script> 
+		document.getElementById("login").style.display='block';
+		var all = document.getElementsByClassName("Clickhere");
+		for (var i = 0; i < all.length; i++) {
+			all[i].style.display = 'block';
+	    } 
+    </script>
+	
+
+	
+	</td> 
+								</tr>
+								<tr>
+										<td class="page_notes">Search with ID/Title/Reference no </td>
+									</tr>
+									<tr>
+										<td width="215"><form method="post" action="/eprocure/app" id="tenderSearch">
+<div style="display:none;" id="tenderSearchhidden"><input type="hidden" name="formids" value="If_24,SearchDescription,Go">
+<input type="hidden" name="seedids" value="ZH4sIAAAAAAAAAF2Qz04CMRDG4eCb9NgDLSJwFP+SoDFA4pHU3dndxt2ZTVsg+Ey+mjG+gbPbVcFL+30zzW/m6/tH7+yt1+t/9T+lB7ezCYiBrE3eXAlVNSFgaDUGYxEcaw/eW8JG1Xw8w8s9VTAjl7btOTIpiOlErgooS65c4kGM5IzSQ3y+pnpmMMJKi6+Ku/NM6KG8JSf0mM1mILSSN6UHoXWH3Cihzn+0bnTBcxcMYM4T79zIzcWxGceBjxRist/GJDYWkIUHwC27O+CFbPIPJ9TouMNrDeUSkJO2cbQ0SbA7WLclL9SJX9LeM8uGTnIiixm5ypRCTeXembqGtJHX1kES2oH8C5FxRc7ZnEHb6g98VOzonGJp8yLGULKk3GL3ze0SKzAuKbgSTuw3wBo9PfoBAAA=">
+<input type="hidden" name="component" value="$WebHomeBorder.$WebTenderSearch.tenderSearch">
+<input type="hidden" name="page" value="Home">
+<input type="hidden" name="service" value="direct">
+<input type="hidden" name="session" value="T">
+<input type="hidden" name="submitmode" value="">
+<input type="hidden" name="submitname" value="">
+<input type="hidden" name="If_24" value="F">
+</div>
+<table width="210" height="90" border="0" align="center" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td>&nbsp;</td>
+	</tr>
+	<tr align="left">
+		
+	</tr>
+	<tr> 
+	  <td height="90" valign="top">
+	  <table width="213" height="90" border="0" align="center" cellpadding="0" cellspacing="0">
+		  <tbody><tr> 
+			<td valign="top" background="images/tendersearchbg.png">
+			<table width="181" border="0" align="center" cellpadding="2" cellspacing="2">
+				<tbody><tr> 
+				  <td colspan="2" height="25"></td>
+				</tr>
+				<tr> 
+				  <td width="69" class="logintext"><input type="text" name="SearchDescription" value="" id="SearchDescription" autocomplete="off" class="textbox2"></td>
+				  <td width="98"><div align="center"><input type="submit" name="Go" id="Go" border="0" autocomplete="off" title="Min. 3 chars. required for Tender Ref.no/Tender ID/Title" value="Go" class="customButton"></div></td>
+				</tr>				
+				<tr> 
+				 <td height="29" colspan="2" align="left">&nbsp;&nbsp;&nbsp;<a id="PageLink_15" title="Advanced Search" class="brown_link_white" href="/eprocure/app?page=FrontEndAdvancedSearch&amp;service=page"><b>Advanced Search</b></a>
+				  </td>
+				</tr>
+			  </tbody></table></td>
+		  </tr>
+		</tbody></table></td>
+	</tr>
+  </tbody></table>
+</form></td>					
+									</tr>
+								
+								
+								<tr>
+									<td width="215"><table width="214" border="0" align="center" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="top"> 
+		<td colspan="5">
+			<span id="If_25">
+					</span><table width="204" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tbody><tr>																	
+						<td>
+							<div id="secondcol"> 
+								<div id="menu4">
+									<ul>
+										<li id="For_27">
+											
+							             	 <span>
+												<a id="PageLink_16" title="Help For Contractors" href="/eprocure/app?page=HelpForContractors&amp;service=page" target="_self">Help For Contractors</a>																					
+											</span>
+										</li><li id="For_28">
+											
+							             	 <span>
+												<a id="PageLink_17" title="Information About DSC" href="/eprocure/app?page=DSCInfo&amp;service=page" target="_self">Information About DSC</a>																					
+											</span>
+										</li><li id="For_29">
+											<span id="If_0_24">
+								            	<a id="GenericLink_1" rel="noopener noreferrer" href="https://eprocure.gov.in/cppp/hassle_free_bid_submission.pdf" target="_blank">Guidelines for Hassle Free Bid Submission</a>
+							             	 </span>
+							             	 
+										</li><li id="For_30">
+											
+							             	 <span>
+												<a id="PageLink_18" title="FAQ" href="/eprocure/app?page=FAQFrontEnd&amp;service=page" target="_self">FAQ</a>																					
+											</span>
+										</li><li id="For_31">
+											
+							             	 <span>
+												<a id="PageLink_19" title="Feedback" href="/eprocure/app?page=FrontFeedback&amp;service=page" target="_self">Feedback</a>																					
+											</span>
+										</li><li id="For_32">
+											
+							             	 <span>
+												<a id="PageLink_20" title="Bidders Manual Kit" href="/eprocure/app?page=BiddersManualKit&amp;service=page" target="_self">Bidders Manual Kit</a>																					
+											</span>
+										</li>
+									</ul>
+								</div>
+				  			</div>
+						</td>
+					</tr>
+				
+				 <!-- tr> 
+					<td valign="top">
+					<div id="secondcol"> 
+						<div id="menu4"> 
+						  <ul>
+							<li><span jwcid="@PageLink" page="HelpForContractors">Help For Contractors </span></li>
+							<li><span jwcid="@PageLink" page="DSCInfo">Information About DSC</span></li>
+							<li><span jwcid="@PageLink" page="FAQFrontEnd">FAQ</span></li>
+							<li><span jwcid="@PageLink" page="FrontFeedback">Feedback</span></li>
+							<li><span jwcid="@DirectLink" listener="listener:showHelpForResources" >Resources Required</span></li>
+							<li><span jwcid="@PageLink" page="BiddersManualKit">Bidders Manual Kit</span></li>
+							</ul>
+						</div>
+					  </div>
+					</td>
+				  </tr-->
+			</tbody></table>
+		</td>
+	</tr>
+</tbody></table></td>					
+								</tr>
+							</tbody></table>
+						</td>						
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+		<tr>
+			<td valign="bottom" height="40">
+				<table width="100%" cellspacing="0" cellpadding="0">
+	 <tbody><tr style="background-color:#E8E8E8;"> 
+	 <td height="25" class="text2" align="center"><b>Visitor No:9843712</b></td>
+		
+	  </tr>
+	 <tr style="background-color:#E8E8E8;"> 
+	
+		<td height="25" class="text2" align="center">Contents owned and maintained by concerned Departments in coordination with Finance Department and Information Technology Department, Government of India		  
+		 </td>
+	  </tr>
+	  <tr valign="top" class="secondaryBg"> 
+		<td>
+			<table width="100%" height="22" border="0" cellpadding="1" cellspacing="1">
+
+				
+				<tbody><tr class="footer">
+					<td width="40%" valign="top" align="left">Designed, Developed and Hosted by<br>  <a href="http://www.nic.in" target="_blank" rel="noopener noreferrer" class="footerlink">National Informatics Centre</a></td>
+					<td width="40%" align="left">
+						 Version : 1.09.23 23-Oct-2025<br>
+						(c) 2017 Tenders NIC, All rights reserved.<br>Site best viewed with a screen resolution 1920 x 1080.</td>					
+					<td width="20%" valign="top" align="right"><a id="PageLink_21" class="footerlink" href="/eprocure/app?page=Disclaimer&amp;service=page">Portal policies</a></td>
+				</tr>
+			</tbody></table>
+		</td>
+	  </tr>
+</tbody></table>
+			</td>
+		</tr>
+	</tbody></table>
+<script type="text/javascript"><!--
+tapestry.addOnLoad(function(e) {
+dojo.require("tapestry.form");tapestry.form.registerForm("WebRightMenu_0");
+
+tapestry.form.registerForm("tenderSearch");
+
+tapestry.form.focusField('SearchDescription');});
+// --></script>
+
+</body></html>

@@ -1,0 +1,1183 @@
+<html><head>
+	<base target="_self">
+	<title>Government eProcurement System</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"><title>eProcurement System</title><script type="text/javascript">djConfig = {"baseRelativePath":"/eprocure/app?service=asset&path=%2Fgep%2F","preventBackButtonFix":false,"parseWidgets":false} </script><script type="text/javascript" src="/eprocure/app?service=asset&amp;path=%2Fgep%2Fgep.js"></script></head>
+<!-- BEGIN: HEADER -->
+
+
+
+
+
+
+
+<body onload="MM_preloadImages('images/homeb.png','images/contactb.png','images/sitemapb.png')" onunload="" onpageshow="if (event.persisted) noBack();" ondragstart="return false;" id="Body"><iframe style="border: 0px; width: 1px; height: 1px; position: absolute; bottom: 0px; right: 0px; visibility: visible;" name="djhistory" id="djhistory" src="/eprocure/app?service=asset&amp;path=%2Fgep%2Fiframe_history.html"></iframe><script type="text/javascript" src="/eprocure/app?service=asset&amp;path=%2Fgep%2Fgep2.js"></script>
+<script type="text/javascript">
+dojo.registerModulePath("tapestry", "/eprocure/app?service=asset&path=%2Ftapestry%2F");
+</script>
+<script type="text/javascript" src="/eprocure/app?service=asset&amp;path=%2Ftapestry%2Fcore.js"></script>
+<script type="text/javascript">
+dojo.require("tapestry.namespace");
+tapestry.requestEncoding='UTF-8';
+</script>
+<link rel="stylesheet" type="text/css" href="/eprocure/css/nicgep_web_style.css">
+
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<noscript>
+	<meta http-equiv="Refresh" content="2;url=https://etenders.gov.in/eprocure/app?page=ErrorNotice&amp;service=page" id="Any"></meta> 
+</noscript>
+<link href="includes/dialog/dialog_box.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="images/nation.ico">
+<link href="includes/dialog/nicgep_color_theme.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- Javascript -->
+<script language="JavaScript" type="text/JavaScript" src="includes/evaluator.js"></script>
+<script language="javascript" src="includes/MessageDigest.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="includes/dialog/dialog_box.js"></script>
+<!-- End -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+	function MM_swapImgRestore() { //v3.0
+	  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+	}
+	
+	function MM_preloadImages() { //v3.0
+	  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+	    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+	    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+	}
+	
+	function MM_findObj(n, d) { //v4.01
+	  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+	    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+	  if(!x && d.getElementById) x=d.getElementById(n); return x;
+	}
+	
+	function MM_swapImage() { //v3.0
+	  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+	   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+	}
+//-->
+</script>
+
+
+
+
+
+<script type="text/javascript"><!--
+dojo.require("tapestry.event");
+// --></script>
+	
+	<script type="text/javascript">
+
+	if(navigator.appName == 'Microsoft Internet Explorer')
+	{
+	document.onkeydown = fnCheckKeysMIE;
+	}
+	else if(navigator.appName == 'Netscape')
+	{
+	document.onkeydown = fnCheckKeysNMF;
+	}
+	
+	function fnCheckKeysNMF(event)
+	{
+	
+	var e=event? event : window.event;
+	var event_element=e.target? e.target : e.srcElement;
+	
+	if (event.ctrlKey && (event.keyCode==78 || event.keyCode==84 || event.which==78 || event.which==84))
+	{
+	return false;
+	}
+	
+	if (event.altKey && (event.keyCode==37 || event.which==37))
+	{
+	return false;
+	}
+	
+	if (event.keyCode==8 && (event_element.tagName != 'INPUT' && event_element.tagName != 'TEXTAREA'))
+	{
+	return false;
+	}
+	
+	}
+	
+	function fnCheckKeysMIE()
+	{
+	
+	var e=event? event : window.event;
+	var event_element=e.target? e.target : e.srcElement;
+	
+	if (event.ctrlKey && (event.keyCode==78 || event.keyCode==84 || event.which==78 || event.which==84))
+	{
+	return false;
+	}
+	
+	if (event.altKey && (event.keyCode==37 || event.which==37))
+	{
+	return false;
+	}
+	
+	if (event.keyCode==8 && (event_element.tagName != 'INPUT' && event_element.tagName != 'TEXTAREA'))
+	{
+	return false;
+	}
+	
+	}
+
+	window.history.forward();
+	function noBack(){ window.history.forward(); }
+	
+	</script>
+		
+	<div id="content">
+		<table width="1004" height="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+			<tbody><tr>
+				<td valign="top" height="40">
+					<table width="1000" border="0" align="center" cellspacing="0" cellpadding="0">
+    <tbody><tr> 
+    <td>
+		<table width="100%" height="22" border="0" cellpadding="0" cellspacing="0" id="Menu">
+		 <tbody><tr><td width="210" height="22" align="right" class="date topBannerGradient"><a id="link1" name="link1" class="Menu" href="/eprocure/app?page=WebScreenReaderAccess&amp;service=page">Screen Reader Access</a>
+				
+		  </td>
+		</tr></tbody></table>
+		</td>
+		</tr>
+   <tr> 
+    <td width="1005"><img border="0" width="1005" alt="Logo" src="images/topban.png" usemap="#Map" height="83" id="Any_0"></td>
+  </tr>		
+  <tr>
+    <td height="1" class="topBannerLine"></td>
+  </tr>
+
+  <tr> 
+    <td>
+		<table width="100%" height="22" border="0" cellpadding="0" cellspacing="0" id="Menu">
+        <tbody><tr> 
+          <td width="210" height="22" align="center" class="date primaryBg">
+				25-Feb-2026 
+		  </td>
+          <td align="center" class="secondaryBg">
+	           <span id="If">
+					<span id="For">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Search" class="Menu" href="/eprocure/app?page=FrontEndAdvancedSearch&amp;service=page" target="_self">Search</a>
+						</span>
+						<span class="divider1" id="Insert_2">|</span>
+					</span><span id="For_0">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Active Tenders" class="Menu" href="/eprocure/app?page=FrontEndLatestActiveTenders&amp;service=page" target="_self">Active Tenders</a>
+						</span>
+						<span class="divider1" id="Insert_2_0">|</span>
+					</span><span id="For_1">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Tenders by Closing Date" class="Menu" href="/eprocure/app?page=FrontEndListTendersbyDate&amp;service=page" target="_self">Tenders by Closing Date</a>
+						</span>
+						<span class="divider1" id="Insert_2_1">|</span>
+					</span><span id="For_2">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Corrigendum" class="Menu" href="/eprocure/app?page=FrontEndLatestActiveCorrigendums&amp;service=page" target="_self">Corrigendum</a>
+						</span>
+						<span class="divider1" id="Insert_2_2">|</span>
+					</span><span id="For_3">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Results of Tenders" class="Menu" href="/eprocure/app?page=ResultOfTenders&amp;service=page" target="_self">Results of Tenders</a>
+						</span>
+						
+					</span>
+	          </span>
+	          
+          </td>
+          <td width="215" valign="middle" class="primaryBg">
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tbody><tr> 
+                <td width="28%"><div align="center"><a id="homeLink" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image4','','images/homeb.png',1)" page="Home" href="/eprocure/app?service=restart"><img src="images/homea.png" alt="Home" name="Image4" width="47" height="18" border="0"></a></div></td>
+                <td width="40%"><div align="center"><a id="PageLink_6" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image5','','images/contactb.png',1)" href="/eprocure/app?page=FrontEndContactUs&amp;service=page"><img src="images/contacta.png" alt="Contact Us" name="Image5" width="78" height="18" border="0"></a></div></td>
+                <td width="32%"><div align="center"><a id="PageLink_7" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image6','','images/sitemapb.png',1)" href="/eprocure/app?page=SiteMap&amp;service=page"><img src="images/sitemapa.png" alt="Sitemap" name="Image6" width="63" height="18" border="0"></a></div></td>                 
+              </tr>
+            </tbody></table></td>
+        </tr>
+      </tbody></table></td>
+  </tr>
+  <tr>
+	<td>
+		<table width="100%" cellspacing="0" cellpadding="0">
+	<tbody><tr>
+		<td class="notice" width="20" align="right"><img src="images/notice.png" width="15" height="16" alt="Notices"> </td>
+		<td class="notice_strip">
+			<marquee align="left" id="gepNotice" onmouseover="this.stop();" onmouseout="this.start();" scrolldelay="200">
+				
+				<span>
+					Government eProcurement System
+				</span>
+			</marquee>
+		</td>
+	</tr>
+</tbody></table>
+	</td>
+  </tr>
+</tbody></table>
+<map name="Map">
+  <a id="PageLink_8" shape="circle" coords="43,43,37" href="/eprocure/app?page=Home&amp;service=page"></a>
+</map>
+
+				</td>
+			</tr>
+			<tr>
+				<td valign="top">
+					<table width="100%" height="100%" cellspacing="0" cellpadding="0" border="0">
+						<tbody><tr>
+
+							<td width="214" class="navigation"><script language="javascript">
+
+	// Script to view document in popup
+	function popup(mylink, windowname)
+	{
+		if (! window.focus)return true;
+		var href;
+		if (typeof(mylink) == 'string')
+	 		href=mylink;
+		else
+			href=mylink.href;
+			window.open(href, "Popup", 'location=no, scrollbars=yes, toolbar=no, width=700, height=550, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');
+			return false;   
+	}
+
+</script>
+
+<table width="100%" height="100%" cellspacing="0" cellpadding="0" class="left_nav">	
+	
+	<tbody><tr> 
+         <td height="10"></td>
+     </tr>
+     	
+	<tr>
+		<td valign="top">
+			<span id="If_2">
+					</span><span id="If_0_4">
+							<span id="If_3">
+			             		</span></span><span id="If_0_5">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_6">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_7">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_8">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_9">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_10">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_11">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_12">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_13">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_14">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_15">
+							
+			             	 <span>
+				             	 </span></span><span id="If_15">
+					</span><table width="214" border="0" cellspacing="0" cellpadding="0">
+				<tbody><tr id="For_5">
+						</tr><tr> 
+					             	<td height="37" background="images/textbg.png" align="center"><a id="GenericLink" rel="noopener noreferrer" title="MIS Reports" class="link1" href="https://gepnicreports.gov.in/eprocreports/etenders/" target="_blank">MIS Reports</a></td>
+					             </tr>
+			             	 
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_6">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink" title="Tenders by Location" class="link1" href="/eprocure/app?page=FrontEndTendersByLocation&amp;service=page" target="_self">Tenders by Location</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_7">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_0" title="Tenders by Organisation" class="link1" href="/eprocure/app?page=FrontEndTendersByOrganisation&amp;service=page" target="_self">Tenders by Organisation</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_8">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_1" title="Tenders by Classification" class="link1" href="/eprocure/app?page=FrontEndTendersByClassification&amp;service=page" target="_self">Tenders by Classification</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_9">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_2" title="Tenders in Archive" class="link1" href="/eprocure/app?page=FrontEndTendersInArchive&amp;service=page" target="_self">Tenders in Archive</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_10">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_3" title="Tenders Status" class="link1" href="/eprocure/app?page=WebTenderStatusLists&amp;service=page" target="_self">Tenders Status</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_11">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_4" title="Cancelled/Retendered" class="link1" href="/eprocure/app?page=WebCancelledTenderLists&amp;service=page" target="_self">Cancelled/Retendered</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_12">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_5" title="Downloads" class="link1" href="/eprocure/app?page=StandardBiddingDocuments&amp;service=page" target="_self">Downloads</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_13">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_9" title="D" class="link1" href="/eprocure/app?page=FrontEndDebarmentList&amp;service=page" target="_self">Debarment List</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_14">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_10" title="Announcements" class="link1" href="/eprocure/app?page=WebAnnouncements&amp;service=page" target="_self">Announcements</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_15">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_11" title="Awards" class="link1" href="/eprocure/app?page=WebAwards&amp;service=page" target="_self">Awards</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_16">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_12" title="Site compatibility" class="link1" href="/eprocure/app?page=SiteComp&amp;service=page" target="_self">Site compatibility</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_17">
+						
+					</tr><tr id="For_18">
+						
+					</tr><tr id="For_19">
+						
+					</tr><tr id="For_20">
+						
+					</tr>
+					
+					<tr> 
+		                <td height="10"></td>
+		             </tr>
+				
+				
+				<tr> 
+	               		<td height="30" align="center">
+							<table width="160" height="114" border="0" align="center" cellpadding="0" cellspacing="0">
+								<tbody><tr id="For_22"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0" rel="noopener noreferrer" title="link" href="https://gepnic.gov.in" target="_blank"><img border="0" width="160" src="images/Gepnic Logo.png" height="34" id="Any_1"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 <tr id="For_23"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0_0" rel="noopener noreferrer" title="National Portal of India - External Link that open in a new window" href="http://india.gov.in" target="_blank"><img border="0" width="160" src="images/indiagovin.png" height="34" id="Any_2"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 <tr id="For_24"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0_1" rel="noopener noreferrer" title="Government e-Marketing of India - External link that opens in a new window" href="https://gem.gov.in" target="_blank"><img border="0" width="160" src="images/gem.png" height="34" id="Any_3"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 <tr id="For_25"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0_2" rel="noopener noreferrer" title="Central Public Procurement Portal - External Link that opens in a new Window" href="http://eprocure.gov.in/cppp" target="_blank"><img border="0" width="160" src="images/cppp-img.png" height="34" id="Any_4"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 
+							</tbody></table>
+				 		</td>
+	             	</tr>					
+					
+				
+				<tr> 
+					<td height="30" align="center">&nbsp;</td>
+			  	</tr>							
+			  	
+			</tbody></table>
+		</td>
+	</tr>
+	
+</tbody></table></td>
+							<td class="page_content" valign="top">
+							<!-- Page content starts here -->
+								
+	<table width="100%" height="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tbody><tr> 
+			<td valign="top" class="page_content">
+				<!-- interface_elements -->				
+				<div style="display:none;" id="ListTendersbyDatehidden"><input type="hidden" name="formids" value="tokenSecret,typeSearch,tabByClosingToday,LinkSubmit_0,LinkSubmit_1,LinkSubmit_2,If_17,If_0_21,If_19,If_21,iterRows_0,If_23,iterPage_0,condCurrent_0,condCurrent_2,condCurrent_4,condCurrent_6,condCurrent_8,condCurrent_10,condCurrent_12">
+<input type="hidden" name="seedids" value="ZH4sIAAAAAAAAAF1PSQ7CMAwsB36SYw5NWa9ULEIqCAESx6otBiKKXTUBqbyJr/EH3AYQ4hLPeOLx+PH02nfPa01bY2mgvOkMhC+L5FiXjC4FIaBtMNpEI5SMDRijCWtU8LODNKRy30hzZBcrVF9uTpDn3BlhJXoypH3lvm6pCBN0RrnGs2J1fqgnplSKYMAk9kXgy0luQKjh2zJWovuBAcMTXSDicXZZcdoaxv1fMnDrlmTdTV9h6IQIDnYBeGU2A46jsz87oTq/CofqyDUg3/k+JtLGbpuGSatxYnnLC73AIUZPAQAA">
+<input type="hidden" name="component" value="ListTendersbyDate">
+<input type="hidden" name="page" value="FrontEndListTendersbyDate">
+<input type="hidden" name="service" value="direct">
+<input type="hidden" name="session" value="T">
+<input type="hidden" name="submitmode" value="">
+<input type="hidden" name="submitname" value="">
+<input type="hidden" name="tokenSecret" id="tokenSecret" value="SXCY6v2MvFKFlkWFZr2oSU/SazCiX+0U1dTt0u8osc07kiYHvzDrgUfmgLCN/CPrO">
+<input type="hidden" name="If_17" value="F">
+<input type="hidden" name="If_0_21" value="F">
+<input type="hidden" name="If_19" value="T">
+<input type="hidden" name="If_21" value="T">
+<input type="hidden" name="iterRows_0" value="VZH4sIAAAAAAAAAH1TMW8TMRh101ZCpJRSWJEssVCpuVwiGqIyNUlbpbqEqqkYEFLl3H29mN7Zh+2kRapQWWDoUAZADAwMjN2Q+gOYYWRDAiFWuiIBA5+TVE0Accv5nj+/9773+Q6/kXGtiBPKjiO474SQONvQ1NyAA8Jwc9/xmAFtFnzDO7AOIgCln/+aP/j4othKkUmPpP1Iai7CCtYZMu3dZR2WjZgIsw2jEL/hkQlfCqOYb2zNPfKAjHQxpXiIhO1YG3Jx4FxJygiYwINnA0iYMjFa6R9L8cCQqYFiT3Yl0jIB0XfRL00n7WbEdWsAGtVCDmtVhYEQFDKcM93mSkxzvxrYA6MeOdMDe9+Ws/e9Bpt1OQytcxPBMHSLRe0/IqlI9AS2s22ptqoG4r7UTmLIpfxcZgmambybL9Bcft516WotwfFcsASOJXD62bynau/Dyx/HKTJym4x3rNBOQgy5U2oxxQxtMOHjitZ5yGLq8RgHGtCry7JjqNykVRFwRhexd5UormFmd7culWmBEnQdIvBlTGuM475AIqBrEHIp0MnkqZNu8Ptfn7w7uPIJbayc2FBk6rSo3o6boB4dPrucfvp5P0UIurTP2FHF9lv4u1+E3YEY3EIPHk6hP7XpL69ef3/4uIjy1RN5m+YEKoxou0r31M4f4Rgs30apUfc28oW54vXiRs6QTLleL9/M5HLZa242l7UlmfJyjSKczdGA2dTcOcfNO3bLkOO1pVW6KRWtxkkE9l4yg8nYTBcxNqMk/kXUk/4Wbcio3d2z5TXmt7gATbnwo3aAF5VWQPNQzOK7A5FMLBdlIhjK/X+0FaZbTclUQFmEo6Db3LRwsNqwKOqami3LOOZa49Lq/YMbhrl11+piifptbWQMytFDw+xd3r03b1dmtn6OYeiVodAX9sKiTXsw+KPKb+/4z3diBAAA">
+<input type="hidden" name="iterRows_0" value="VZH4sIAAAAAAAAAGVSv08UQRgdDojGQwJoYgWZxAYSdvduyS0XrOAOkyN3F8MRChoydzvsjuzOjLOzC5qLwUYLCiz8FWNhYUnnX4C1lnYmGmOrrYlaOLO3hDvYaufN+773vffN8U8wGglgeiwxKemYHubmHm5HRGITU0nkfbOOJI7kckeSBG9g6mIRvfi3dPTlVdnPgfE6yHcCFhHqVRVPgqn6XZQgK0DUs1pSKPxWHYx1GJUCdaTm3AMPwVCKCUE81TAOIwmu9dWtMBZgRFXhFRdzJGSoRsnKcsSVYKKPXGepRJ5xTLMpMmqex+2ARH4fNBxRNqhVoxJ7WKgOV2VqbgVFpFNzdcFwHVzugb2z7tk7r+OdJhuENogM8CC0iYL4XCRVpmbC2tkeE7s1icNMap9LcN0uGbdx27ALtgMLxaVCAd5pcLWeSd3A1A3MLJtPUBx8fvPnVw4MbYHRRAvt8yEJ1hqxWiPhKIAVJjgTSBJGIduBVRz4pNtdpR6hGOvFQAM2KtVut0ISEsALF0p3/Ew3jfnwx9OPRze/KtG1U1EBJs5IzThsY/H4+Pl0/tm3wxwA+xzob+Rk5qK7Be1Ow4U+uNQzPeg529HU97fvfj96UlbytVN5nd2YUshF+i/fU7vRlWBS99tWNrZtZ7HsLG4XJZheXZ1tzBm1TavV3LIUoWTYjrVRMRYcq7AgwctayAVLsH5uEFFXZZbggPH0rCIUDLkp7gpEKJwtzkEPBQRSBu0ibAvko5DHgkBPsBCuG+UylAyuQ8cqQcXfQ8JNubYzrwpjmbGXK4ZTgi2MgxSALR/587DJhPThA0axGQ2E3HtCB+8/rM3t/h1RYVQHwlheeX1Jp9AfyMnMf6kUfbDoAwAA">
+<input type="hidden" name="iterRows_0" value="VZH4sIAAAAAAAAAG1Rz2sTQRSeJC2IqaWtCl7EBS96yOYHTRrqqU0ipGyKaFDwEiab1820m5l15iWNUKRe9NBDRVQ8eOjBY2/5D3LWozdBEa96FdSDM9ktzUr3tPvte9+P9x3/ILNKEtsTA5sz1/YgsHehrRiCDRwZPrYdiqBwzUU2gCbwDkj15u/q4ee35W6SzDsk7fpCMe5V9RySJWebDmjWp9zL3kOp8VsOmXMFR0ldNDOPyBOSmGBSMk8T9nsKycWpvXUhfKBcL57vQEAl9rSVaC3JOkgWpoYdMZFIiwB45CIaTQf9ts9UdwpKKS7iWnWO4IHUDBdwEm6dKubWO2Yh5ZBzIRh+G87w+y5sbYo41GToQxy6T/3+fyepCu0JTLJdIXfqCL1IahgguVQoZm5DO1PIFUpWLr+ay1l3GoGuZ9EQ2IbAjm7z0ZL7n979/pkkiYdkdmCEhkECSaXR1zWygPpWRchASIpMcEtsWVXwu2xvr8Y9xgFMMVbGalSqGvLB1U25emeCaMH5U8HJfQ++v/hweP2LVts4UZNk4XRos99rg3x2/Ppq+tXXgyQhw4CYZ2Y8OiNWUccycG4KXg7TxsNG5Sx9O3r/6+nzspavn8ibo81phZQyb+lQ7cpLJIuGr6VjtAqlcn652Mojubyykm08qNVqmXpW/y5mCqVss4Lk2pm4ZWqxuLDzKhYy7G5/NN64ufNnRpupxsys3XCOjItpQ+PRP900V7xhAwAA">
+<input type="hidden" name="iterRows_0" value="VZH4sIAAAAAAAAAHVRPW/TQBi+pq2EcKlKYWBBssTE4I+61KRhogkIR6YKSWDoEl3si3PUuTN35zSVIlQWGDqUARADAwPq1KES/4AZRjYkEGKFFQkYuItdNanUm+zn/Xg+3oOfYJYzYEa0bxIcmBFKzC3U5lggExGBxbbpQ4G4uBkI3EdNRELE+Kt/pb0vr4vdApj3gRbElGMSVWSfAIv+Q9iHVgxJZDUEk/gNH8wFlAgGA6F6HoHHYGqEMYYjuTDtcQEujM2tURojSOTg2RAlkImelJKPFXAowMJYs09HFBpNEMlV5K1akrZjzLtj0DQndJLLIwJFiMkN58TI3BrkOPBCNTDtgzMZmP2rndl/HXXW6STUxCJGk9ADGKcnIqlQqQkpZ1uUbXoC9XKqQSLARWfFuI3ahmM7rm4vlWxbr91N5HnOqwWmWmDm2XzS2c7nN39+FcDUBpjtK6JBAgTYKNOUBDjWaUdvBFidsIMDHZJQ92TSXF4ExnodcQRZ0B0OPa/cNO5sS7GwDUPd0MsNrz4c1lJZhRwZqp6jUsf8sY5R7Ls/nn/cu/JViqgeiWBg4bhpPe21EXt68PKy9uLbbgEAqVG9mcN95dYdc+uUlpVbCS/bRhWSHF7JQpjMIL/Z4ve3734/eVaU9N4RvcpyTjFw9aVlbNpAHkHtaykfLce9dn3VaS0JcKl2v24pi5a96hYtGb/jWpV7teYppVuyxCccZvfcef+henXz74xUUjmpZPTG1Rzu/weXqp+RdQMAAA==">
+<input type="hidden" name="iterRows_0" value="VZH4sIAAAAAAAAAGVSMUwUQRQdDkiMhwTQxIpkEhtI2L27JbcC0sAdmiN7F+MRCizI3O2wO7I7s87MLmguBBstKLBQY2FhYUlnaYW1lnYmGmOptiZq4cztEu5gq50377/3//tz9BMMCw5MjyUmJW3Tw5G5g1uCSGxiKol8YDpIYiGX2pIkeA1TF3Px4t/C4eeXc34OjDog3w6YINSrKp4EE849lKBCgKhXaEqu8BsOGGkzKjlqS825D/bAQBfjnHhKMA6FBJd76pYZCzCiqvCiiyPEZahaycpyxJVgrIfssK5FnkWYZl1k1HwUtwIi/B5oUFDW71WjEnuYK4VLsjvcMhKkXXN1waADLqRgetaa6fkO3mqwfmiNyAD3Q+soiM9EUmWqJ6wn22F8uyZxmFntRhJcscrGTdwyrKJlw2JpoViEt+uRWs+4FjC1gJll8xHy/U+v/vzKgYENMJxoo91oQILVeqzWSCIUwArjEeNIEkYh24JVHPik01mhHqEY68VAA9Yr1U6nQhISwHMXynf01Lcb88H3px8Or31RpqsnphyMnZIacdjC/PHR88n8s68HOQB2I6C/oePF89PN6uk0XOyBy+nQ/TNnO5r49vrN70dP5pR97cReZzeiHIaF/sunblf3JBjXeptqjE3Lvj5nz2+WJJhcWZmqTxu19UKzsVFQhLJh2YW1ijFrF4plCd7VwoizBOvnBhF1VWYJDljUPasIOUNuF3c5IhROlaahQ+h2im9xFsJbKCCQMliahS2OfBRGMSdQstOL+d4LrUWkgIFSEVBJ7iDuappl2TPQQ7HMiEsVwy7DJsZBBjR95M/ABuPShw8ZxaboW0T6zPbfvl+d3v47pAKr9gW2tHD3h06qN7Tjxf+A7OBPDAQAAA==">
+<input type="hidden" name="iterRows_0" value="VZH4sIAAAAAAAAAI1RPWzTQBS+pC0CUqq2IDEhLLHQIXZ+1BCVqY2D5MqJEI0YukSO8+oede7M3UsapAqVBYYOZQDEwMDAWHVhZaiYYWRDAiFWWJGAgbvYVWNYuOnuu/e+n/cOvpEpKYgZ8IHJqG8GEJnb0JEUwQSGFO+ZrocgcdlHOoAWsC4I+ez30v7H59XNLJlxSc4PuaQssFUdknn3jjfwrNBjgbWGQuHXXTLtc4bC81HX3CX3SWaECUEDRdjvSSTnx/pWOA/BY6rxbBciT2BPWUnasrSLZHas2OUjiRyPgCUuktJc1O+EVG6OQROS8bSWwxACEIrhHI7CrXiS+k5XN0y45HQMxm/NGb9vwUaTp6EWxRDS0G0v7P81EpsrT6CTbXOx5SD0EqlhhORCaTF/Azr5UqFUMQrFpULBuNmI1HrmNIGpCcxkNu8Nsfvhxc/vWZJZJ1MDLTSMMkgajb5aI4280KhxEXHhIeXM4BuGDeEm3dmps4AyAL0YI280anYaqofgq6358Z+SnjmRHk167+vjd/tXPind1WNdQWZPipr9XgfEw4Onl3JPPu9lCRlGRJ/Jo8N/A5Z1QAUXq2NwJc6djp2saf7Ly1c/HjyqKnnnWF6Pb1opnJL6lovVLtpI5jRfW8VolyrXqsViu4jkslGvX60v5B3HWmuuW+rTUp5KFatVy5cXrf+okKm48T53X79dXdj6Nals2Slby+Uzb7SfcWtHh38AzVwPtnUDAAA=">
+<input type="hidden" name="iterRows_0" value="VZH4sIAAAAAAAAAF1Tv2/TQBS+pK1ApFRtQQxIlSyxUKTYiZWEUBbSJEipnAjRiKFL5DivzrXOnTk/p0GqUFlg6FAGQAwMDIzd+AOKmGFkQwIhVhAbEjBwF7tq3Jt8n9/7frynO/xBZgJBdJcPdUYd3QVf34FuQBF0YEjxgW7ZCAFWHKRDaAPrgQhe/Fs5+Pyy3E+TOYtkHI8HlLk1WYdk0dqyh7bh2cw11lFI/KZFZh3OUNgOqpr75CFJjTEhqCsJw0GA5MJE3yrnHthMNp7rgW8LHEgrcVua9pDMTxRbfCyR4T6w2EVcmvHDrkeD/gQ0FTCe1GowBBeEZDiP43CrdkCdRk81TFnkbARGd8UZ3e/CZosnoTZFD5LQPdsLT42kxqUnUMl2uNhuIAxiqZGP5KJZzN6GbtbMmSUtl1/J5bQ7TV+uZ0ER6IpAj2fzURN7n179+ZkmqQ0yM1RCIz+FpNoM5Rqpb3talQufCxspZxrf1Grg9enubp25lAGoxWhZrVmtScgDR27KkT1jRArOnQiO57v//emHgytfpNrasZog8ydFrXDQBfH48PlS5tnX/TQhI5+oM33UPh3LjGJJOF+egG8ouNJMho2Xs/jt9Zvfj56UpXzjWF4NbVYqnAnUVyZSuyRpFxRfR8bomKXrxVKhk0dyuV6/WgmRLxvrG4b8X8yaJaPVaBu5ApKler2SwCkaBUM+gEGL6/kgkTNa397b92vL23+npZ9aws+tX9feKSOTno7a/wHlRPSgZAMAAA==">
+<input type="hidden" name="iterRows_0" value="VZH4sIAAAAAAAAAGVSMW/TQBS+pq1UkVK1BYmp0kksrVQ7jqu4VZnSpEipkqgiUYcu1SV+dY7ad+Z8dguKoCwwdCgDIAYGBsYy8QvKDGxsSCDECisSMHDnpGpCPVj3vnvv+9773p38QOORQKbHE5PRtulBaO5DK6ISTGCSyrtmlUiIZLEtaQJNYC6I6Pnf1ePPL1Y6GTRVRdm2zyPKvLLKk2i2epskJOcT5uUaUij8RhVNtjmTgrSlzrmD7qORFBOCeoowDiKJrgzUrXHuA2Gq8JILIREyUK30yzLUlWh6ILnKU4ksD4H1u+inZsO45dOoMwCNRowPa1WYBA+EYrgs0+HWSETbFVcXjFbRRA/sxZqzF9+C3TofhppU+jAMbRE//s+SMlc9gZ5sn4u9ioSgL3UQSnTVLhg3oWXYlu1gK79qWXizFqr1zGgCUxOYfW8+YHH46eXvnxk0so3GEy10EI5ItFGL1RppSHxc4iLkgkjKGea7uAx+h3a768yjDEAvBhu4Vip3uyWaUB9fuFC6U+e6qc1H35+8P77+RYlunIkKNH2eVI+DFohHJ8/msk+/HmUQOgiR/sZOixenW9LTadgagAu9oYdn7u9o9tur178ePl5R8pUzee3dpFKYiPQp21O79kCiGc23o8bYsZ3llWVrJy/R3Pr6fG3BqGzlGvXtnEooGLaTa5aMJSdnORK9qQSh4Ano54YJc5VnCfg8TGNloeDETXFXEMrwfH4BNzrGJmEU71HcJEz905xdwQPsEZ9ixnHexpKfR5Y6xpIEYSwoViz7RLj6wradxcGrYslwCrgB4KeAUiKdRVznQnbwPc7AjIas7z2sw7fvNhb2/owpi8pDFhXzH2PtzaBNp8V/qHJUtv4DAAA=">
+<input type="hidden" name="iterRows_0" value="VZH4sIAAAAAAAAAGVSMU8UQRgdDkjUQwJoYkJCMokNJOzu3cKtJxYG7jBZsncxHqGgIXO3w+7I7sw6O7sguRhstKDAQo2FhTGWdP4CrLW0M9EYW21N1MKZvbtwB1PNvHnf9+a9b45/gtGYA91jqU5JS/dwpO/iZkwE1jEVRDzUHSRwLJZbgqR4HVMX8/jlv6WjL6/Kfg6MOyDfClhMqFeVPAGmnPsoRUaAqGc0BJf4LQeMtRgVHLWE4jwAj8BQhnFOPNkwCWMBrvTVrTAWYERl4SUXR4iLUD6lW5YjrgATfWSHZRJ5FmHafUWXmo+SZkBivw8ajikb1LKpwB7mssNlkZlbQTFp2a4qGHbAhQ7YOauenfM9vF1ng9A6EQEehDZQkJyJpMrkm7Bytsv4ji1w2JXaiwS4apa0O7ipmQXTgoXiUqEA79YiOZ5J1UBXDfRuNp8gP/j8+s+vHBjaBKOpEtqLhgRYqyVyjCRCAawwHjGOBGEUsm1YxYFP2u1V6hGKsRoM1GCtUm23KyQlATx3IXXHT3WzmA9/PPt4dP2rFF3riXIwcUqqJ2ET8yfHL2byz78d5gDYi4BaIyfT590tKHcKLvTBpY7pQc/dGU19f/Pu9+OnZSlv9+RVdmNS4WKsdvmO2rV9ASZVvy1pY8u0bpSt0lZRgJnV1dnanGZvGI36piEJJc20jPWKtmAZBXn/1g4jzlKsvhtE1JWZpThgUXaWEXKG3Ax3OSIUzhbnoIcCAimDxRJscuSjMEo4gR5nIaxr5SIUDNbhTWMR2hTuIu4qrmla87IwET326Xa5olkl2MA4yADY8JE/D+uMCx/uM4r1eCDvzm86eP9hbW7n74jMpTqQy/Kic1sF0p/NyfR/1pc1SvMDAAA=">
+<input type="hidden" name="iterRows_0" value="VZH4sIAAAAAAAAAGVSv08UQRgdDkgMhwTQxIpkEikgYfd+wC0XqI47jEfuTuIRChoyd/uxO7I7s87OHpicBhstKLBQY2FhYUnHX4C1FhZ0Jhpjq62JWjhzt4Q72Grnzfe99733zfFPNBwKZDq8ZTLaNB0IzD1ohFSCCUxS+cisEAmhLDQlbcEGMBtE+Prf0tGXN3k3gcYqKNn0eEiZU1J1Ek1WHpAWSXmEOam6FApfrqDRJmdSkKbUNQ/REzTQwYSgjiKM/FCiGz19K5x7QJhqHLEhIEL6apS4LUFticZ7iiu8I5HkAbB4irg0GUQNj4ZuDzQYMt6vVWYSHBCK4brsmFshIW2Wbd0wWEHXumD3rDm75/uwU+P90AaVHvRDm8SLLkVS4mom0M72uNgtS/Bjqf1AopvZnHEHGkY2nbVwOrOUTuP1aqDWM6EJTE1gxtl8wuLg7O2fXwk0sIWGW1poPxiQaK0aqTXSgHi4yEXABZGUM8x3cAk8l7bbq8yhDEAvBhu4Wiy120Xaoh6+cqF0xy50OzEf/njx8ej2VyW6di4q0PhFUS3yGyCeHb+aSr78dphAaD9A+hs6nb7qbl6703C6B851Tfd7jnc0+f3d+99Pn+eVfPlcXmc3qhRGQv2X7KrdeizRhObbVja2s9Zi3spvZySaWl2dqc4a5c1UvbaVUgU5I2ulNorGvJVKL0h0UvYDwVugnxsmzFaZtcDjQeesIhSc2B3cFoQyPJOZxQ7xKGYcZxZxQxCX+EEkKHYE9/G6kcnjKndtExd2XUkErrs8wJLje8aChQsegI/vcgkeVmR7RNiaKJu15hRrJGOqQtGwcrgO4HUAHLrEncM1LqSLtziDsG8B3ed1cPJhbXb375AKqtQXVGH57LNOqDes0+n/QLX9ZAQEAAA=">
+<input type="hidden" name="If_23" value="T">
+<input type="hidden" name="iterPage_0" value="V1">
+<input type="hidden" name="condCurrent_0" value="T">
+<input type="hidden" name="iterPage_0" value="V2">
+<input type="hidden" name="condCurrent_2" value="F">
+<input type="hidden" name="iterPage_0" value="V3">
+<input type="hidden" name="condCurrent_4" value="F">
+<input type="hidden" name="iterPage_0" value="V4">
+<input type="hidden" name="condCurrent_6" value="F">
+<input type="hidden" name="iterPage_0" value="V5">
+<input type="hidden" name="condCurrent_8" value="F">
+<input type="hidden" name="iterPage_0" value="V6">
+<input type="hidden" name="condCurrent_10" value="F">
+<input type="hidden" name="iterPage_0" value="V7">
+<input type="hidden" name="condCurrent_12" value="F">
+</div><table align="center" border="0" cellpadding="0" cellspacing="0" width="92%">
+					<form method="post" action="/eprocure/app" id="ListTendersbyDate"></form>
+
+						
+						<tbody>
+							<tr valign="middle">
+								<td class="text3" height="20">
+									<span id="If_19">
+											<span id="If_21">	
+											</span></span><table width="100%" cellspacing="0" cellpadding="0" class="list">
+										<tbody><tr>
+											<td>&nbsp;</td>
+										</tr>
+										<tr>
+											<td valign="left">
+												<table>
+													<tbody><tr>
+														<td valign="bottom" class="pageheader">Tenders/Auctions Closing Today</td>
+													</tr>
+												</tbody></table>
+											</td>
+										</tr>
+										<tr>
+											<td>&nbsp;</td>
+										</tr>
+										<tr>
+											<td>&nbsp;</td>
+										</tr>																				
+										
+										<tr valign="middle">
+											<td class="text3" height="20">
+												<table width="100%" cellspacing="0" cellpadding="0" class="list">
+													<tbody><tr> 
+														<td width="16"><img src="images/fleft.png" width="16" height="22"></td>
+														<td background="images/ftopbg.png">
+															<table width="240" height="22" border="0" cellpadding="0" cellspacing="1" bgcolor="DCDCDC">
+																<tbody><tr> 
+																	<td bgcolor="#FFFFFF" class="text1bold">&nbsp;&nbsp;<b>Tenders/Auctions Closing Today</b></td>
+																</tr>
+															</tbody></table>
+														</td>
+														<td width="10"><img src="images/frgt.png" width="16" height="22"></td>
+													</tr>
+													<tr> 
+														<td width="10" background="images/fleftbg.png">&nbsp;</td>
+														<td valign="top" bgcolor="F8F8F8" class="td_space">
+										
+														<!-- Information Grid -->
+														<table width="100%" border="0" cellspacing="1" cellpadding="1">	
+															<tbody><tr>
+																<td>
+																	<table width="100%" cellspacing="0" cellpadding="0" class="list">
+																		<tbody><tr>
+																			<td>&nbsp;</td>
+																		</tr>
+																		<tr align="left">
+																			<td class="textbold2" align="left">&nbsp;Search By &nbsp;&nbsp;&nbsp;&nbsp;
+																			<select name="typeSearch" id="typeSearch" style="width:200px; height:20px;" onchange="enableClickEvent();">
+<option value="0" selected="selected">Bid Submission Closing</option>
+<option value="1">Auction Closing</option>
+</select></td>
+																		</tr>
+																												
+																	</tbody></table>
+																</td>
+															</tr>
+															
+														</tbody></table>
+														</td>
+														<td width="16" background="images/frgtbg.png">&nbsp;</td>
+													</tr>
+													<tr> 
+													   <td width="8"><img src="images/fleftbot.png" width="16" height="10"></td>
+													   <td background="images/fbotbg.png"><img src="images/spacer.png" width="1" height="1"></td>
+													   <td width="16"><img src="images/frgtbot.png" width="16" height="10"></td>
+													</tr>
+												</tbody></table>
+											</td>
+										</tr>
+										<tr>
+											<td>&nbsp;</td>
+										</tr>
+										<tr>
+											<td>&nbsp;</td>
+										</tr>
+										<tr align="center">
+											<td> 
+												<table width="100%">
+													<tbody><tr>
+														<td align="left">
+															<div id="tabsJ">
+																<ul>
+																	<li><a href="javascript:tapestry.form.submit('ListTendersbyDate', 'tabByClosingToday');" id="tabByClosingToday"><span>Closing Today</span></a></li>
+																	<li><a href="javascript:tapestry.form.submit('ListTendersbyDate', 'LinkSubmit_0');" id="LinkSubmit_0"><span>Closing within 7 days</span></a></li>
+																	<li><a href="javascript:tapestry.form.submit('ListTendersbyDate', 'LinkSubmit_1');" id="LinkSubmit_1"><span>Closing within 14 days</span></a></li>
+																	<li><a href="javascript:tapestry.form.submit('ListTendersbyDate', 'LinkSubmit_2');" id="LinkSubmit_2"><span>Closing by Date</span></a></li>   
+																</ul>
+															</div>
+														</td>
+													</tr>
+												</tbody></table>
+											</td>
+										</tr>
+										
+										
+										<tr>
+											<td>&nbsp;</td>
+										</tr>
+										
+										<tr>
+												<td bgcolor="#757575">
+	
+													
+
+<table border="0" bgcolor="#f7f7f7" cellpadding="0" width="100%" cellspacing="1" id="table" class="list_table">
+	
+														<tbody><tr class="list_header">
+															<td width="5%">S.No</td>
+															<td width="15%">e-Published Date</td>
+															<td width="15%">Bid Submission Closing Date</td>
+															<td width="15%">Tender Opening Date</td>
+															<td width="20%">Title and Ref.No./Tender ID</td>
+															<td width="15%">Organisation Chain</td>
+														</tr>																												
+														
+
+
+	<tr class="even" id="informal">
+		
+															<td align="center">1.</td>        						
+															<td align="center">05-Feb-2026 06:00 PM</td>
+															<td align="center">25-Feb-2026 12:00 PM</td>
+															<td align="center">26-Feb-2026 12:00 PM</td>
+															<td align="center"><a id="DirectLink" title="View Tender Information" href="/eprocure/app?component=%24DirectLink&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=SaCK8omqnFwk6TlaOz%2BmtTw%3D%3D">[RFP for Implementation of Electronic Lock Solution for Machines including Design, Development and Maintenance of Electronic Lock Solution Dashboard along with Installation,Commissioning and Maintenance of electronic Locks for EB customer.]</a>
+															[CNNCO-11/40/1/2026-CGM CNN/1 dated 05.02.2026][2026_BSNL_265878_1]
+															</td>
+															<td align="center">
+																	Bharat Sanchar Nigam Limited (Govt of India Enterprise)||Northern Telecom Maintenance Region
+															</td>
+															<!--span jwcid="@Else">
+																<td>
+																	&nbsp
+																</td>
+															</span>
+
+															<td align="center">
+															<!-- <span jwcid="@DirectLink" listener="listener:showDocumentSign" parameters="ognl:CurrentRow.tenderBasicId"  onClick="return openPopUp(this, 'location=no, scrollbars=yes, toolbar=no, width=400, height=250, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');">
+																	<img src="images/certificate.png" border="0" align="absmiddle" />&nbsp;
+															</span> >
+														</td-->
+														
+	</tr>
+
+	<tr class="odd" id="informal_0">
+		
+															<td align="center">2.</td>        						
+															<td align="center">20-Feb-2026 05:00 PM</td>
+															<td align="center">25-Feb-2026 01:00 PM</td>
+															<td align="center">25-Feb-2026 01:30 PM</td>
+															<td align="center"><a id="DirectLink_0" title="View Tender Information" href="/eprocure/app?component=%24DirectLink&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=SxtWZaJKbjZVZLjry%2FNjpXw%3D%3D">[Improvement and Development of road and drain (1) gali no 21 brahampuri grom R-88 to R 6/5 in ward no 226, gautampuri AC-65 Seelampur Shah, North zone.]</a>
+															[EE(M)-IV/SNZ/2025-26/TC-36/03][2026_MCD_267867_1]
+															</td>
+															<td align="center">
+																	Municipal Corporation of Delhi||Engineering - MCD||Civil Engineering - MCD
+															</td>
+															<!--span jwcid="@Else">
+																<td>
+																	&nbsp
+																</td>
+															</span>
+
+															<td align="center">
+															<!-- <span jwcid="@DirectLink" listener="listener:showDocumentSign" parameters="ognl:CurrentRow.tenderBasicId"  onClick="return openPopUp(this, 'location=no, scrollbars=yes, toolbar=no, width=400, height=250, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');">
+																	<img src="images/certificate.png" border="0" align="absmiddle" />&nbsp;
+															</span> >
+														</td-->
+														
+	</tr>
+
+	<tr class="even" id="informal_1">
+		
+															<td align="center">3.</td>        						
+															<td align="center">20-Feb-2026 04:00 PM</td>
+															<td align="center">25-Feb-2026 01:00 PM</td>
+															<td align="center">25-Feb-2026 01:05 PM</td>
+															<td align="center"><a id="DirectLink_1" title="View Tender Information" href="/eprocure/app?component=%24DirectLink&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=SjSBH7W1oscZ7jY83hK3XWQ%3D%3D">[77/MWEEE-I/2025-26/TC Item no.1]</a>
+															[77/MWEEE-I/2025-26/TC][2026_MCD_268145_1]
+															</td>
+															<td align="center">
+																	Municipal Corporation of Delhi||Engineering - MCD||Electrical - MCD
+															</td>
+															<!--span jwcid="@Else">
+																<td>
+																	&nbsp
+																</td>
+															</span>
+
+															<td align="center">
+															<!-- <span jwcid="@DirectLink" listener="listener:showDocumentSign" parameters="ognl:CurrentRow.tenderBasicId"  onClick="return openPopUp(this, 'location=no, scrollbars=yes, toolbar=no, width=400, height=250, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');">
+																	<img src="images/certificate.png" border="0" align="absmiddle" />&nbsp;
+															</span> >
+														</td-->
+														
+	</tr>
+
+	<tr class="odd" id="informal_2">
+		
+															<td align="center">4.</td>        						
+															<td align="center">30-Jan-2026 05:00 PM</td>
+															<td align="center">25-Feb-2026 01:00 PM</td>
+															<td align="center">26-Feb-2026 02:30 PM</td>
+															<td align="center"><a id="DirectLink_2" title="View Tender Information" href="/eprocure/app?component=%24DirectLink&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=S%2FR8w7zpos7dqIDdT%2BarocA%3D%3D">[PUR/IICT/0968/25-26/EQPT]</a>
+															[PUR/IICT/0968/25-26/DQPT][2026_CSIR_264792_1]
+															</td>
+															<td align="center">
+																	Council of Scientific and Industrial Research||IICT-Hyderabad - CSIR||Purchase-IICT - CSIR
+															</td>
+															<!--span jwcid="@Else">
+																<td>
+																	&nbsp
+																</td>
+															</span>
+
+															<td align="center">
+															<!-- <span jwcid="@DirectLink" listener="listener:showDocumentSign" parameters="ognl:CurrentRow.tenderBasicId"  onClick="return openPopUp(this, 'location=no, scrollbars=yes, toolbar=no, width=400, height=250, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');">
+																	<img src="images/certificate.png" border="0" align="absmiddle" />&nbsp;
+															</span> >
+														</td-->
+														
+	</tr>
+
+	<tr class="even" id="informal_3">
+		
+															<td align="center">5.</td>        						
+															<td align="center">20-Feb-2026 05:00 PM</td>
+															<td align="center">25-Feb-2026 01:00 PM</td>
+															<td align="center">25-Feb-2026 01:30 PM</td>
+															<td align="center"><a id="DirectLink_3" title="View Tender Information" href="/eprocure/app?component=%24DirectLink&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=SeSTKtoa8bRuZTB3zluu1TA%3D%3D">[Improvement and Development of road and drain (1) Link road from Gali no 13 brahampuri to Gali no 19 brahampuri and its links in ward no 226, gautampuri AC-65 Seelampuri Shah, North zone.]</a>
+															[EE(M)-IV/SNZ/2025-26/TC-36/05][2026_MCD_267869_1]
+															</td>
+															<td align="center">
+																	Municipal Corporation of Delhi||Engineering - MCD||Civil Engineering - MCD
+															</td>
+															<!--span jwcid="@Else">
+																<td>
+																	&nbsp
+																</td>
+															</span>
+
+															<td align="center">
+															<!-- <span jwcid="@DirectLink" listener="listener:showDocumentSign" parameters="ognl:CurrentRow.tenderBasicId"  onClick="return openPopUp(this, 'location=no, scrollbars=yes, toolbar=no, width=400, height=250, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');">
+																	<img src="images/certificate.png" border="0" align="absmiddle" />&nbsp;
+															</span> >
+														</td-->
+														
+	</tr>
+
+	<tr class="odd" id="informal_4">
+		
+															<td align="center">6.</td>        						
+															<td align="center">18-Feb-2026 06:00 PM</td>
+															<td align="center">25-Feb-2026 01:00 PM</td>
+															<td align="center">25-Feb-2026 01:30 PM</td>
+															<td align="center"><a id="DirectLink_4" title="View Tender Information" href="/eprocure/app?component=%24DirectLink&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=S%2FVEjd54jarPM%2FE4AnGmbBg%3D%3D">[ EE(E)-II/SNZ/MCD/25-26/TC-35/1]</a>
+															[ EE(E)-II/SNZ/MCD/25-26/TC-35/1][2026_MCD_267811_1]
+															</td>
+															<td align="center">
+																	Municipal Corporation of Delhi||Engineering - MCD||Engineering Electric - MCD
+															</td>
+															<!--span jwcid="@Else">
+																<td>
+																	&nbsp
+																</td>
+															</span>
+
+															<td align="center">
+															<!-- <span jwcid="@DirectLink" listener="listener:showDocumentSign" parameters="ognl:CurrentRow.tenderBasicId"  onClick="return openPopUp(this, 'location=no, scrollbars=yes, toolbar=no, width=400, height=250, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');">
+																	<img src="images/certificate.png" border="0" align="absmiddle" />&nbsp;
+															</span> >
+														</td-->
+														
+	</tr>
+
+	<tr class="even" id="informal_5">
+		
+															<td align="center">7.</td>        						
+															<td align="center">18-Feb-2026 09:00 AM</td>
+															<td align="center">25-Feb-2026 01:00 PM</td>
+															<td align="center">25-Feb-2026 02:00 PM</td>
+															<td align="center"><a id="DirectLink_5" title="View Tender Information" href="/eprocure/app?component=%24DirectLink&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=SnzVwJgG3%2F7%2BbmevtumzR2Q%3D%3D">[EEA/SZ/2025-26/Nit/4/itemNo.1]</a>
+															[EE(Auto)/SZ/2025-26/NIT/04][2026_MCD_267564_1]
+															</td>
+															<td align="center">
+																	Municipal Corporation of Delhi||Engineering - MCD||Electrical - MCD
+															</td>
+															<!--span jwcid="@Else">
+																<td>
+																	&nbsp
+																</td>
+															</span>
+
+															<td align="center">
+															<!-- <span jwcid="@DirectLink" listener="listener:showDocumentSign" parameters="ognl:CurrentRow.tenderBasicId"  onClick="return openPopUp(this, 'location=no, scrollbars=yes, toolbar=no, width=400, height=250, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');">
+																	<img src="images/certificate.png" border="0" align="absmiddle" />&nbsp;
+															</span> >
+														</td-->
+														
+	</tr>
+
+	<tr class="odd" id="informal_6">
+		
+															<td align="center">8.</td>        						
+															<td align="center">20-Feb-2026 05:00 PM</td>
+															<td align="center">25-Feb-2026 01:00 PM</td>
+															<td align="center">25-Feb-2026 01:30 PM</td>
+															<td align="center"><a id="DirectLink_6" title="View Tender Information" href="/eprocure/app?component=%24DirectLink&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=ShuI5XHr3nvMe0Cn4KXEenw%3D%3D">[Improvement and Development of road and drain (1) Sh-Pani ki Tanki road from gali no 12 to gali no 10 gautampuri in ward no 226, gautampuri AC-65 Seelampur Shah, North zone.]</a>
+															[EE(M)-IV/SNZ/2025-26/TC-36/06][2026_MCD_267870_1]
+															</td>
+															<td align="center">
+																	Municipal Corporation of Delhi||Engineering - MCD||Civil Engineering - MCD
+															</td>
+															<!--span jwcid="@Else">
+																<td>
+																	&nbsp
+																</td>
+															</span>
+
+															<td align="center">
+															<!-- <span jwcid="@DirectLink" listener="listener:showDocumentSign" parameters="ognl:CurrentRow.tenderBasicId"  onClick="return openPopUp(this, 'location=no, scrollbars=yes, toolbar=no, width=400, height=250, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');">
+																	<img src="images/certificate.png" border="0" align="absmiddle" />&nbsp;
+															</span> >
+														</td-->
+														
+	</tr>
+
+	<tr class="even" id="informal_7">
+		
+															<td align="center">9.</td>        						
+															<td align="center">20-Feb-2026 05:00 PM</td>
+															<td align="center">25-Feb-2026 01:00 PM</td>
+															<td align="center">25-Feb-2026 01:30 PM</td>
+															<td align="center"><a id="DirectLink_7" title="View Tender Information" href="/eprocure/app?component=%24DirectLink&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=SV1aI6zDXH1m64ddB%2BZ53ow%3D%3D">[Improvement and Development of road and drain (1) gali no 15 brahampuri grom N-81 to N 9/4 In ward no 226, gautampuri gautampuri AC-65 Seelampur Shah, North zone.]</a>
+															[EE(M)-IV/SNZ/2025-26/TC-36/01][2026_MCD_267865_1]
+															</td>
+															<td align="center">
+																	Municipal Corporation of Delhi||Engineering - MCD||Civil Engineering - MCD
+															</td>
+															<!--span jwcid="@Else">
+																<td>
+																	&nbsp
+																</td>
+															</span>
+
+															<td align="center">
+															<!-- <span jwcid="@DirectLink" listener="listener:showDocumentSign" parameters="ognl:CurrentRow.tenderBasicId"  onClick="return openPopUp(this, 'location=no, scrollbars=yes, toolbar=no, width=400, height=250, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');">
+																	<img src="images/certificate.png" border="0" align="absmiddle" />&nbsp;
+															</span> >
+														</td-->
+														
+	</tr>
+
+	<tr class="odd" id="informal_8">
+		
+															<td align="center">10.</td>        						
+															<td align="center">20-Feb-2026 05:00 PM</td>
+															<td align="center">25-Feb-2026 01:00 PM</td>
+															<td align="center">25-Feb-2026 01:30 PM</td>
+															<td align="center"><a id="DirectLink_8" title="View Tender Information" href="/eprocure/app?component=%24DirectLink&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=SBpJZa8eD3bGPpH%2FGDPZ67A%3D%3D">[Improvement and Development of road and drain (1) gali no 17 brahampuri grom P-18 Mohd. Akhtar Shop to O-46 Aleem Hotel in ward no 226, gautampuri AC-65 Seelampur shah, North Zone]</a>
+															[EE(M)-IV/SNZ/2025-26/TC-36/04][2026_MCD_267868_1]
+															</td>
+															<td align="center">
+																	Municipal Corporation of Delhi||Engineering - MCD||Civil Engineering - MCD
+															</td>
+															<!--span jwcid="@Else">
+																<td>
+																	&nbsp
+																</td>
+															</span>
+
+															<td align="center">
+															<!-- <span jwcid="@DirectLink" listener="listener:showDocumentSign" parameters="ognl:CurrentRow.tenderBasicId"  onClick="return openPopUp(this, 'location=no, scrollbars=yes, toolbar=no, width=400, height=250, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');">
+																	<img src="images/certificate.png" border="0" align="absmiddle" />&nbsp;
+															</span> >
+														</td-->
+														
+	</tr>
+
+
+
+														<tr>
+															<td class="list_footer" colspan="8" align="left">&nbsp;
+																<span id="If_23">
+																
+
+<span id="informal_9">
+
+	&lt;&lt;  
+	&lt; 
+	
+	
+	
+		
+			<b>1</b>
+		
+	
+		
+	
+	
+	
+		
+	
+		
+			<a id="linkPage" href="/eprocure/app?component=%24TablePages.linkPage&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=AFrontEndListTendersbyDate%2Ctable&amp;sp=2">2</a>
+		
+	
+	
+	
+		
+	
+		
+			<a id="linkPage_0" href="/eprocure/app?component=%24TablePages.linkPage&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=AFrontEndListTendersbyDate%2Ctable&amp;sp=3">3</a>
+		
+	
+	
+	
+		
+	
+		
+			<a id="linkPage_1" href="/eprocure/app?component=%24TablePages.linkPage&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=AFrontEndListTendersbyDate%2Ctable&amp;sp=4">4</a>
+		
+	
+	
+	
+		
+	
+		
+			<a id="linkPage_2" href="/eprocure/app?component=%24TablePages.linkPage&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=AFrontEndListTendersbyDate%2Ctable&amp;sp=5">5</a>
+		
+	
+	
+	
+		
+	
+		
+			<a id="linkPage_3" href="/eprocure/app?component=%24TablePages.linkPage&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=AFrontEndListTendersbyDate%2Ctable&amp;sp=6">6</a>
+		
+	
+	
+	
+		
+	
+		
+			<a id="linkPage_4" href="/eprocure/app?component=%24TablePages.linkPage&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=AFrontEndListTendersbyDate%2Ctable&amp;sp=7">7</a>
+		
+	
+	
+	
+	<a id="linkFwd" href="/eprocure/app?component=%24TablePages.linkFwd&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=AFrontEndListTendersbyDate%2Ctable&amp;sp=2">&gt;</a>
+	<a id="linkLast" href="/eprocure/app?component=%24TablePages.linkLast&amp;page=FrontEndListTendersbyDate&amp;service=direct&amp;session=T&amp;sp=AFrontEndListTendersbyDate%2Ctable&amp;sp=17">&gt;&gt;</a>
+
+</span>
+
+
+																</span>
+															</td>
+														</tr>
+													
+</tbody></table>
+
+
+												</td>
+											</tr>
+											
+											
+										
+										
+									</tbody></table>
+								</td>
+							</tr>
+						</tbody>
+					
+				</table>
+				<!-- END: interface_elements -->
+			</td>
+		</tr>
+	</tbody></table>
+
+							<!-- Page content ends here -->	
+							</td>				
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>
+			<tr>
+				<td valign="bottom" height="40">
+					<table width="100%" cellspacing="0" cellpadding="0">
+	 <tbody><tr style="background-color:#E8E8E8;"> 
+	 <td height="25" class="text2" align="center"><b>Visitor No:9843712</b></td>
+		
+	  </tr>
+	 <tr style="background-color:#E8E8E8;"> 
+	
+		<td height="25" class="text2" align="center">Contents owned and maintained by concerned Departments in coordination with Finance Department and Information Technology Department, Government of India		  
+		 </td>
+	  </tr>
+	  <tr valign="top" class="secondaryBg"> 
+		<td>
+			<table width="100%" height="22" border="0" cellpadding="1" cellspacing="1">
+
+				
+				<tbody><tr class="footer">
+					<td width="40%" valign="top" align="left">Designed, Developed and Hosted by<br>  <a href="http://www.nic.in" target="_blank" rel="noopener noreferrer" class="footerlink">National Informatics Centre</a></td>
+					<td width="40%" align="left">
+						 Version : 1.09.23 23-Oct-2025<br>
+						(c) 2017 Tenders NIC, All rights reserved.<br>Site best viewed with a screen resolution 1920 x 1080.</td>					
+					<td width="20%" valign="top" align="right"><a id="PageLink_13" class="footerlink" href="/eprocure/app?page=Disclaimer&amp;service=page">Portal policies</a></td>
+				</tr>
+			</tbody></table>
+		</td>
+	  </tr>
+</tbody></table>
+				</td>
+			</tr>
+			<tr>
+			    <td>
+			        <form method="post" action="/eprocure/app" id="WebBorder_0">
+<div style="display:none;" id="WebBorder_0hidden"><input type="hidden" name="formids" value="domainUrl">
+<input type="hidden" name="seedids" value="ZH4sIAAAAAAAAAF1STW/CMAxFSPsnOeZAyueOK4wJqdsQIO2I0tZARJtUSRjq7tP+zP7a/sPstEywS/vsZ71nx/7+6dx9dDrdr+4nd2DfVQasxyu5p19myspo0D5g7aXSYBE7cE4ZTajCzxuksbE5UoIvNKp4NhF8fYCiQPZB12zIY5PXTenGVLHUjVCh9FEgu9ixaMDnxrJojMG2x6KIPxYOWNRrJbeCieEFR4QPpoQEBVBnif0S3I6ug3Fj+GJ8M9UfMWmIBHb+GfQJoyfAhlT2T46JwTWDbfX5CjROGsYRPFHOb0LCpfVMenLx5gh6DZkFejZfV7AGabMDBTKN62lhnNL7jcklvQgJr09pqTzK34TiNowagQLQ1wdPcl+ZM+aVB4vIMSG40jtjS1kw0eNnK6sKcnbPZ8pC5sNQ93xDMjSka3cwV9b5FscyO7aSVMImtPp8erKWDkH00YB20CaWl0vR+as/4FJHQSSkh21pINpMcDvnrVcigy3uYm6Mp5P4BcRnkfSQAgAA">
+<input type="hidden" name="component" value="$WebBorder.WebBorder">
+<input type="hidden" name="page" value="FrontEndListTendersbyDate">
+<input type="hidden" name="service" value="direct">
+<input type="hidden" name="session" value="T">
+<input type="hidden" name="submitmode" value="">
+<input type="hidden" name="submitname" value="">
+<input type="hidden" name="domainUrl" id="domainUrl" value="Shttps://etenders.gov.in/eprocure/app">
+</div>
+				       
+				   </form>
+			    </td>
+			</tr>
+		</tbody></table>
+	</div>
+<script type="text/javascript"><!--
+tapestry.addOnLoad(function(e) {
+dojo.require("tapestry.form");tapestry.form.registerForm("ListTendersbyDate");
+
+tapestry.cleanConnect("typeSearch", "onchange", "formEvent1479147657");
+                tapestry.formEvent1479147657=function(e){
+                    var content={beventname:"onchange", bcomponentidpath:"FrontEndListTendersbyDate/typeSearch", bcomponentid:"typeSearch"};
+                    tapestry.event.buildEventProperties(e, content, arguments);
+                    if (!content["beventtarget.id"]){
+                    	content["beventtarget.id"]="typeSearch";
+                    }
+                    
+                   var validateState=tapestry.form.forms["ListTendersbyDate"].validateForm;
+                   var validateForm=false;
+                   tapestry.form.setFormValidating("ListTendersbyDate", validateForm);
+                   
+                    
+                    tapestry.form.submitAsync("ListTendersbyDate", content);
+                    
+                    
+                    
+                    tapestry.form.setFormValidating("ListTendersbyDate", validateState);
+                    
+                };
+                tapestry.connect("typeSearch", "onchange", "formEvent1479147657");
+tapestry.form.registerForm("WebBorder_0");
+
+tapestry.form.focusField('typeSearch');});
+// --></script>
+
+
+<script type="text/javascript" src="includes/CsrfdeleteBlock.js"></script>
+<script language="javascript">
+function validateSearch() {
+var f = document.getElementById("ListTendersbyDate");
+	var closingDateValue = document.getElementById("closingDateId").value;
+	if(closingDateValue==null || closingDateValue=="") {
+		alert("Please select the bid submission closing date to search.");
+		document.getElementById("closingDateId").focus();
+		return false;
+	} 
+	var currentDate=new Date();
+	var curDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+	var closingDateArr= closingDateValue.split('/');
+	var closingDateobj = new Date(closingDateArr[2], closingDateArr[1]-1, closingDateArr[0]);
+	if(getDatesDifference(curDate, closingDateobj)>0)
+	{
+		alert("Bid submission closing date should not be lesser than current date.");
+		document.getElementById("closingDateId").focus();
+		return false;
+	}
+	if(f.captchaText.value==0){
+		alert("Please enter Captcha.");
+		f.captchaText.focus();
+		return false;
+	 }
+	 
+	 if(f.captchaText.value.length!=6) {
+		alert("Invalid Captcha! Please Enter Correct Captcha");
+		f.captchaText.value = "";
+		f.captchaText.focus();
+		return false; 
+    }
+}
+function getDatesDifference(date2, date1){
+	var datesDiff =  date2.getTime() - date1.getTime();
+	return (parseInt(datesDiff)/(24*60*60*1000));
+}
+
+function enableClickEvent(){
+	var tabByClosingToday = document.getElementById("tabByClosingToday");
+	tabByClosingToday.click();
+}
+
+function popUp(obElm, sFeature){
+		var sLink;
+
+		if(typeof(obElm) == 'string'){
+			sLink = obElm;
+		}
+		else{
+			sLink = obElm.href;
+			
+			var obWin = window.open(sLink, "ChildPopup1", sFeature);
+			
+			obWin.focus();
+			
+			if(!obWin.opener) obWin.opener = _self;
+			
+			return false;
+		}
+	
+	}
+</script>
+</body></html>
