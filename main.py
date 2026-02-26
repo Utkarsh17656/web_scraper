@@ -8,7 +8,7 @@ import sys
 import logging
 from typing import Optional, List, Dict, Any
 
-from scraper_engine import scrape_dynamic_page, export_tender_details_csv, export_all_tenders_with_details_csv
+from scraper_engine import scrape_dynamic_page, fetch_tender_details_dict, export_tender_details_csv, export_all_tenders_with_details_csv
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -98,7 +98,18 @@ async def export_bulk_api(request: BulkExportRequest):
         )
     except Exception as e:
         logger.error(f"Bulk Export API Error: {e}", exc_info=True)
-        return JSONResponse(content={"error": str(e)}, status_code=500)
+@app.get("/api/tender-details")
+async def tender_details_api(url: str):
+    """
+    Fetches detailed tender information AS JSON.
+    This enables the frontend to enrich CSV exports on-demand.
+    """
+    try:
+        details = await fetch_tender_details_dict(url)
+        return JSONResponse(content=details)
+    except Exception as e:
+        logger.error(f"Tender Details API Error: {e}")
+        return JSONResponse(content={"_error": str(e)}, status_code=500)
 
 
 if __name__ == "__main__":

@@ -18,6 +18,121 @@ USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/121.0"
 ]
 
+# Junk patterns found in etenders.gov.in navigation, footer, and chatbot widgets.
+# Used to reject garbage from detail extraction.
+_DETAIL_JUNK = [
+    'screen reader', 'skip to main', 'nic chat', 'site compatibility',
+    'visitor no', 'mis reports', 'tenders by location', 'tenders by organisation',
+    'tenders by classification', 'tenders in archive', 'tenders status',
+    'cancelled/retendered', 'debarment list', 'announcements', 'awards',
+    'help for contractors', 'information about dsc', 'guidelines', 'bidders manual',
+    'eprocurement system', 'portal policies', 'national informatics centre',
+    'designed, developed', 'all rights reserved', 'site best viewed',
+    'nicci', 'digital assistant', 'help desk', 'chat interface',
+    'special characters', 'online bidder enrollment', 'forgot password',
+    'nodal officer', 'latest tenders', 'latest corrigendum', 'certifying agency',
+    'javascript has been disabled', 'corrigendum title', 'welcome to eprocurement',
+    'rate us', 'save chat', 'exit chat', 'clear chat', 'hindi voice',
+]
+
+def _is_detail_junk(text: str) -> bool:
+    """Check if text contains known junk patterns."""
+    t = text.lower()
+    return any(j in t for j in _DETAIL_JUNK)
+
+def _is_valid_detail_pair(field: str, value: str) -> bool:
+    """Validate that a field-value pair is clean tender data, not page junk."""
+    if not field or not value:
+        return False
+    # Field (label) should be short and readable
+    if len(field) < 3 or len(field) > 120:
+        return False
+    # Value shouldn't be absurdly long (sign of concatenated page content)
+    if len(value) > 500:
+        return False
+    # Reject if either side contains known junk
+    if _is_detail_junk(field) or _is_detail_junk(value):
+        return False
+    # Reject if field looks like concatenated text (too many words)
+    if field.count(' ') > 15:
+        return False
+    # Reject pure-number fields (row indices like "120", "1826")
+    if field.strip().isdigit():
+        return False
+    return True
+
+
+async def _fetch_tender_page_details(context, url: str) -> Dict[str, str]:
+    """
+    Visit a tender detail page in the SAME browser context (preserving the active session)
+    and extract clean key-value pairs from structured tables only.
+    Aggressively filters out navigation, footer, and chatbot junk.
+    """
+    details: Dict[str, str] = {}
+    page = await context.new_page()
+    try:
+        await page.goto(url, wait_until="networkidle", timeout=45000)
+        content = await page.content()
+
+        # Check for session timeout
+        if "session has timed out" in content.lower() or "session expired" in content.lower():
+            return {"_error": "Session expired before details could be fetched"}
+
+        # Check if we landed on the home/search page instead of the detail page
+        if "welcome to eprocurement" in content.lower() and "tender details" not in content.lower():
+            return {"_error": "Landed on home page instead of tender detail page"}
+
+        # Wait for JS rendering
+        try:
+            await page.wait_for_selector("table", timeout=5000)
+        except Exception:
+            pass
+        await page.evaluate("() => new Promise(r => setTimeout(r, 3000))")
+
+        # Re-grab content after JS render
+        content = await page.content()
+        soup = BeautifulSoup(content, 'html.parser')
+
+        # ONLY extract from tables — this is the reliable structured data on etenders.gov.in.
+        # The detail page uses 2-cell rows: <td>Label</td><td>Value</td>
+        for table in soup.find_all('table')[:15]:
+            # Skip tables whose text is mostly junk (nav menus, footer)
+            table_text_sample = table.get_text()[:300].lower()
+            if _is_detail_junk(table_text_sample):
+                continue
+
+            for row in table.find_all('tr'):
+                cells = row.find_all(['td', 'th'])
+
+                if len(cells) == 2:
+                    # Standard label-value row
+                    field = " ".join(cells[0].get_text(strip=True).split())
+                    value = " ".join(cells[1].get_text(strip=True).split())
+                    if _is_valid_detail_pair(field, value) and field not in details:
+                        details[field] = value
+
+                elif len(cells) == 4:
+                    # Some detail tables pack two pairs per row:
+                    # <td>Label1</td><td>Value1</td><td>Label2</td><td>Value2</td>
+                    for i in range(0, 4, 2):
+                        field = " ".join(cells[i].get_text(strip=True).split())
+                        value = " ".join(cells[i + 1].get_text(strip=True).split())
+                        if _is_valid_detail_pair(field, value) and field not in details:
+                            details[field] = value
+
+        logger.info(f"Pre-fetched {len(details)} clean detail fields from {url}")
+        return details
+    except Exception as e:
+        logger.warning(f"Failed to pre-fetch tender details from {url}: {e}")
+        return {"_error": str(e)}
+    finally:
+        try:
+            if not page.is_closed():
+                await page.close()
+        except Exception:
+            pass
+
+
 async def scrape_dynamic_page(url: str, search_keyword: Optional[str] = None, max_depth: int = 1):
     """
     Scrapes a dynamic web page using Playwright with optional keyword search and depth crawling.
@@ -298,6 +413,20 @@ async def scrape_dynamic_page(url: str, search_keyword: Optional[str] = None, ma
                             table_rows = exact_match_rows
                             table_relevance = 1000  # Max priority for exact matches
 
+                            # PRE-FETCH: Visit each matching tender's detail page
+                            # while the session is still alive (limit to 5 tenders)
+                            for row_data in table_rows[:5]:
+                                if '_links' not in row_data:
+                                    continue
+                                for col_name, link_info in row_data['_links'].items():
+                                    if link_info and 'url' in link_info:
+                                        tender_url = link_info['url']
+                                        logger.info(f"Pre-fetching details for: {tender_url}")
+                                        fetched = await _fetch_tender_page_details(context, tender_url)
+                                        if fetched and '_error' not in fetched:
+                                            row_data['_details'] = fetched
+                                        break  # Only visit first link per row
+
                         # Secondary relevance for non-keyword searches
                         tender_patterns = ['tender', 'bid', 'ref', 'opening', 'date', 'id', 'no', 'title', 'organisation']
                         is_tender_table = any(p in table_text for p in tender_patterns)
@@ -413,18 +542,11 @@ async def scrape_dynamic_page(url: str, search_keyword: Optional[str] = None, ma
         finally:
             await browser.close()
 
-async def export_tender_details_csv(url: str) -> str:
+async def fetch_tender_details_dict(url: str) -> Dict[str, Any]:
     """
     Visits a tender details page and extracts all data including dynamically loaded content.
-    Handles etenders.gov.in which uses AJAX to load tender details.
-    Includes session timeout detection and recovery.
+    Returns a dictionary of all extracted fields.
     """
-    import csv
-    import io
-
-    csv_output = io.StringIO()
-    writer = csv.writer(csv_output)
-
     async with async_playwright() as p:
         browser = await p.chromium.launch(
             headless=True,
@@ -444,11 +566,7 @@ async def export_tender_details_csv(url: str) -> str:
             page_content = await page.content()
             if "session has timed out" in page_content.lower() or "session expired" in page_content.lower():
                 logger.warning("Session timeout detected!")
-                writer.writerow(["Status", "Session Expired or Invalid"])
-                writer.writerow(["Error", "The session parameter in the URL has expired or is no longer valid."])
-                writer.writerow(["Solution", "Navigate to the search page first, perform a fresh search, then click the tender to get a valid session."])
-                writer.writerow(["URL", url])
-                return csv_output.getvalue()
+                return {"_error": "Session timeout", "_message": "The session has expired. Please navigate through the search page to refresh your session."}
             
             logger.info("Waiting for dynamic content to load...")
             
@@ -593,58 +711,59 @@ async def export_tender_details_csv(url: str) -> str:
                             if line1 not in all_data and not any(c.isdigit() for c in line1[:3]):
                                 all_data[line1] = line2
 
-            # ========== Write CSV Output ==========
-            writer.writerow(["Field / Property", "Value"])
-            
-            if all_data:
-                logger.info(f"Extracted {len(all_data)} data fields")
-                for field, value in all_data.items():
-                    # Clean up field name
-                    field = field.replace('\n', ' ').replace('\r', ' ')
-                    value = value.replace('\n', ' | ').replace('\r', ' | ')
-                    
-                    # Ensure length limits for CSV
-                    if len(value) > 10000:
-                        value = value[:10000] + "..."
-                    
-                    writer.writerow([field, value])
-                
-                writer.writerow([""])
-                writer.writerow(["Extraction Status", "Successfully extracted tender details"])
-                writer.writerow(["Source URL", url])
-            else:
-                logger.warning("No data extracted from page")
-                
-                # Check if session might be expired even after extraction attempt
-                page_text = soup.get_text().lower()
-                if "session" in page_text and ("timed out" in page_text or "expired" in page_text):
-                    writer.writerow(["Status", "Session Expired"])
-                    writer.writerow(["Error", "The session has expired. Please navigate through the search page to refresh your session."])
-                    writer.writerow(["URL", url])
-                    writer.writerow(["Suggestion", "Use the Search feature on the main page, find your tender, and click it to get a fresh session."])
-                else:
-                    writer.writerow(["Status", "Page loaded but extraction found minimal data"])
-                    writer.writerow(["URL", url])
-                    
-                    # Get page info for debugging
-                    title = soup.title.string if soup.title else "No title"
-                    writer.writerow(["Page Title", title])
-                    
-                    # Extract raw page length for debugging
-                    writer.writerow(["Page Content Length", len(page_text)])
-                    writer.writerow(["Troubleshooting", "Page may require authentication, session refresh, or use advanced JavaScript rendering"])
-
-            return csv_output.getvalue()
+            return all_data
 
         except Exception as e:
             logger.error(f"Error extracting tender details: {e}", exc_info=True)
-            writer.writerow(["Field / Property", "Value"])
-            writer.writerow(["Error", str(e)])
-            writer.writerow(["URL", url])
-            writer.writerow(["Suggestion", "The session may have expired. Try accessing the tender URL directly in a browser first."])
-            return csv_output.getvalue()
+            return {"_error": str(e)}
         finally:
             await browser.close()
+
+
+async def export_tender_details_csv(url: str) -> str:
+    """
+    Visits a tender details page and extracts all data including dynamically loaded content.
+    Returns CSV content as string.
+    """
+    import csv
+    import io
+
+    csv_output = io.StringIO()
+    writer = csv.writer(csv_output)
+    
+    all_data = await fetch_tender_details_dict(url)
+    
+    writer.writerow(["Field / Property", "Value"])
+    
+    if "_error" in all_data:
+        writer.writerow(["Error", all_data.get("_error")])
+        if "_message" in all_data:
+            writer.writerow(["Message", all_data.get("_message")])
+        writer.writerow(["URL", url])
+        return csv_output.getvalue()
+
+    if all_data:
+        logger.info(f"Formatting {len(all_data)} data fields to CSV")
+        for field, value in all_data.items():
+            # Clean up field name
+            field = str(field).replace('\n', ' ').replace('\r', ' ')
+            value = str(value).replace('\n', ' | ').replace('\r', ' | ')
+            
+            # Ensure length limits for CSV
+            if len(value) > 10000:
+                value = value[:10000] + "..."
+            
+            writer.writerow([field, value])
+        
+        writer.writerow([""])
+        writer.writerow(["Extraction Status", "Successfully extracted tender details"])
+        writer.writerow(["Source URL", url])
+    else:
+        logger.warning("No data extracted from page")
+        writer.writerow(["Status", "Page loaded but extraction found minimal data"])
+        writer.writerow(["URL", url])
+        
+    return csv_output.getvalue()
 
 
 async def export_all_tenders_with_details_csv(tender_data_list: List[Dict[str, Any]]) -> str:

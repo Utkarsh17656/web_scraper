@@ -78,7 +78,8 @@
         /* Make the main input flexible and allow it to shrink properly */
         .input-group input {
             flex: 1 1 auto;
-            min-width: 0; /* allow flex children to shrink below their content width */
+            min-width: 0;
+            /* allow flex children to shrink below their content width */
         }
 
         /* Keep the depth selector compact */
@@ -106,6 +107,7 @@
                 flex-direction: column;
                 align-items: stretch;
             }
+
             .input-group .depth-select {
                 flex: none;
                 width: 100%;
@@ -354,8 +356,7 @@
         .download-icon-link:hover {
             color: #4ade80;
         }
-            cursor: pointer;
-        }
+
 
         @media (max-width: 768px) {
             .tender-row {
@@ -608,12 +609,16 @@
                                         return;
                                     }
 
+                                    // Capture pre-fetched details from backend (if available)
+                                    const tenderDetails = row._details || null;
+
                                     exportRows.push({
                                         title: displayTitle || 'Tender Document',
                                         ref: displayRef || '—',
                                         closing: closingVal,
                                         opening: openingVal,
-                                        link: link
+                                        link: link,
+                                        details: tenderDetails
                                     });
 
                                     function escapeHtml(s) {
@@ -637,6 +642,10 @@
                                     const safeRef = escapeHtml(displayRef || '—');
                                     const safeClosing = escapeHtml(closingVal);
 
+                                    // Build per-row export button: uses pre-fetched _details if available
+                                    const rowIdx = globalRowIndex;
+                                    const detailsAvailable = !!tenderDetails;
+
                                     rowDiv.innerHTML = `
                                         <div class="tender-col">
                                             <div class="date-label">Tender Title</div>
@@ -644,18 +653,17 @@
                                                 <span class="item-num">${globalRowIndex}.</span>
                                                 <div class="tender-link-wrap" style="display:flex; align-items:flex-start; gap:8px;">
                                                     <a href="${escapeHtml(link)}" target="_blank" class="tender-link" rel="noopener">${safeTitle}</a>
-                                                    ${hasRealLink ? `
-                                                    <a href="/api/export-tender?url=${encodeURIComponent(link)}" 
-                                                       title="Export Tender Details to CSV" 
-                                                       class="download-icon-link" 
-                                                       style="flex-shrink:0; margin-top:2px;">
+                                                    <button type="button"
+                                                        class="download-icon-link export-single-btn"
+                                                        data-row-idx="${rowIdx}"
+                                                        title="Export tender details to CSV"
+                                                        style="flex-shrink:0; margin-top:2px; background:none; border:none; padding:0; width:auto; box-shadow:none;">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                                                             <polyline points="7 10 12 15 17 10"></polyline>
                                                             <line x1="12" y1="15" x2="12" y2="3"></line>
                                                         </svg>
-                                                    </a>
-                                                    ` : ''}
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -721,17 +729,80 @@
             }
         });
 
-        // Email alerts functionality removed for performance optimization
+        // Per-row CSV export using pre-fetched details (no server round-trip needed)
+        function exportSingleTenderCsv(rowData) {
+            const escapeCsv = (s) => {
+                const str = (s == null ? '' : String(s));
+                if (/[",\n\r]/.test(str)) return '"' + str.replace(/"/g, '""') + '"';
+                return str;
+            };
+            const lines = ['"Field / Property","Value"'];
+            lines.push(`${escapeCsv('Tender Title')},${escapeCsv(rowData.title)}`);
+            lines.push(`${escapeCsv('Ref / Tender ID')},${escapeCsv(rowData.ref)}`);
+            lines.push(`${escapeCsv('Closing Date')},${escapeCsv(rowData.closing)}`);
+            lines.push(`${escapeCsv('Opening Date')},${escapeCsv(rowData.opening)}`);
+            lines.push(`${escapeCsv('Source Link')},${escapeCsv(rowData.link)}`);
+            const details = rowData.details || rowData._details || {};
+            if (Object.keys(details).length > 0) {
+                lines.push('');
+                lines.push('"--- Detailed Tender Information ---",""');
+                for (const [field, value] of Object.entries(details)) {
+                    if (!field.startsWith('_') && field.toLowerCase() !== 'field / property' && field.toLowerCase() !== 'value') {
+                        lines.push(`${escapeCsv(field)},${escapeCsv(value)}`);
+                    }
+                }
+            }
+            const csv = '\uFEFF' + lines.join('\r\n');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'tender_details_' + new Date().toISOString().slice(0, 10) + '.csv';
+            a.click();
+            URL.revokeObjectURL(a.href);
+        }
+
+        document.addEventListener('click', async function (e) {
+            const btn = e.target.closest('.export-single-btn');
+            if (!btn) return;
+            const idx = parseInt(btn.dataset.rowIdx, 10);
+            const data = window.scrapeExportData;
+            const tender = data[idx - 1];
+
+            if (tender) {
+                if (!tender.details && tender.link && tender.link !== '#') {
+                    // Show loading state on the button
+                    const originalHtml = btn.innerHTML;
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                    btn.innerHTML = `<svg class="spinner-svg" style="animation: spin 1s linear infinite;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg>`;
+
+                    try {
+                        const resp = await fetch(`/api/tender-details?url=${encodeURIComponent(tender.link)}`);
+                        if (resp.ok) {
+                            const details = await resp.json();
+                            tender.details = details;
+                        }
+                    } catch (err) {
+                        console.error("Failed to fetch tender details:", err);
+                    } finally {
+                        btn.disabled = false;
+                        btn.style.opacity = '1';
+                        btn.innerHTML = originalHtml;
+                    }
+                }
+                exportSingleTenderCsv(tender);
+            }
+        });
 
         document.getElementById('exportCsvBtn').addEventListener('click', async function () {
             const data = window.scrapeExportData;
             if (!data || data.length === 0) return;
-            
+
             const btn = this;
             const originalText = btn.textContent;
             btn.disabled = true;
             btn.textContent = 'Enriching with details...';
-            
+
             try {
                 // Try enhanced export with details first
                 const response = await fetch('/api/export-bulk', {
@@ -741,7 +812,7 @@
                     },
                     body: JSON.stringify({ tenders: data })
                 });
-                
+
                 if (response.ok) {
                     const blob = await response.blob();
                     const url = window.URL.createObjectURL(blob);
